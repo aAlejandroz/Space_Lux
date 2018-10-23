@@ -40,9 +40,9 @@ public class PlayerController : MonoBehaviour
 		mouseAngle = Mathf.Atan2(mouseVec.y, mouseVec.x) * Mathf.Rad2Deg;
 
 		if (movementInput == Vector2.zero) {
-			anim.StopPlayback();
-		} else {
 			anim.StartPlayback();
+		} else {
+			anim.StopPlayback();
 		}
 
 		if (mouseAngle <= 33.0f && mouseAngle >= -33.0f) { // Right

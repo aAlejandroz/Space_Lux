@@ -8,7 +8,7 @@ public class SwarmEnemyAI : MonoBehaviour {
 	public float MovementSpeed;
 	public float AttackSpeed;
 	public float AttackDamage;
-	private GameObject target;
+	public GameObject target;
 	private Vector2 targetVec;
 	private bool isTargetInRange;
 	private Rigidbody2D rb2d;
@@ -25,12 +25,13 @@ public class SwarmEnemyAI : MonoBehaviour {
 		rb2d.velocity = targetVec * MovementSpeed;
 	}
 
-	private void OnTriggerEnter2D(Collider2D coll) {
-		if (coll.gameObject == target) {
+	private void OnTriggerEnter2D(Collider2D coll) {  
+        if (coll.gameObject == target) {
+            Debug.Log("Collided with Target");
 			isTargetInRange = true;
 			StartCoroutine(attackUntilOutOfRange());
 		}
-	}
+	}   
 
 	private void OnTriggerExit2D(Collider2D coll) {
 		if (coll.gameObject == target) {
