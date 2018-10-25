@@ -51,6 +51,12 @@ public class TurretAI : Buildable {
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.gameObject.tag == "Enemy") {
+            trackEnemy(collision.gameObject);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.tag == "Enemy") {            
             untrackEnemy(collision.gameObject);           
@@ -58,10 +64,12 @@ public class TurretAI : Buildable {
     }
 
     private void trackEnemy(GameObject enemy) {
-		enemies.Add(enemy);
-		if (!isSearchingAndDestroying) {
-			isSearchingAndDestroying = true;            
-        }
+        if (!enemies.Contains(enemy)) {     //Only adds enemy if the enemy is not already in the List
+            enemies.Add(enemy);
+            if (!isSearchingAndDestroying) {
+                isSearchingAndDestroying = true;
+            }
+        }		
 	}
 
 	private void untrackEnemy(GameObject enemy) {

@@ -23,22 +23,21 @@ public class SwarmEnemyAI : MonoBehaviour {
 		targetVec.x = Mathf.Clamp(targetVec.x, -1.0f, 1.0f);
 		targetVec.y = Mathf.Clamp(targetVec.y, -1.0f, 1.0f);
 		rb2d.velocity = targetVec * MovementSpeed;
-	}
+	}       
 
-	private void OnTriggerEnter2D(Collider2D coll) {  
+    private void OnCollisionStay2D(Collision2D coll) {
+        if (coll.gameObject == target) {           
+            isTargetInRange = true;
+            StartCoroutine(attackUntilOutOfRange());
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D coll) {
         if (coll.gameObject == target) {
-            Debug.Log("Collided with Target");
-			isTargetInRange = true;
-			StartCoroutine(attackUntilOutOfRange());
-		}
-	}   
-
-	private void OnTriggerExit2D(Collider2D coll) {
-		if (coll.gameObject == target) {
-			isTargetInRange = false;
-		}
-	}
-
+            isTargetInRange = false;
+        }
+    }
+  
 	private IEnumerator attackUntilOutOfRange() {
 		if (!isTargetInRange) {
 			yield break;
