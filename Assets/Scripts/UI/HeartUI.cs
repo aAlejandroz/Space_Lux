@@ -7,8 +7,9 @@ public class HeartUI : MonoBehaviour {
 
 	public Damageable Damageable;
 	public float HealthPerHeart;
-	public Sprite HealthBar;
-	//public Sprite EmptyBar;
+  public Image ImagePrefab;
+	public Sprite HeartFull;
+	public Sprite HeartEmpty;
 	public Vector3 Scale;
 	public float xOffset;
 	private Image[] hearts;
@@ -23,7 +24,8 @@ public class HeartUI : MonoBehaviour {
 		hearts = new Image[(int)(Damageable.MaxHP / HealthPerHeart)];   
 
 		for (int i = 0; i < hearts.Length; i++) {
-		    hearts[i] = ObjectFactory.CreateGameObject("heart_" + i, typeof(Image)).GetComponent<Image>();
+      hearts[i] = Instantiate(ImagePrefab);
+      hearts[i].name = "hearts_" + i;
 			hearts[i].transform.SetParent(transform, false);
 			hearts[i].rectTransform.localPosition += offset * i;
 			hearts[i].rectTransform.localScale = Scale;            
