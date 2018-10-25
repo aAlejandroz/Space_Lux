@@ -9,20 +9,40 @@ public class TurretAI : Buildable {
     public Gun TurretGun;
     public List<GameObject> enemies;    
     private Vector2 targetVec;
-    private float targetAngle;
-	private bool isSearchingAndDestroying;
+    private GameObject buildingBar;
+    private float targetAngle;    
+    private bool isSearchingAndDestroying;
 
-    public TurretAI() {
+    public TurretAI() {        
         enemies = new List<GameObject>();
-		isSearchingAndDestroying = false;        
+        canBuild = true;
+		isSearchingAndDestroying = false;
+        status = Status.DESTROYED;
+        isbuilding = false;        
+        buildTime = 5;
+        timeLeftBuilding = buildTime;
     }
 
-    private void Update() {    
-        // TODO: Make enemies damage turret
+    public void Start() {
+        buildingBar = GameObject.FindGameObjectWithTag("Slider");
+    }
+
+    // TODO: Make enemies damage turret
+    private void Update() {            
         canRepair = CurHP < MaxHP ? true : false;
-        if (isSearchingAndDestroying) {
+
+        if (isSearchingAndDestroying && status == Status.ACTIVE) {
             StartCoroutine(SearchAndDestroy());
         }                
+
+        if (isbuilding) {            
+            timeLeftBuilding -= Time.deltaTime;    // Start decreasing build time. Ex) 10 seconds for turrets
+            if (timeLeftBuilding <= 0f) {
+                isbuilding = false;
+                status = Status.ACTIVE;
+                Debug.Log(status);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -40,8 +60,7 @@ public class TurretAI : Buildable {
     private void trackEnemy(GameObject enemy) {
 		enemies.Add(enemy);
 		if (!isSearchingAndDestroying) {
-			isSearchingAndDestroying = true;
-            StartCoroutine(SearchAndDestroy());
+			isSearchingAndDestroying = true;            
         }
 	}
 
@@ -68,13 +87,19 @@ public class TurretAI : Buildable {
     }
 
     // Build function for turret
-    public override GameObject Build(Transform spawnPoint, Grid grid) { 
+    public override GameObject Build(Transform spawnPoint, Grid grid) {                 
         if (canBuild) { // Can only build if nothing is blocking. Just gonna set this to true for now
             Vector3Int cellPosition = grid.WorldToCell(spawnPoint.position);            
             Vector3 turretSpawnPoint = new Vector3();
             turretSpawnPoint = grid.GetCellCenterLocal(cellPosition) + new Vector3(0f, 1f, 0f); // Add offset
+            Debug.Log(turretSpawnPoint);
 
-            var turret = Instantiate(gameObject, turretSpawnPoint, Quaternion.identity);
+            Debug.Log("Spawning turret...");
+            var turret = Instantiate(gameObject, turretSpawnPoint, Quaternion.identity);            
+            turret.GetComponent<TurretAI>().isbuilding = true;
+
+            var buildBar = (GameObject)Instantiate(buildingBar, turretSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
+            buildBar.GetComponentInChildren<BuildTimer>().SetBuildTime(this.buildTime);            
 
             return turret;
         }
@@ -90,26 +115,4 @@ public class TurretAI : Buildable {
     protected override void OnDestroyed() {
         Destroy(gameObject);
     }
-
-    /*
-private IEnumerator searchAndDestroy(GameObject enemy) {
-    if (enemy != null) { // Aim, shoot, wait for gun cooldown, and try again
-        targetVec = enemy.transform.position - TurretGun.transform.position;
-        targetAngle = Mathf.Atan2(targetVec.y, targetVec.x) * Mathf.Rad2Deg;
-        TurretGun.transform.rotation = Quaternion.Euler(0.0f, 0.0f, targetAngle);
-        TurretGun.Use();
-        yield return new WaitForSeconds(TurretGun.FireRate);
-        StartCoroutine(searchAndDestroy(enemy));
-    } else { 
-        enemy = enemies.Take(1).FirstOrDefault();
-
-        if (enemy == null) {
-            isSearchingAndDestroying = false;
-            yield break;
-        } else {
-            StartCoroutine(searchAndDestroy(enemy));
-        }
-    }
-}
-*/
 }

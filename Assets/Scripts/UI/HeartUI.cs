@@ -7,39 +7,42 @@ public class HeartUI : MonoBehaviour {
 
 	public Damageable Damageable;
 	public float HealthPerHeart;
-	public Sprite HeartFull;
-	public Sprite HeartEmpty;
+	public Sprite HealthBar;
+	//public Sprite EmptyBar;
 	public Vector3 Scale;
 	public float xOffset;
 	private Image[] hearts;
 
 	private void Awake() {
-		InitHearts();
+		InitHearts();         
 	}
 
 	public void InitHearts() {
 		Vector3 offset = new Vector3(xOffset, 0.0f, 0.0f);
 		
-		hearts = new Image[(int)(Damageable.MaxHP / HealthPerHeart)];
+		hearts = new Image[(int)(Damageable.MaxHP / HealthPerHeart)];   
 
 		for (int i = 0; i < hearts.Length; i++) {
-			hearts[i] = ObjectFactory.CreateGameObject("heart_" + i, typeof(Image)).GetComponent<Image>();
+		    hearts[i] = ObjectFactory.CreateGameObject("heart_" + i, typeof(Image)).GetComponent<Image>();
 			hearts[i].transform.SetParent(transform, false);
 			hearts[i].rectTransform.localPosition += offset * i;
-			hearts[i].rectTransform.localScale = Scale;
+			hearts[i].rectTransform.localScale = Scale;            
 		}
 
 		UpdateHearts();
 	}
 
 	public void UpdateHearts() {
-		int numFilledHearts = Mathf.CeilToInt(Damageable.CurHP / HealthPerHeart);
+		int numFilledHearts = Mathf.CeilToInt(Damageable.CurHP / HealthPerHeart);        
+
 		for (int i = 0; i < numFilledHearts; i++) {
-			hearts[i].sprite = HeartFull;
-		}
+            hearts[i].sprite = HealthBar;
+            hearts[i].color = Color.red;
+        }
 
 		for (int i = numFilledHearts; i < hearts.Length; i++) {
-			hearts[i].sprite = HeartEmpty;
-		}
-	}
+			hearts[i].sprite = HealthBar;
+            hearts[i].color = Color.magenta;                       
+        }
+    }
 }
