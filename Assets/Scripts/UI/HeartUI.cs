@@ -7,8 +7,9 @@ public class HeartUI : MonoBehaviour {
 
 	public Damageable Damageable;
 	public float HealthPerHeart;
-	public Sprite HealthBar;
-	//public Sprite EmptyBar;
+    //public Sprite HealthBar;
+    public Sprite FullHealth;
+	public Sprite EmptyBar;
 	public Vector3 Scale;
 	public float xOffset;
 	private Image[] hearts;
@@ -36,13 +37,11 @@ public class HeartUI : MonoBehaviour {
 		int numFilledHearts = Mathf.CeilToInt(Damageable.CurHP / HealthPerHeart);        
 
 		for (int i = 0; i < numFilledHearts; i++) {
-            hearts[i].sprite = HealthBar;
-            hearts[i].color = Color.red;
+            hearts[i].sprite = FullHealth;
         }
 
 		for (int i = numFilledHearts; i < hearts.Length; i++) {
-			hearts[i].sprite = HealthBar;
-            hearts[i].color = Color.magenta;                       
+			hearts[i].sprite = EmptyBar;
         }
     }
 }
