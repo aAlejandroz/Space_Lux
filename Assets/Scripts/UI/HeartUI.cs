@@ -9,7 +9,7 @@ public class HeartUI : MonoBehaviour {
 	public float HealthPerHeart;    
     public Sprite FullHealth;
 	public Sprite EmptyBar;
-    //public Image ImagePrefab;
+    public Image ImagePrefab;
 	public Vector3 Scale;
 	public float xOffset;
     [SerializeField]
@@ -26,8 +26,8 @@ public class HeartUI : MonoBehaviour {
         Debug.Log("Array of hearts of size " + hearts.Length);
 
         for (int i = 0; i < hearts.Length; i++) {
-            //hearts[i] = Instantiate(ImagePrefab);              
-            hearts[i] = ObjectFactory.CreateGameObject("heart_" + i, typeof(Image)).GetComponent<Image>();
+            //hearts[i] = ObjectFactory.CreateGameObject("heart_" + i, typeof(Image)).GetComponent<Image>();
+            hearts[i] = Instantiate(ImagePrefab);                          
             hearts[i].name = "hearts_" + i;
 			hearts[i].transform.SetParent(transform, false);
 			hearts[i].rectTransform.localPosition += offset * i;
