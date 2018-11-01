@@ -5,34 +5,71 @@
 public class PlayerController : MonoBehaviour
 {
 	public float MovementSpeed;
-	public Item FireSlot;
+    public Transform PlayerHands;
+    //public Item FireSlot;
 	public Camera Camera;
+
 	private Animator anim;
 	private Rigidbody2D rb;
 	private Vector2 movementInput;
 	private Vector2 mouseVec;
 	private float mouseAngle;
 	private bool isFiring;
+    public GameObject currentWeapon;
+    public GameObject[] WeaponInventory;
 
-	private void Awake() {
+    public PlayerController() {
+        WeaponInventory = new GameObject[3];
+    }
+
+    public Gun weaponComponent;
+
+    private int weaponIndex = 0;
+
+    private void Awake() {
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
-	}
+        switchWeapons(0);
+    }
+    
+    private void switchWeapons(int index) {
+        if (currentWeapon != null) {
+            Destroy(currentWeapon);
+        }
 
-	private void Update() {
-		movementInput.x = Input.GetAxisRaw("Horizontal");
-		movementInput.y = Input.GetAxisRaw("Vertical");
-		isFiring = Input.GetButton("Fire1");
-	}
+        currentWeapon = Instantiate(WeaponInventory[index], PlayerHands);
+        weaponComponent = currentWeapon.GetComponent<Gun>();
 
-	private void FixedUpdate() {
+    }
+
+    private void Update() {
+        movementInput.x = Input.GetAxisRaw("Horizontal");
+        movementInput.y = Input.GetAxisRaw("Vertical");
+        isFiring = Input.GetButton("Fire1");
+
+        if (Input.GetKeyDown("1"))
+            switchWeapons(0);
+
+        if (Input.GetKeyDown("2"))
+            switchWeapons(1);
+
+        if (Input.GetKeyDown("3"))
+            switchWeapons(2);
+    }
+
+    private void FixedUpdate() {
 		rb.velocity = movementInput * MovementSpeed;
 
+        /*
 		if (isFiring && FireSlot != null) {
 			FireSlot.Use();
 		}
+        */
+        if (isFiring) {
+            weaponComponent.Use();
+        }
 
-		UpdateAnimations();
+        UpdateAnimations();
 	}
 
 	private void UpdateAnimations() {

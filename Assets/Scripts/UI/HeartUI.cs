@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class HeartUI : MonoBehaviour {
 
 	public Damageable Damageable;
-	public float HealthPerHeart;    
+	public float HealthPerHeart;
     public Sprite FullHealth;
-	public Sprite EmptyBar;
+    public Sprite EmptyBar;   
     public Image ImagePrefab;
 	public Vector3 Scale;
 	public float xOffset;
@@ -31,7 +31,7 @@ public class HeartUI : MonoBehaviour {
             hearts[i].name = "hearts_" + i;
 			hearts[i].transform.SetParent(transform, false);
 			hearts[i].rectTransform.localPosition += offset * i;
-			hearts[i].rectTransform.localScale = Scale;            
+			hearts[i].rectTransform.localScale = Scale;             
 		}
 
 		UpdateHearts();        
@@ -45,10 +45,12 @@ public class HeartUI : MonoBehaviour {
         
 		for (int i = 0; i < numFilledHearts; i++) {
             hearts[i].sprite = FullHealth;
+            //hearts[i] = FullHealth;
         }
 
 		for (int i = numFilledHearts; i < hearts.Length; i++) {
-			hearts[i].sprite = EmptyBar;
+            hearts[i].sprite = EmptyBar;
+            //hearts[i] = EmptyBar;
         }
     }
 }

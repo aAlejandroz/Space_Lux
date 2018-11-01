@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: gun_pistol
   FireRate: 0.15
-  ProjectilePrefab: {fileID: 114368667084496816, guid: 1b8f3683b58ff2c46b6daef6ed1354d9,
+  ProjectilePrefab: {fileID: 114368667084496816, guid: 4ac4c93be745d304f995578e932afa06,
     type: 2}
   SpawnPoint: {fileID: 4370692194789484}
   FireSound: {fileID: 82109221268787566}

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent (typeof(Collider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class TurretAI : Buildable {
-        
+
     public Gun TurretGun;
-    public List<GameObject> enemies;    
-    private Vector2 targetVec;
-    private GameObject buildingBar;
+    public List<GameObject> enemies;
+    private Vector2 targetVec;  
+    //private GameObject buildingBar;
     private float targetAngle;    
     private bool isSearchingAndDestroying;
 
@@ -25,6 +25,7 @@ public class TurretAI : Buildable {
 
     public void Start() {
         buildingBar = GameObject.FindGameObjectWithTag("Slider");
+        //buildingBar = Instantiate(progressBarPrefab);
     }
 
     // TODO: Make enemies damage turret

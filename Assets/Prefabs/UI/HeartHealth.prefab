@@ -40,10 +40,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damageable: {fileID: 0}
   HealthPerHeart: 20
-  HeartFull: {fileID: 21300000, guid: 34a367f6377efc24a93a8e5a4f7b6a2a, type: 3}
-  HeartEmpty: {fileID: 21300018, guid: 34a367f6377efc24a93a8e5a4f7b6a2a, type: 3}
+  FullHealth: {fileID: 0}
+  EmptyBar: {fileID: 0}
+  ImagePrefab: {fileID: 0}
   Scale: {x: 0.15, y: 0.15, z: 0}
   xOffset: 17
+  hearts: []
 --- !u!224 &224273226163901292
 RectTransform:
   m_ObjectHideFlags: 1

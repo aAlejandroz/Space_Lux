@@ -24,6 +24,7 @@ public class BuildManager : MonoBehaviour {
             }            
         }       
         
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1) && buildingPrefab.Count > 0) {
             index = 0;
         }
@@ -33,6 +34,7 @@ public class BuildManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha2) && buildingPrefab.Count > 2) {
             index = 2;
         }
+        */
 
         if (Input.GetKeyDown(KeyCode.C)) {
             buildingPrefab[index].Build(spawnPoint, grid);
