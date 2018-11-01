@@ -184,6 +184,7 @@ MonoBehaviour:
   SpawnPoint: {fileID: 4401013626268750}
   FireSound: {fileID: 82102000801687958}
   Force: 20
+  Spread: 15
 --- !u!212 &212296996573120542
 SpriteRenderer:
   m_ObjectHideFlags: 1

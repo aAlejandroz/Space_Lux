@@ -108,6 +108,7 @@ MonoBehaviour:
   AttackSpeed: 0.33
   AttackDamage: 7.13
   target: {fileID: 0}
+  drop: {fileID: 1625940618196778, guid: feb349801623bab49b279e0be207741a, type: 2}
 --- !u!212 &212628857401836338
 SpriteRenderer:
   m_ObjectHideFlags: 1

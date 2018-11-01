@@ -12,6 +12,7 @@ public class SwarmEnemyAI : MonoBehaviour {
 	private Vector2 targetVec;
 	private bool isTargetInRange;
 	private Rigidbody2D rb2d;
+    public GameObject drop;
 
 	private void Awake() {
 		target = GameObject.Find("Player");
@@ -50,4 +51,10 @@ public class SwarmEnemyAI : MonoBehaviour {
 			StartCoroutine(attackUntilOutOfRange());
 		}
 	}
+
+    public void OnDestroy() {
+        Instantiate(drop, transform.position, drop.transform.rotation);
+    }
+
+
 }

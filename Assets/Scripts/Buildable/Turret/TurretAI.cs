@@ -36,7 +36,7 @@ public class TurretAI : Buildable {
             StartCoroutine(SearchAndDestroy());
         }                
 
-        if (isbuilding) {            
+        if (isbuilding) {                                
             timeLeftBuilding -= Time.deltaTime;    // Start decreasing build time. Ex) 10 seconds for turrets
             if (timeLeftBuilding <= 0f) {
                 isbuilding = false;

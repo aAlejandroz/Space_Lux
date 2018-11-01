@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 	private bool isFiring;
     public GameObject currentWeapon;
     public GameObject[] WeaponInventory;
+    public int Resourcount = 0;
 
     public PlayerController() {
         WeaponInventory = new GameObject[3];
@@ -106,4 +107,19 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("xInput", x);
         anim.SetFloat("yInput", y);
     }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Pick Up") {
+            if (other.gameObject.name == "BlueCrystalPower(Clone)") {
+                Resourcount += 10;
+                Destroy(other.gameObject);
+            }
+            else {
+                Resourcount += 5;
+                Destroy(other.gameObject);
+            }
+        }
+    }
+
+
 }
