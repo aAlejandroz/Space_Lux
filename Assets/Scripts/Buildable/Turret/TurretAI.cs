@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Collider2D))]
 public class TurretAI : Buildable {
 
     public Gun TurretGun;
-    public List<GameObject> enemies;
-    private Vector2 targetVec;  
-    //private GameObject buildingBar;
+    public List<GameObject> enemies; 
+    private Vector2 targetVec;
+    private SpriteRenderer spriteRenderer;
+    private GameObject buildBar;    
     private float targetAngle;    
     private bool isSearchingAndDestroying;
 
-    public TurretAI() {        
-        enemies = new List<GameObject>();
-        canBuild = true;
+    public TurretAI() {
+        buildCost = 10;
+        enemies = new List<GameObject>();      
 		isSearchingAndDestroying = false;
         status = Status.DESTROYED;
         isbuilding = false;        
@@ -24,21 +26,28 @@ public class TurretAI : Buildable {
     }
 
     public void Start() {
-        buildingBar = GameObject.FindGameObjectWithTag("Slider");
-        //buildingBar = Instantiate(progressBarPrefab);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        buildingBar = GameObject.FindGameObjectWithTag("Slider");       
     }
 
     // TODO: Make enemies damage turret
-    private void Update() {            
+    private void Update() {                    
+
         canRepair = CurHP < MaxHP ? true : false;
 
         if (isSearchingAndDestroying && status == Status.ACTIVE) {
             StartCoroutine(SearchAndDestroy());
         }                
 
-        if (isbuilding) {                                
+        if (isbuilding) {                                 
+            float alpha = buildBar.GetComponentInChildren<Slider>().value;   // alpha = progress of slider
+            Debug.Log(alpha);
+
+            spriteRenderer.color = new Color(1, 1, 1, alpha);
+
             timeLeftBuilding -= Time.deltaTime;    // Start decreasing build time. Ex) 10 seconds for turrets
             if (timeLeftBuilding <= 0f) {
+                spriteRenderer.color = new Color(1, 1, 1, alpha);
                 isbuilding = false;
                 status = Status.ACTIVE;
                 Debug.Log(status);
@@ -96,26 +105,23 @@ public class TurretAI : Buildable {
     }
 
     // Build function for turret
-    public override GameObject Build(Transform spawnPoint, Grid grid) {                 
-        if (canBuild) { // Can only build if nothing is blocking. Just gonna set this to true for now
-            Vector3Int cellPosition = grid.WorldToCell(spawnPoint.position);            
-            Vector3 turretSpawnPoint = new Vector3();
-            turretSpawnPoint = grid.GetCellCenterLocal(cellPosition) + new Vector3(0f, 1f, 0f); // Add offset
-            Debug.Log(turretSpawnPoint);
+    public override GameObject Build(Transform spawnPoint, Grid grid) {                
+        Vector3Int cellPosition = grid.WorldToCell(spawnPoint.position);            
+        Vector3 turretSpawnPoint = new Vector3();
+        turretSpawnPoint = grid.GetCellCenterLocal(cellPosition) + new Vector3(0f, 1f, 0f); // Add offset
+        Debug.Log(turretSpawnPoint);
 
-            Debug.Log("Spawning turret...");
-            var turret = Instantiate(gameObject, turretSpawnPoint, Quaternion.identity);            
-            turret.GetComponent<TurretAI>().isbuilding = true;
+        Debug.Log("Spawning turret...");
+        var turret = Instantiate(gameObject, turretSpawnPoint, Quaternion.identity);            
+            
+        buildBar = (GameObject)Instantiate(buildingBar, turretSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
+        buildBar.GetComponentInChildren<BuildTimer>().SetBuildTime(this.buildTime);
 
-            var buildBar = (GameObject)Instantiate(buildingBar, turretSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
-            buildBar.GetComponentInChildren<BuildTimer>().SetBuildTime(this.buildTime);            
+        turret.GetComponent<TurretAI>().isbuilding = true;
+        turret.GetComponent<TurretAI>().buildBar = this.buildBar;
 
-            return turret;
-        }
-        else {
-            return null;
-        }
-    }   
+        return turret;
+    }       
 
     protected override void OnDamaged(float damage) {
         CurHP -= damage;

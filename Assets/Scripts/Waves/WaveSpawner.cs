@@ -19,6 +19,9 @@ public class WaveSpawner : MonoBehaviour {
 
     public Transform[] spawnPoints;
 
+    //public float timeBetweenWaves = 30f;
+    System.Random rand = new System.Random();
+    //public int maxWaitTime; // Max wait time in seconds
     public float timeBetweenWaves = 30f;
     public float waveCountdown { get; private set; }
 
@@ -33,6 +36,7 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     void Start() {
+        //timeBetweenWaves = RandomNum(maxWaitTime);  
         nextWave = 0;
         waveCountdown = timeBetweenWaves;
 		WaveTimerUI.StartCountdown(timeBetweenWaves);
@@ -67,6 +71,10 @@ public class WaveSpawner : MonoBehaviour {
             }
         }   
         return true;
+    }
+
+    public int RandomNum(int maxSeconds) {
+        return rand.Next(maxSeconds);
     }
 
     void WaveCompleted() {

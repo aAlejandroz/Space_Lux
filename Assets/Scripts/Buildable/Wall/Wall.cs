@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Wall : Buildable {
    
@@ -8,16 +9,19 @@ public class Wall : Buildable {
     private float mouseAngle;
     private float buildAngle;
     private float spawnAngle;
-    private GameObject buildingBar;
+    private GameObject buildBar;
+    private SpriteRenderer spriteRenderer;
     private BoxCollider2D objectCollider;
 
-    public void Start() {        
+    public void Start() {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         buildingBar = GameObject.FindGameObjectWithTag("Slider");
         objectCollider = GetComponent<BoxCollider2D>();
         objectCollider.isTrigger = true;
     }
 
-    public Wall() {        
+    public Wall() {
+        buildCost = 5;
         canBuild = true;
         status = Status.DESTROYED;
         isbuilding = false;
@@ -32,8 +36,14 @@ public class Wall : Buildable {
         //gameObject.GetComponent<BoxCollider2D>().isTrigger = status == Status.DESTROYED ? true : false;
 
         if (isbuilding) {
+            float alpha = buildBar.GetComponentInChildren<Slider>().value;   // alpha = progress of slider
+            Debug.Log(alpha);
+
+            spriteRenderer.color = new Color(1, 1, 1, alpha);
+
             timeLeftBuilding -= Time.deltaTime;    // Start decreasing build time. Ex) 10 seconds for turrets
             if (timeLeftBuilding <= 0f) {
+                spriteRenderer.color = new Color(1, 1, 1, alpha);
                 isbuilding = false;
                 status = Status.ACTIVE;
                 objectCollider.isTrigger = false;                
@@ -72,11 +82,13 @@ public class Wall : Buildable {
                 wallSpawnPoint += new Vector3(0f, offset, 0f);
             }
             
-            var wall = Instantiate(gameObject, wallSpawnPoint, Quaternion.Euler(0, 0, buildAngle));
-            wall.GetComponent<Wall>().isbuilding = true;            
+            var wall = Instantiate(gameObject, wallSpawnPoint, Quaternion.Euler(0, 0, buildAngle));                     
 
-            var buildBar = (GameObject)Instantiate(buildingBar, wallSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
+            buildBar = (GameObject)Instantiate(buildingBar, wallSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
             buildBar.GetComponentInChildren<BuildTimer>().SetBuildTime(this.buildTime);
+
+            wall.GetComponent<Wall>().isbuilding = true;
+            wall.GetComponent<Wall>().buildBar = this.buildBar;
 
             return wall;
         }

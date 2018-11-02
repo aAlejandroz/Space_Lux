@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BuildTimer : MonoBehaviour {
         
-    private Slider slider;
+    public Slider slider;
     [SerializeField]
     private float buildTime;
     [SerializeField]

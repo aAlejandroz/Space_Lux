@@ -5,12 +5,15 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour {
 
     public List<Buildable> buildingPrefab;  // array of buildables for different buildables
+    [SerializeField]
+    private PlayerController player;
     public Transform spawnPoint;
     public Grid grid;
     public GunUI gunDisplay;
     private int index;
 
-    private void Start() {        
+    private void Start() {
+        player = GetComponent<PlayerController>();
         index = 0;
     }
 
@@ -23,21 +26,21 @@ public class BuildManager : MonoBehaviour {
                 index = 0;
             }            
         }       
-        
-        /*
-        if (Input.GetKeyDown(KeyCode.Alpha1) && buildingPrefab.Count > 0) {
-            index = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && buildingPrefab.Count > 1) {
-            index = 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && buildingPrefab.Count > 2) {
-            index = 2;
-        }
-        */
 
+        // Player builds with 'C' key
         if (Input.GetKeyDown(KeyCode.C)) {
-            buildingPrefab[index].Build(spawnPoint, grid);
+
+            if (buildingPrefab[index].isBuildable(spawnPoint)) {
+                if (player.ResourceCount >= buildingPrefab[index].buildCost) {
+                    buildingPrefab[index].Build(spawnPoint, grid);
+                    player.ResourceCount -= buildingPrefab[index].buildCost;
+                }
+                else {
+                    Debug.Log("Not enough resource!");
+                }
+            } else {
+                Debug.Log("Cannot build right now");
+            }            
         }
 
         gunDisplay.UpdateGunDisplay(buildingPrefab[index]);

@@ -7,6 +7,10 @@ TagManager:
   - PlayerBullet
   - Enemy
   - Slider
+  - Bullet
+  - Pick Up
+  - Build Spawn
+  - Buildable
   layers:
   - Default
   - TransparentFX
