@@ -273,6 +273,10 @@ MonoBehaviour:
   status: 1
   buildCost: 10
   buildTime: 5
+  spawnPoint: {fileID: 0}
+  canBuild: 0
+  canRepair: 0
+  isbuilding: 0
   buildingBar: {fileID: 0}
   TurretGun: {fileID: 114287833765174964}
   enemies: []

@@ -83,6 +83,10 @@ MonoBehaviour:
   status: 0
   buildCost: 5
   buildTime: 1
+  spawnPoint: {fileID: 0}
+  canBuild: 1
+  canRepair: 0
+  isbuilding: 0
   buildingBar: {fileID: 0}
 --- !u!212 &212873925319379282
 SpriteRenderer:

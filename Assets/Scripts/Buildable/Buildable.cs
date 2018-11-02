@@ -6,13 +6,13 @@ public abstract class Buildable : Damageable {
 
     public int buildCost;
     public float buildTime;
-    protected float timeLeftBuilding;
-    protected bool canBuild, canRepair, isbuilding;
+    protected float timeLeftBuilding;    
+    public bool canBuild, canRepair, isbuilding;
     public GameObject buildingBar;
 
     public abstract GameObject Build(Transform spawnPoint, Grid grid);
 
-    public bool isBuildable(Transform spawnPoint) {
+    public bool isBuildable(Transform spawnPoint) {         
         canBuild = spawnPoint.GetComponent<DetectingBuildable>().canBuild;
         return canBuild;
     }   

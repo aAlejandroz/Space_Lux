@@ -7,7 +7,7 @@ public class DetectingBuildable : MonoBehaviour {
     [SerializeField]
     public bool canBuild = true;
 
-    private void OnTriggerStay2D(Collider2D collision) {
+    private void OnTriggerStay2D(Collider2D collision) {        
         canBuild = false;        
     }
 

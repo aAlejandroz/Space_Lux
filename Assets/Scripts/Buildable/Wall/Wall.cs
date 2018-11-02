@@ -22,22 +22,20 @@ public class Wall : Buildable {
 
     public Wall() {
         buildCost = 5;
-        canBuild = true;
+        //canBuild = true;
         status = Status.DESTROYED;
         isbuilding = false;
         buildTime = 1;
         timeLeftBuilding = buildTime;        
     }
 
-    public void Update() {
+    public void Update() {       
+
         // TODO: Make enemies damage walls
-        canRepair = CurHP < MaxHP ? true : false;
-        
-        //gameObject.GetComponent<BoxCollider2D>().isTrigger = status == Status.DESTROYED ? true : false;
+        canRepair = CurHP < MaxHP ? true : false;      
 
         if (isbuilding) {
-            float alpha = buildBar.GetComponentInChildren<Slider>().value;   // alpha = progress of slider
-            Debug.Log(alpha);
+            float alpha = buildBar.GetComponentInChildren<Slider>().value;   // alpha = progress of slider            
 
             spriteRenderer.color = new Color(1, 1, 1, alpha);
 

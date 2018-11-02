@@ -31,7 +31,7 @@ public class TurretAI : Buildable {
     }
 
     // TODO: Make enemies damage turret
-    private void Update() {                    
+    private void Update() {     
 
         canRepair = CurHP < MaxHP ? true : false;
 
@@ -40,8 +40,7 @@ public class TurretAI : Buildable {
         }                
 
         if (isbuilding) {                                 
-            float alpha = buildBar.GetComponentInChildren<Slider>().value;   // alpha = progress of slider
-            Debug.Log(alpha);
+            float alpha = buildBar.GetComponentInChildren<Slider>().value;   // alpha = progress of slider            
 
             spriteRenderer.color = new Color(1, 1, 1, alpha);
 
