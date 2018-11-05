@@ -22,11 +22,9 @@ public class HeartUI : MonoBehaviour {
 	public void InitHearts() {
 		Vector3 offset = new Vector3(xOffset, 0.0f, 0.0f);
 
-		hearts = new Image[(int)(Damageable.MaxHP / HealthPerHeart)];
-        Debug.Log("Array of hearts of size " + hearts.Length);
+		hearts = new Image[(int)(Damageable.MaxHP / HealthPerHeart)];       
 
-        for (int i = 0; i < hearts.Length; i++) {
-            //hearts[i] = ObjectFactory.CreateGameObject("heart_" + i, typeof(Image)).GetComponent<Image>();
+        for (int i = 0; i < hearts.Length; i++) {            
             hearts[i] = Instantiate(ImagePrefab);                          
             hearts[i].name = "hearts_" + i;
 			hearts[i].transform.SetParent(transform, false);
@@ -38,19 +36,14 @@ public class HeartUI : MonoBehaviour {
 	}
 
 	public void UpdateHearts() {
-		int numFilledHearts = Mathf.CeilToInt(Damageable.CurHP / HealthPerHeart);
-
-        Debug.Log("Current HP: " + Damageable.CurHP);
-        Debug.Log("num filled hearts" + numFilledHearts);
+		int numFilledHearts = Mathf.CeilToInt(Damageable.CurHP / HealthPerHeart);       
         
 		for (int i = 0; i < numFilledHearts; i++) {
-            hearts[i].sprite = FullHealth;
-            //hearts[i] = FullHealth;
+            hearts[i].sprite = FullHealth;           
         }
 
 		for (int i = numFilledHearts; i < hearts.Length; i++) {
-            hearts[i].sprite = EmptyBar;
-            //hearts[i] = EmptyBar;
+            hearts[i].sprite = EmptyBar;         
         }
     }
 }

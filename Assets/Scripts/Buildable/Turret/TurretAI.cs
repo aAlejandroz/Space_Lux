@@ -11,7 +11,8 @@ public class TurretAI : Buildable {
     public List<GameObject> enemies; 
     private Vector2 targetVec;
     private SpriteRenderer spriteRenderer;
-    private GameObject buildBar;    
+    private BuildingHP CurrentHpDisplay;
+    private GameObject buildUIInfo;    
     private float targetAngle;    
     private bool isSearchingAndDestroying;
 
@@ -27,11 +28,10 @@ public class TurretAI : Buildable {
 
     public void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        buildingBar = GameObject.FindGameObjectWithTag("Slider");       
+        buildableUI = GameObject.FindGameObjectWithTag("Slider");
     }
 
-    // TODO: Make enemies damage turret
-    private void Update() {     
+    private void Update() {        
 
         canRepair = CurHP < MaxHP ? true : false;
 
@@ -40,17 +40,20 @@ public class TurretAI : Buildable {
         }                
 
         if (isbuilding) {                                 
-            float alpha = buildBar.GetComponentInChildren<Slider>().value;   // alpha = progress of slider            
+            float alpha = buildUIInfo.GetComponentInChildren<Slider>().value;   // alpha = progress of slider            
 
             spriteRenderer.color = new Color(1, 1, 1, alpha);
 
-            timeLeftBuilding -= Time.deltaTime;    // Start decreasing build time. Ex) 10 seconds for turrets
+            timeLeftBuilding -= Time.deltaTime;    // Start decreasing build time. Ex) 5 seconds for turrets
             if (timeLeftBuilding <= 0f) {
                 spriteRenderer.color = new Color(1, 1, 1, alpha);
                 isbuilding = false;
                 status = Status.ACTIVE;
-                Debug.Log(status);
             }
+        }
+
+        if (status == Status.ACTIVE) {
+            CurrentHpDisplay.UpdateHP(CurHP);
         }
     }
 
@@ -104,29 +107,31 @@ public class TurretAI : Buildable {
     }
 
     // Build function for turret
-    public override GameObject Build(Transform spawnPoint, Grid grid) {                
-        Vector3Int cellPosition = grid.WorldToCell(spawnPoint.position);            
-        Vector3 turretSpawnPoint = new Vector3();
-        turretSpawnPoint = grid.GetCellCenterLocal(cellPosition) + new Vector3(0f, 1f, 0f); // Add offset
-        Debug.Log(turretSpawnPoint);
-
-        Debug.Log("Spawning turret...");
-        var turret = Instantiate(gameObject, turretSpawnPoint, Quaternion.identity);            
+    public override GameObject Build(Transform spawnPoint, Grid grid) {
+        if (canBuild) { 
+            Vector3Int cellPosition = grid.WorldToCell(spawnPoint.position);
+            Vector3 turretSpawnPoint = new Vector3();
+            turretSpawnPoint = grid.GetCellCenterLocal(cellPosition) + new Vector3(0f, 1f, 0f); // Add offset
             
-        buildBar = (GameObject)Instantiate(buildingBar, turretSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
-        buildBar.GetComponentInChildren<BuildTimer>().SetBuildTime(this.buildTime);
+            var turret = Instantiate(gameObject, turretSpawnPoint, Quaternion.identity);
 
-        turret.GetComponent<TurretAI>().isbuilding = true;
-        turret.GetComponent<TurretAI>().buildBar = this.buildBar;
+            buildUIInfo = (GameObject)Instantiate(buildableUI, turretSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
+            buildUIInfo.GetComponentInChildren<BuildTimer>().SetBuildTime(this.buildTime);
 
-        return turret;
-    }       
+            turret.GetComponent<TurretAI>().isbuilding = true;
+            turret.GetComponent<TurretAI>().buildUIInfo = this.buildUIInfo;
+           
+            CurrentHpDisplay = buildUIInfo.GetComponentInChildren<BuildingHP>();
+            turret.GetComponent<TurretAI>().CurrentHpDisplay = this.CurrentHpDisplay;
 
-    protected override void OnDamaged(float damage) {
-        CurHP -= damage;
-    }
+            return turret;
+        } else {
+            return null;
+        }
+    }           
 
     protected override void OnDestroyed() {
-        Destroy(gameObject);
+        CurrentHpDisplay.UpdateHP(CurHP);
+        Destroy(gameObject);  
     }
 }

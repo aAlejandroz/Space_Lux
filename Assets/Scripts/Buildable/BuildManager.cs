@@ -7,6 +7,7 @@ public class BuildManager : MonoBehaviour {
     public List<Buildable> buildingPrefab;  // array of buildables for different buildables
     [SerializeField]
     private PlayerController player;
+    private bool requestToBuild = false;
     public Transform spawnPoint;
     public Grid grid;
     public GunUI gunDisplay;
@@ -29,7 +30,14 @@ public class BuildManager : MonoBehaviour {
 
         // Player builds with 'C' key
         if (Input.GetKeyDown(KeyCode.C)) {
+            requestToBuild = true;
+        }
 
+        gunDisplay.UpdateGunDisplay(buildingPrefab[index]);
+    }
+
+    private void FixedUpdate() {
+        if (requestToBuild) {
             if (buildingPrefab[index].isBuildable(spawnPoint)) {
                 if (player.ResourceCount >= buildingPrefab[index].buildCost) {
                     buildingPrefab[index].Build(spawnPoint, grid);
@@ -38,12 +46,13 @@ public class BuildManager : MonoBehaviour {
                 else {
                     Debug.Log("Not enough resource!");
                 }
-            } else {
+            }
+            else {
                 Debug.Log("Cannot build right now");
-            }            
-        }
+            }
 
-        gunDisplay.UpdateGunDisplay(buildingPrefab[index]);
+            requestToBuild = false;
+        }        
     }
-    
+
 }

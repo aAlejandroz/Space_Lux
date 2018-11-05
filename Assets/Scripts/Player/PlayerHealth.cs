@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PlayerHealth : Damageable {
 
-	public float AttackBufferTime;
-    public bool isInvincible;
     public AudioClip HurtSound;
 	public HeartUI HeartUI;
     private AudioSource audioSource;
@@ -30,10 +28,5 @@ public class PlayerHealth : Damageable {
 		Destroy(gameObject);
 	}
 
-    private IEnumerator setInvincibleAndWait() {
-		isInvincible = true;
-        yield return new WaitForSeconds(AttackBufferTime);
-		isInvincible = false;
-    }
 }
 

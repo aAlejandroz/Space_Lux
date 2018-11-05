@@ -8,34 +8,32 @@ public class Wall : Buildable {
     private Vector3 mouseVec;
     private float mouseAngle;
     private float buildAngle;
-    private float spawnAngle;
-    private GameObject buildBar;
+    private float spawnAngle;    
+    private GameObject buildUIInfo;
+    private BuildingHP CurrentHpDisplay;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D objectCollider;
 
     public void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        buildingBar = GameObject.FindGameObjectWithTag("Slider");
+        buildableUI = GameObject.FindGameObjectWithTag("Slider");      
         objectCollider = GetComponent<BoxCollider2D>();
         objectCollider.isTrigger = true;
     }
 
     public Wall() {
         buildCost = 5;
-        //canBuild = true;
         status = Status.DESTROYED;
         isbuilding = false;
         buildTime = 1;
         timeLeftBuilding = buildTime;        
     }
 
-    public void Update() {       
-
-        // TODO: Make enemies damage walls
+    public void Update() {        
         canRepair = CurHP < MaxHP ? true : false;      
 
         if (isbuilding) {
-            float alpha = buildBar.GetComponentInChildren<Slider>().value;   // alpha = progress of slider            
+            float alpha = buildUIInfo.GetComponentInChildren<Slider>().value;   // alpha = progress of slider            
 
             spriteRenderer.color = new Color(1, 1, 1, alpha);
 
@@ -47,11 +45,13 @@ public class Wall : Buildable {
                 objectCollider.isTrigger = false;                
             }
         }
+
+        if (status == Status.ACTIVE) {
+            CurrentHpDisplay.UpdateHP(CurHP);
+        }
     }
 
     public override GameObject Build(Transform spawnPoint, Grid grid) {
-        // TODO: Detect if there is any colliders in front of wall
-        // canBuild currently harcoded to TRUE
         if (canBuild) { 
             // Converts World position to cell, and cell back to world
             Vector3Int cellPosition = grid.WorldToCell(spawnPoint.position);            
@@ -82,11 +82,14 @@ public class Wall : Buildable {
             
             var wall = Instantiate(gameObject, wallSpawnPoint, Quaternion.Euler(0, 0, buildAngle));                     
 
-            buildBar = (GameObject)Instantiate(buildingBar, wallSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
-            buildBar.GetComponentInChildren<BuildTimer>().SetBuildTime(this.buildTime);
+            buildUIInfo = (GameObject)Instantiate(buildableUI, wallSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
+            buildUIInfo.GetComponentInChildren<BuildTimer>().SetBuildTime(this.buildTime);
 
             wall.GetComponent<Wall>().isbuilding = true;
-            wall.GetComponent<Wall>().buildBar = this.buildBar;
+            wall.GetComponent<Wall>().buildUIInfo = this.buildUIInfo;
+
+            CurrentHpDisplay = buildUIInfo.GetComponentInChildren<BuildingHP>();
+            wall.GetComponent<Wall>().CurrentHpDisplay = this.CurrentHpDisplay;
 
             return wall;
         }
@@ -95,11 +98,8 @@ public class Wall : Buildable {
         }
     }
 
-    protected override void OnDamaged(float damage) {
-        CurHP -= damage;
-    }
-
     protected override void OnDestroyed() {
+        CurrentHpDisplay.UpdateHP(CurHP);
         Destroy(gameObject);
     }
 }

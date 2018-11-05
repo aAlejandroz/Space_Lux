@@ -11,6 +11,7 @@ TagManager:
   - Pick Up
   - Build Spawn
   - Buildable
+  - BuildableHP
   layers:
   - Default
   - TransparentFX

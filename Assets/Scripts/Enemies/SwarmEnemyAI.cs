@@ -27,34 +27,35 @@ public class SwarmEnemyAI : MonoBehaviour {
 	}       
 
     private void OnCollisionStay2D(Collision2D coll) {
-        if (coll.gameObject == target) {           
+        if (coll.gameObject.GetComponent<Damageable>() && !(coll.gameObject.tag.Equals("Enemy"))) {   // Checks if collider is damagable & not an enemy          
             isTargetInRange = true;
-            StartCoroutine(attackUntilOutOfRange());
+            Damageable damageable = coll.gameObject.GetComponent<Damageable>();
+            StartCoroutine(attackUntilOutOfRange(damageable));
         }
     }
 
     private void OnCollisionExit2D(Collision2D coll) {
-        if (coll.gameObject == target) {
+        if (coll.gameObject.GetComponent<Damageable>()) {
             isTargetInRange = false;
         }
     }
   
-	private IEnumerator attackUntilOutOfRange() {
+	private IEnumerator attackUntilOutOfRange(Damageable damageable) {
 		if (!isTargetInRange) {
 			yield break;
 		} else {
-			var damageable = target.GetComponent<Damageable>();
+			//var damageable = target.GetComponent<Damageable>();
 			if (damageable != null) {
+                Debug.Log("Attacked...");
 				damageable.Damage(AttackDamage);
 			}
 			yield return new WaitForSeconds(AttackSpeed);
-			StartCoroutine(attackUntilOutOfRange());
+			StartCoroutine(attackUntilOutOfRange(damageable));
 		}
 	}
 
     public void OnDestroy() {
         Instantiate(drop, transform.position, drop.transform.rotation);
     }
-
 
 }

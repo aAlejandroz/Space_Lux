@@ -63,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &58428906860237710
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -92,7 +92,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 50
   CurHP: 50
+  AttackBufferTime: 0
   status: 0
+  isInvincible: 0
 --- !u!114 &114626723524357574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 2.41
   AttackSpeed: 0.33
-  AttackDamage: 7.13
+  AttackDamage: 20
   target: {fileID: 0}
   drop: {fileID: 1625940618196778, guid: feb349801623bab49b279e0be207741a, type: 2}
 --- !u!212 &212628857401836338
