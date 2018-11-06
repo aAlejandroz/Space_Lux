@@ -78,7 +78,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4418779728273524}
   - component: {fileID: 20431580126961556}
-  - component: {fileID: 81577306785126724}
   m_Layer: 0
   m_Name: MinimapCamera
   m_TagString: Untagged
@@ -120,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1004758332814754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4, y: 0, z: 0}
+  m_LocalPosition: {x: 1.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 4318673353563892}
@@ -133,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280404726292774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.46}
+  m_LocalPosition: {x: 1.52, y: 0.49, z: 1.46}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4318673353563892}
@@ -171,7 +170,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 80aac5f246cae484bbf4d298c713c116, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: d4388701248ac484e8b5d45cbbcba644, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -251,13 +250,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13968852, y: 0.16387857}
   m_EdgeRadius: 0
---- !u!81 &81577306785126724
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1465774395660094}
-  m_Enabled: 1
 --- !u!82 &82736878323115308
 AudioSource:
   m_ObjectHideFlags: 1
@@ -383,6 +375,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBuild: 1
+  isBlocked: 0
+  canRemove: 0
+  blockingObject: {fileID: 0}
 --- !u!114 &114358852243048572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -396,8 +391,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 100
   CurHP: 100
-  status: 0
   AttackBufferTime: 1
+  status: 0
   isInvincible: 0
   HurtSound: {fileID: 8300000, guid: 33d71604c2a90354690f7ab1f49b6a9d, type: 3}
   HeartUI: {fileID: 0}
@@ -412,10 +407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1eb477c9c5319340a5651e8950216a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrefab:
-  - {fileID: 0}
-  - {fileID: 0}
-  player: {fileID: 0}
+  canRemove: 0
+  buildList: []
   spawnPoint: {fileID: 4605591037423034}
   grid: {fileID: 0}
   gunDisplay: {fileID: 0}
@@ -451,7 +444,7 @@ MonoBehaviour:
   - {fileID: 1609145647318242, guid: 62fd966a4a2addb44ab112894bec3a1a, type: 2}
   - {fileID: 1678362637526056, guid: f46dca14e54acf44a9aa376ddea5be9b, type: 2}
   - {fileID: 1689670984971296, guid: 29eeed5d2f85f9d498410438bc0fc85b, type: 2}
-  ResourceCount: 0
+  ResourceCount: 100
   weaponComponent: {fileID: 0}
 --- !u!212 &212015236835492664
 SpriteRenderer:

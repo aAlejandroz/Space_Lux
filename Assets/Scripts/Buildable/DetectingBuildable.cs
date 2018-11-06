@@ -3,47 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DetectingBuildable : MonoBehaviour {
-
-    [SerializeField]
+    
+    // Change to private with getters
     public bool canBuild = true;
-    public bool isBlocked = false;
+    public bool isBlocked = false;   
+    public bool canRemove = false;
+    public Collider2D blockingObject;
 
+    // Update Function
     public void Update() {
         if (!isBlocked) {
             canBuild = true;
-        } 
+            canRemove = false;
+        }        
     }
 
-    // TODO: Player can build on top of building
-    private void OnTriggerStay2D(Collider2D collision) {        
-        
-        if (!collision.tag.Equals("Buildable")) {            
-            canBuild = false;
-            isBlocked = true;
-        } 
-        
-        /*
-        // If the collision is not a circle collider
-        if (!(collision.gameObject.GetComponent<Collider2D>().GetType().Equals(typeof(CircleCollider2D)))) {
+    // Function to detect when object is not buildable
+    private void OnTriggerStay2D(Collider2D collision) {
+
+        if (collision.tag.Equals("Buildable"))
+            blockingObject = collision;                         // Reference to blocking object. Turret / wall, etc.         
+
+        if (collision.GetType() == typeof(BoxCollider2D)) {     // Checks if collider is a box collider. Need b/c turret has circle collider
             canBuild = false;
             isBlocked = true;
         }
-        */
+
+        if (isBlocked && collision.tag.Equals("Buildable")) {   // Checks if object in front of player is removable
+            if (collision.GetComponent<Buildable>().status == Damageable.Status.ACTIVE) {                
+                canRemove = true;
+            }
+        }
+     
     }
         
+    // Function to detect when object is buildable
     private void OnTriggerExit2D(Collider2D collision) {
-        
-        if (!collision.tag.Equals("Buildable")) {
+        if (collision.GetType() == typeof(BoxCollider2D)) {
             canBuild = true;
             isBlocked = false;
-        }
-        
-        /*
-        if (collision.GetComponent<Collider2D>().GetType().Equals(typeof(BoxCollider2D))) {
-            canBuild = true;
-            isBlocked = false;
-        }
-        */
+        } 
     } 
     
 }

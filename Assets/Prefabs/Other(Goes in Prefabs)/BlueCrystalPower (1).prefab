@@ -21,7 +21,9 @@ GameObject:
   - component: {fileID: 4194638296296942}
   - component: {fileID: 212629789974815716}
   - component: {fileID: 70879598400167914}
+  - component: {fileID: 58581000605506134}
   - component: {fileID: 95590224521768058}
+  - component: {fileID: 114307440703190802}
   m_Layer: 0
   m_Name: BlueCrystalPower (1)
   m_TagString: Pick Up
@@ -36,12 +38,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1762791588819400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.183, y: 3.873, z: 0}
+  m_LocalPosition: {x: -0.18, y: -1.31, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58581000605506134
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1762791588819400}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
 --- !u!70 &70879598400167914
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -66,7 +83,7 @@ Animator:
   m_GameObject: {fileID: 1762791588819400}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b4d96245d551d74408b706ba6ea721a8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1441c9d829df41144ab19b897af44891, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -75,6 +92,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114307440703190802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1762791588819400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f51ff532f0be343b9900f59e150d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worth: 10
+  speed: 8
+  isMoving: 0
 --- !u!212 &212629789974815716
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -4,50 +4,67 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour {
 
-    public List<Buildable> buildingPrefab;  // array of buildables for different buildables
-    [SerializeField]
-    private PlayerController player;
-    private bool requestToBuild = false;
-    public Transform spawnPoint;
+    private int index;   
+    private bool requestToBuild = false;    
+    public bool canRemove = false;
+    public List<Buildable> buildList;  // array of buildables. What the player can currently build  
+    private Buildable currentBuilding;
+    private PlayerPickup playerResource;   
+    private Buildable blockingObject;
+    public Transform spawnPoint;            // Transform of gameobject in front of player
     public Grid grid;
     public GunUI gunDisplay;
-    private int index;
 
+    // Start function
     private void Start() {
-        player = GetComponent<PlayerController>();
+        playerResource = GetComponent<PlayerPickup>();
         index = 0;
     }
 
-    void Update() {
-                
-        // Player is able to choose what they build with the scroll wheel
-        if (Input.GetAxis("Mouse ScrollWheel") != 0f) {
-            index++;
-            if (index >= buildingPrefab.Count) {
-                index = 0;
-            }            
-        }       
+    // Update function
+    private void Update() {
+        canRemove = spawnPoint.GetComponent<DetectingBuildable>().canRemove;
+        currentBuilding = buildList[index];
 
-        // Player builds with 'C' key
-        if (Input.GetKeyDown(KeyCode.C)) {
-            requestToBuild = true;
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f) {                             // Player choose what they build with the scroll wheel 
+            index++;     
+            
+            if (index >= buildList.Count) {
+                index = 0;
+            }
+        }       
+       
+        if (Input.GetKeyDown(KeyCode.C))                                            // Player builds with 'C' key
+            requestToBuild = true;        
+
+        if (Input.GetKey(KeyCode.V) && canRemove) {                                 
+            blockingObject = spawnPoint.GetComponent<DetectingBuildable>().blockingObject.GetComponent<Buildable>();
+            blockingObject.Remove();
+            playerResource.IncrementResource(blockingObject.buildCost / 2);        // Destroying a building only returns half the cost                          
         }
 
-        gunDisplay.UpdateGunDisplay(buildingPrefab[index]);
+        gunDisplay.UpdateGunDisplay(buildList[index]);
     }
 
+    // TODO: Display prompt saying player can't build
+    // FixedUpdate function
     private void FixedUpdate() {
-        if (requestToBuild) {
-            if (buildingPrefab[index].isBuildable(spawnPoint)) {
-                if (player.ResourceCount >= buildingPrefab[index].buildCost) {
-                    buildingPrefab[index].Build(spawnPoint, grid);
-                    player.ResourceCount -= buildingPrefab[index].buildCost;
+        if (requestToBuild)                                                         // Player requested to build
+        {                                                           
+            if (currentBuilding.isBuildable(spawnPoint))                            // Determine if player is able to build   
+            {                                          
+                if (playerResource.GetResourceCount() >= currentBuilding.buildCost) // Determine if player has enough resource
+                {   
+                    currentBuilding.Build(spawnPoint, grid);
+                    playerResource.DecrementResource(currentBuilding.buildCost); 
                 }
-                else {
+                else 
+                {
                     Debug.Log("Not enough resource!");
                 }
             }
-            else {
+            else 
+            {
                 Debug.Log("Cannot build right now");
             }
 

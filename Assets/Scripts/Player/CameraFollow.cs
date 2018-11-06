@@ -9,11 +9,6 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     public float CamSpeed = 1;
 
-    private void Start()
-    {
-
-    }
-
     public void Update()
     {
         CamTarget = new Vector3(target.position.x, target.position.y, -1.5f);

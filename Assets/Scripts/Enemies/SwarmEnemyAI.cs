@@ -8,11 +8,10 @@ public class SwarmEnemyAI : MonoBehaviour {
 	public float MovementSpeed;
 	public float AttackSpeed;
 	public float AttackDamage;
-	public GameObject target;
-	private Vector2 targetVec;
-	private bool isTargetInRange;
+    private bool isTargetInRange;
+    public GameObject target;
+    private Vector2 targetVec;	
 	private Rigidbody2D rb2d;
-    public GameObject drop;
 
 	private void Awake() {
 		target = GameObject.Find("Player");
@@ -43,8 +42,7 @@ public class SwarmEnemyAI : MonoBehaviour {
 	private IEnumerator attackUntilOutOfRange(Damageable damageable) {
 		if (!isTargetInRange) {
 			yield break;
-		} else {
-			//var damageable = target.GetComponent<Damageable>();
+		} else {			
 			if (damageable != null) {
                 Debug.Log("Attacked...");
 				damageable.Damage(AttackDamage);
@@ -53,9 +51,4 @@ public class SwarmEnemyAI : MonoBehaviour {
 			StartCoroutine(attackUntilOutOfRange(damageable));
 		}
 	}
-
-    public void OnDestroy() {
-        Instantiate(drop, transform.position, drop.transform.rotation);
-    }
-
 }

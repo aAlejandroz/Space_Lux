@@ -16,9 +16,7 @@ public class WaveTimerUI : MonoBehaviour {
     
 	private IEnumerator waitAndDisplayWarning(float duration) {
 		yield return new WaitForSeconds(duration - TimeUntilWarning);
-        isCountingDown = true;
-        //TextField.text = "Enemies spawning in " + TimeUntilWarning + "!";      
-		//StartCoroutine(waitAndEraseText(1.5f));
+        isCountingDown = true;        
 	}
 
     private void Update() {
@@ -28,20 +26,27 @@ public class WaveTimerUI : MonoBehaviour {
 
             if (remainingTime <= 0f) {
                 TextField.text = "";
-                StartCoroutine(waitAndDisplayFight());
+                StartCoroutine(DisplayFight());
                 isCountingDown = false;
             }
         }
     }
 
-    private IEnumerator waitAndDisplayFight() {
-		//yield return new WaitForSeconds(duration);
+    private IEnumerator DisplayFight() {
 		TextField.text = "Fight!";
 		StartCoroutine(waitAndEraseText(1.5f));
         yield break;
 	}
 
-	private IEnumerator waitAndEraseText(float duration) {
+    public IEnumerator DisplayEndRound() {
+        TextField.text = "Round Complete!";
+        StartCoroutine(waitAndEraseText(1.5f));
+        TextField.text = "Prepare your defensive for the next wave!";
+        StartCoroutine(waitAndEraseText(1.5f));
+        yield break;
+    }
+
+    private IEnumerator waitAndEraseText(float duration) {
 		yield return new WaitForSeconds(duration);
 		TextField.text = "";
 	}

@@ -95,6 +95,9 @@ MonoBehaviour:
   AttackBufferTime: 0
   status: 0
   isInvincible: 0
+  dropList:
+  - {fileID: 1625940618196778, guid: feb349801623bab49b279e0be207741a, type: 2}
+  - {fileID: 1762791588819400, guid: 2232deeec078fd443aa7e27676f89b68, type: 2}
 --- !u!114 &114626723524357574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,7 +113,6 @@ MonoBehaviour:
   AttackSpeed: 0.33
   AttackDamage: 20
   target: {fileID: 0}
-  drop: {fileID: 1625940618196778, guid: feb349801623bab49b279e0be207741a, type: 2}
 --- !u!212 &212628857401836338
 SpriteRenderer:
   m_ObjectHideFlags: 1

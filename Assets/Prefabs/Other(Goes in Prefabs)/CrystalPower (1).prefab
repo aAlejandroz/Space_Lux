@@ -21,7 +21,9 @@ GameObject:
   - component: {fileID: 4923273914683230}
   - component: {fileID: 212678312550181174}
   - component: {fileID: 70816083521288534}
+  - component: {fileID: 58885388388726844}
   - component: {fileID: 95055488081205336}
+  - component: {fileID: 114722021901648274}
   m_Layer: 0
   m_Name: CrystalPower (1)
   m_TagString: Pick Up
@@ -36,12 +38,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625940618196778}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.183, y: 3.873, z: 0}
+  m_LocalPosition: {x: -0.14, y: -1.25, z: 0}
   m_LocalScale: {x: 3.8166184, y: 2.736134, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58885388388726844
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1625940618196778}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!70 &70816083521288534
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -75,6 +92,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114722021901648274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1625940618196778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f51ff532f0be343b9900f59e150d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worth: 5
+  speed: 8
+  isMoving: 0
 --- !u!212 &212678312550181174
 SpriteRenderer:
   m_ObjectHideFlags: 1

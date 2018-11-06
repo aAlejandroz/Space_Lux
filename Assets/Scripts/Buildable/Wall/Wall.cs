@@ -14,6 +14,16 @@ public class Wall : Buildable {
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D objectCollider;
 
+    // Constructor
+    public Wall() {
+        buildCost = 5;
+        status = Status.DESTROYED;
+        isbuilding = false;
+        buildTime = 1;
+        timeLeftBuilding = buildTime;
+    }
+
+    // Start function
     public void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         buildableUI = GameObject.FindGameObjectWithTag("Slider");      
@@ -21,23 +31,16 @@ public class Wall : Buildable {
         objectCollider.isTrigger = true;
     }
 
-    public Wall() {
-        buildCost = 5;
-        status = Status.DESTROYED;
-        isbuilding = false;
-        buildTime = 1;
-        timeLeftBuilding = buildTime;        
-    }
-
+    // Update function
     public void Update() {        
-        canRepair = CurHP < MaxHP ? true : false;      
+        canRepair = CurHP < MaxHP ? true : false;                               // If damaged, then repairable
 
         if (isbuilding) {
             float alpha = buildUIInfo.GetComponentInChildren<Slider>().value;   // alpha = progress of slider            
 
             spriteRenderer.color = new Color(1, 1, 1, alpha);
 
-            timeLeftBuilding -= Time.deltaTime;    // Start decreasing build time. Ex) 10 seconds for turrets
+            timeLeftBuilding -= Time.deltaTime;                                 // Start decreasing build time. Ex) 10 seconds for turrets
             if (timeLeftBuilding <= 0f) {
                 spriteRenderer.color = new Color(1, 1, 1, alpha);
                 isbuilding = false;
@@ -52,22 +55,20 @@ public class Wall : Buildable {
     }
 
     public override GameObject Build(Transform spawnPoint, Grid grid) {
-        if (canBuild) { 
-            // Converts World position to cell, and cell back to world
-            Vector3Int cellPosition = grid.WorldToCell(spawnPoint.position);            
+        if (canBuild) {             
+            Vector3Int cellPosition = grid.WorldToCell(spawnPoint.position);    // Converts World position to cell, and cell back to world      
             Vector3 wallSpawnPoint = new Vector3();           
             wallSpawnPoint = grid.GetCellCenterLocal(cellPosition);            
                         
             spawnAngle = spawnPoint.GetComponentInParent<RotateFromMouse>().transform.localEulerAngles.z;   // Spawn angle's rotation
-
-            // Essentially 1 / 2  
-            float offset = (grid.cellSize.x / 2);  // Since size of grid is 1, we want the wall to be 1/2 from the middle
+            
+            float offset = (grid.cellSize.x / 2);   // Since size of grid is 1, we want the wall to be 1/2 from the middle
 
             if ( (spawnAngle <= 45f && spawnAngle >= 0f) || (spawnAngle <= 359.9f && spawnAngle >= 315.0f) ) { // Right 
                 buildAngle = 90;                
                 wallSpawnPoint -= new Vector3(offset, 0f, 0f);             
             }            
-            else if (spawnAngle <= 135.0f && spawnAngle > 45.0f) { // Up
+            else if (spawnAngle <= 135.0f && spawnAngle > 45.0f) {  // Up
                 buildAngle = 180;
                 wallSpawnPoint -= new Vector3(0f, offset, 0f);
             }
@@ -80,8 +81,9 @@ public class Wall : Buildable {
                 wallSpawnPoint += new Vector3(0f, offset, 0f);
             }
             
-            var wall = Instantiate(gameObject, wallSpawnPoint, Quaternion.Euler(0, 0, buildAngle));                     
+            var wall = Instantiate(gameObject, wallSpawnPoint, Quaternion.Euler(0, 0, buildAngle));     // Spawning wall                
 
+            // Setting up info for wall clone
             buildUIInfo = (GameObject)Instantiate(buildableUI, wallSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
             buildUIInfo.GetComponentInChildren<BuildTimer>().SetBuildTime(this.buildTime);
 
@@ -98,6 +100,8 @@ public class Wall : Buildable {
         }
     }
 
+    // Function to determine what to do when destroyed
+    // Overrides abstract function in Damageable
     protected override void OnDestroyed() {
         CurrentHpDisplay.UpdateHP(CurHP);
         Destroy(gameObject);

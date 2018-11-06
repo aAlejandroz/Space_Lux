@@ -4,28 +4,25 @@
 [RequireComponent (typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
-	public float MovementSpeed;
+    private int weaponIndex = 0;    
+    private float mouseAngle;
+    public float MovementSpeed;
+    private bool isFiring;
+
     public Transform PlayerHands; 
 	public Camera Camera;
-    public ResourceUI resourceUI;
-
+    
 	private Animator anim;
 	private Rigidbody2D rb;
 	private Vector2 movementInput;
-	private Vector2 mouseVec;
-	private float mouseAngle;
-	private bool isFiring;
+	private Vector2 mouseVec;	
     public GameObject currentWeapon;
     public GameObject[] WeaponInventory;
-    public int ResourceCount = 0;
+    public Gun weaponComponent;
 
     public PlayerController() {
         WeaponInventory = new GameObject[3];
     }
-
-    public Gun weaponComponent;
-
-    private int weaponIndex = 0;
 
     private void Awake() {
 		rb = GetComponent<Rigidbody2D>();
@@ -55,9 +52,7 @@ public class PlayerController : MonoBehaviour
             switchWeapons(1);
 
         if (Input.GetKeyDown("3"))
-            switchWeapons(2);
-
-        resourceUI.UpdateResource(ResourceCount);
+            switchWeapons(2);        
     }
 
     private void FixedUpdate() {
@@ -103,19 +98,6 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetFloat("xInput", x);
         anim.SetFloat("yInput", y);
-    }    
-
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Pick Up") {
-            if (other.gameObject.name == "BlueCrystalPower(Clone)") {
-                ResourceCount += 10;
-                Destroy(other.gameObject);
-            }
-            else {
-                ResourceCount += 5;
-                Destroy(other.gameObject);
-            }            
-        }        
-    }
-
+    }        
+    
 }

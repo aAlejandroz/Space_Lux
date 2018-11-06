@@ -80,15 +80,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f5282a2db7372bd4cb16c094fe4e0a92, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1340b65458bce0c4d91b984780c8bbb5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.04
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 180
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -178,8 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: shotgun
-  FireRate: 0.3
-  ProjectilePrefab: {fileID: 114368667084496816, guid: 4ac4c93be745d304f995578e932afa06,
+  FireRate: 0.7
+  ProjectilePrefab: {fileID: 114609596680430790, guid: 1b3891f26f6e80e409eeae422bee6154,
     type: 2}
   SpawnPoint: {fileID: 4401013626268750}
   FireSound: {fileID: 82102000801687958}

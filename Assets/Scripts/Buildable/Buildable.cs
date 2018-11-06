@@ -4,20 +4,30 @@ using UnityEngine;
 
 public abstract class Buildable : Damageable {
 
-    public float flickerDuration = 0.5f;
+    // Change to private with getters
     public int buildCost;
+    public float flickerDuration = 0.5f;    
     public float buildTime;
     protected float timeLeftBuilding;    
-    public bool canBuild, canRepair, isbuilding;    
+    [SerializeField] protected bool canBuild, canRepair, isbuilding;    
     public GameObject buildableUI;
 
-    public abstract GameObject Build(Transform spawnPoint, Grid grid);
+    public abstract GameObject Build(Transform spawnPoint, Grid grid);   
 
-    public bool isBuildable(Transform spawnPoint) {         
+    // Function to remove buildable object
+    public void Remove() {  
+        CurHP = 0f;
+        OnDestroyed();
+    }
+
+    // Function to determine if player can build on grid
+    public bool isBuildable(Transform spawnPoint) {
         canBuild = spawnPoint.GetComponent<DetectingBuildable>().canBuild;
         return canBuild;
     }
 
+    // Function to determine what to do when damage is taken
+    // Overrides abstract function in Damageable
     protected override void OnDamaged(float damage) {
         if (!isInvincible) {
             CurHP -= damage;            
@@ -25,13 +35,9 @@ public abstract class Buildable : Damageable {
             StartCoroutine(WaitAndChangeColor());            
             StartCoroutine(setInvincibleAndWait());
         }       
-    }
+    }    
 
-    public void SwapSpriteRenderer() {
-        // If enabled, disabled. If Disabled, enabled       
-        GetComponent<SpriteRenderer>().enabled = GetComponent<SpriteRenderer>().enabled ? false : true;        
-    }
-
+    // Function representing dmg feedback. Sprite blinks red
     public IEnumerator WaitAndChangeColor() {
         yield return new WaitForSeconds(flickerDuration);
         GetComponent<SpriteRenderer>().color = Color.white;
