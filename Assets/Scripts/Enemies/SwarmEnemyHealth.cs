@@ -8,6 +8,7 @@ public class SwarmEnemyHealth : Damageable {
     static System.Random rnd = new System.Random();
     public List<GameObject> dropList;   // List of possible drop items
     private GameObject dropItem;
+    private float dropRate = 0.5f;
 
     public void Awake() {
         int dropIndex = rnd.Next(dropList.Count);   // Picks a random drop from the drop list and declares it as the item the enemy will drop
@@ -19,7 +20,9 @@ public class SwarmEnemyHealth : Damageable {
 	}
 
 	protected override void OnDestroyed() {
-        Instantiate(dropItem, transform.position, dropItem.transform.rotation);
+        if (Random.Range(0f,1f) <= dropRate) {
+            Instantiate(dropItem, transform.position, dropItem.transform.rotation);
+        }
         Destroy(gameObject);
 	}
 }

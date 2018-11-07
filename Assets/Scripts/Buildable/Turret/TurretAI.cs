@@ -7,61 +7,60 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Collider2D))]
 public class TurretAI : Buildable {
 
+    public float offset;
     private float targetAngle;
     private bool isSearchingAndDestroying;
+    private Animator anim;
     private Gun TurretGun;
+    [SerializeField]
     private List<GameObject> enemies; 
     private Vector2 targetVec;
     private SpriteRenderer spriteRenderer;
     private BuildingHP CurrentHpDisplay;
     private GameObject buildUIInfo;    
     private AudioSource destroyedSound;   
-    
-    // Constructor
-    public TurretAI() {
-        buildCost = 10;
-        enemies = new List<GameObject>();      
-		isSearchingAndDestroying = false;
-        status = Status.DESTROYED;
-        isbuilding = false;        
-        buildTime = 5;
-        timeLeftBuilding = buildTime;
-    }
 
     // Start function
     public void Start() {
+        status = Status.DESTROYED;
+        timeLeftBuilding = buildTime;
+        enemies = new List<GameObject>();
         TurretGun = GetComponentInChildren<Gun>();
+        anim = GetComponent<Animator>();
         destroyedSound = GetComponent<AudioSource>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        buildableUI = GameObject.FindGameObjectWithTag("Slider");
+        spriteRenderer = GetComponent<SpriteRenderer>();        
     }
 
     // Update function
     private void Update() {        
         canRepair = CurHP < MaxHP ? true : false;                               // If damaged, then turret is repairable
 
-        isSearchingAndDestroying = enemies.Any<GameObject>() ? true : false;    // If there's any enemies in the list, isSearchingAndDestroying is true
+        isSearchingAndDestroying = enemies.Count > 0 ? true : false;    // If there's any enemies in the list, isSearchingAndDestroying is true
 
         if (isSearchingAndDestroying && status == Status.ACTIVE) {
             StartCoroutine(SearchAndDestroy());
         }                
 
-        if (isbuilding) {                                 
-            float alpha = buildUIInfo.GetComponentInChildren<Slider>().value;   // alpha = progress of slider            
+        if (isbuilding) {        
+            float alpha = buildUIInfo.GetComponentInChildren<Slider>().value;   // alpha = progress of slider             
 
             spriteRenderer.color = new Color(1, 1, 1, alpha);
-
             timeLeftBuilding -= Time.deltaTime;                                 // Start decreasing build time. Ex) 5 seconds for turrets
+
             if (timeLeftBuilding <= 0f) {
                 spriteRenderer.color = new Color(1, 1, 1, alpha);
                 isbuilding = false;
                 status = Status.ACTIVE;
             }
         }
-
+        
         if (status == Status.ACTIVE) {
             CurrentHpDisplay.UpdateHP(CurHP);
-        }
+        }       
+    }
+
+    private void FixedUpdate() {
+        SetAnimations();
     }
 
     // Function to track enemies when they enter the collider
@@ -107,8 +106,8 @@ public class TurretAI : Buildable {
         if (targetEnemy != null) {                  // Aim, shoot, wait for gun cooldown, and try again
             targetVec = targetEnemy.transform.position - TurretGun.transform.position;
             targetAngle = Mathf.Atan2(targetVec.y, targetVec.x) * Mathf.Rad2Deg;
-            TurretGun.transform.rotation = Quaternion.Euler(0.0f, 0.0f, targetAngle);
-            TurretGun.Use();
+            TurretGun.transform.rotation = Quaternion.Euler(0.0f, 0.0f, targetAngle);            
+            TurretGun.Use();           
             yield return new WaitForSeconds(TurretGun.FireRate);
             StartCoroutine(SearchAndDestroy());
         } else {
@@ -128,23 +127,56 @@ public class TurretAI : Buildable {
             
             var turret = Instantiate(gameObject, turretSpawnPoint, Quaternion.identity);
 
-            buildUIInfo = (GameObject)Instantiate(buildableUI, turretSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
+            buildUIInfo = Instantiate(buildableUI, turretSpawnPoint - new Vector3(3.5f, 0.5f, 0f), Quaternion.Euler(Vector3.zero));
             buildUIInfo.GetComponentInChildren<BuildTimer>().SetBuildTime(this.buildTime);
 
             turret.GetComponent<TurretAI>().isbuilding = true;
-            turret.GetComponent<TurretAI>().buildUIInfo = this.buildUIInfo;
-           
+            turret.GetComponent<TurretAI>().buildUIInfo = this.buildUIInfo;           
+
             CurrentHpDisplay = buildUIInfo.GetComponentInChildren<BuildingHP>();
-            turret.GetComponent<TurretAI>().CurrentHpDisplay = this.CurrentHpDisplay;
+            turret.GetComponent<TurretAI>().CurrentHpDisplay = this.CurrentHpDisplay;           
 
             return turret;
         } else {
             return null;
+        }        
+    }
+
+    private void setAnimInput(float x, float y) {
+        anim.SetFloat("xInput", x);
+        anim.SetFloat("yInput", y);
+    }
+
+    protected void SetAnimations() {
+        if (targetAngle <= 33.0f && targetAngle >= -33.0f) { // Right
+            setAnimInput(1, 0);
         }
-    }           
+        else if (targetAngle <= 66.0f && targetAngle > 33.0f) { // Up right
+            setAnimInput(1, 1);
+        }
+        else if (targetAngle <= 123.0f && targetAngle > 66.0f) { // Up
+            setAnimInput(0, 1);
+        }
+        else if (targetAngle <= 156.0f && targetAngle > 123.0f) { // Up left
+            setAnimInput(-1, 1);
+        }
+        else if (targetAngle >= Mathf.PI || targetAngle < -156.0f) { // Left
+            setAnimInput(-1, 0);
+        }
+        else if (targetAngle >= -156.0f && targetAngle < -123.0f) { // Down left
+            setAnimInput(-1, -1);
+        }
+        else if (targetAngle >= -123.0f && targetAngle < -66.0f) { // Down
+            setAnimInput(0, -1);
+        }
+        else if (targetAngle >= -66.0f && targetAngle < -33.0f) { // Down right
+            setAnimInput(1, -1);
+        }
+        
+    }
 
     protected override void OnDestroyed() {
-        destroyedSound.Play();
+        //destroyedSound.Play();
         CurrentHpDisplay.UpdateHP(CurHP);
         Destroy(gameObject);
     }

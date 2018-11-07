@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 82736878323115308}
   - component: {fileID: 114549875202211786}
   - component: {fileID: 114405472570952976}
+  - component: {fileID: 114758514796544146}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -261,7 +262,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 33d71604c2a90354690f7ab1f49b6a9d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -407,8 +408,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1eb477c9c5319340a5651e8950216a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildRate: 0.5
   canRemove: 0
-  buildList: []
+  buildList:
+  - {fileID: 114386136494005400, guid: 6d63328d974e5d246bdf8d915ba6968b, type: 2}
+  - {fileID: 114606317003667446, guid: 40d1bde5130b23c4ea09a9e2b0dbb2da, type: 2}
+  - {fileID: 114861917253414946, guid: c745f141876589e4ab05deab1de048ef, type: 2}
+  - {fileID: 114623703331777378, guid: d73c365fd44740f4fbedc4f624fcf7cf, type: 2}
   spawnPoint: {fileID: 4605591037423034}
   grid: {fileID: 0}
   gunDisplay: {fileID: 0}
@@ -438,14 +444,25 @@ MonoBehaviour:
   MovementSpeed: 4.57
   PlayerHands: {fileID: 4318673353563892}
   Camera: {fileID: 0}
-  resourceUI: {fileID: 0}
   currentWeapon: {fileID: 0}
   WeaponInventory:
   - {fileID: 1609145647318242, guid: 62fd966a4a2addb44ab112894bec3a1a, type: 2}
   - {fileID: 1678362637526056, guid: f46dca14e54acf44a9aa376ddea5be9b, type: 2}
   - {fileID: 1689670984971296, guid: 29eeed5d2f85f9d498410438bc0fc85b, type: 2}
-  ResourceCount: 100
   weaponComponent: {fileID: 0}
+--- !u!114 &114758514796544146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1280404726292774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d887b41ed755294f80eeb33bf343a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResourceCount: 100
+  resourceUI: {fileID: 0}
 --- !u!212 &212015236835492664
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -570,8 +587,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 606491595
-  m_SortingLayer: 2
+  m_SortingLayerID: -1922682547
+  m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 6310057cd07cc85499214c5582c4d71d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

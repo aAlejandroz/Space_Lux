@@ -8,22 +8,34 @@ public class SwarmEnemyAI : MonoBehaviour {
 	public float MovementSpeed;
 	public float AttackSpeed;
 	public float AttackDamage;
+    public float vertical, horizontal;
     private bool isTargetInRange;
+    private bool facingLeft;
+    private Animator anim;
     public GameObject target;
     private Vector2 targetVec;	
 	private Rigidbody2D rb2d;
 
 	private void Awake() {
+        facingLeft = true;
+        anim = GetComponent<Animator>();
 		target = GameObject.Find("Player");
 		rb2d = GetComponent<Rigidbody2D>();
 	}
 
 	private void FixedUpdate() {
-		targetVec = target.transform.position - transform.position;
+        vertical = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");        
+
+        Flip(horizontal);
+
+        targetVec = target.transform.position - transform.position;
 		targetVec.x = Mathf.Clamp(targetVec.x, -1.0f, 1.0f);
 		targetVec.y = Mathf.Clamp(targetVec.y, -1.0f, 1.0f);
 		rb2d.velocity = targetVec * MovementSpeed;
-	}       
+             
+        SetAnimations(horizontal, vertical);
+    }       
 
     private void OnCollisionStay2D(Collision2D coll) {
         if (coll.gameObject.GetComponent<Damageable>() && !(coll.gameObject.tag.Equals("Enemy"))) {   // Checks if collider is damagable & not an enemy          
@@ -44,11 +56,39 @@ public class SwarmEnemyAI : MonoBehaviour {
 			yield break;
 		} else {			
 			if (damageable != null) {
-                Debug.Log("Attacked...");
 				damageable.Damage(AttackDamage);
 			}
 			yield return new WaitForSeconds(AttackSpeed);
 			StartCoroutine(attackUntilOutOfRange(damageable));
 		}
 	}
+
+    private void Flip(float horizontal) {
+        if (horizontal < 0 && !facingLeft || horizontal > 0 && facingLeft) {
+            facingLeft = !facingLeft;
+
+            Vector3 theScale = transform.localScale;
+
+            theScale.x *= -1;
+
+            transform.localScale = theScale;
+        }
+    }
+
+    private void setAnimInput(float x, float y) {
+        anim.SetFloat("xInput", x);
+        anim.SetFloat("yInput", y);
+    }
+
+    protected void SetAnimations(float horizontal, float vertical) {
+        if (vertical >= 0.5f) {             // Up
+            setAnimInput(0, 1);
+        } else if (horizontal >= 0.5f) {    // Right
+            setAnimInput(1, 0);
+        } else if (vertical <= -0.5f) {      // Down
+            setAnimInput(0, -1);
+        } else if (horizontal <= -0.5f) {    // Left
+            setAnimInput(-1, 0);
+        }
+    }
 }

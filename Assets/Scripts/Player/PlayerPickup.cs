@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour {
 
-    private int ResourceCount = 0;
+    public int ResourceCount = 0;
     public ResourceUI resourceUI;
 
     // Update function

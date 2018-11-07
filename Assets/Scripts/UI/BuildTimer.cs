@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class BuildTimer : MonoBehaviour {
        
     public Slider slider;   
-    private float buildTime;
-    private float buildTimeWeight;
+    public float buildTime;
+    public float buildTimeWeight;
 
     // Start function
     void Start () {        
@@ -19,7 +19,7 @@ public class BuildTimer : MonoBehaviour {
     public void Update() {
         slider.value += (Time.deltaTime * buildTimeWeight);
 
-        if (slider.value >= 1f) {
+        if (slider.value >= 1.0f) {
             Destroy(gameObject);
         }
     }

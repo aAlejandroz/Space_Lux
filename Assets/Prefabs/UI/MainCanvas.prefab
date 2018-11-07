@@ -145,8 +145,8 @@ GameObject:
   - component: {fileID: 223564054931193912}
   - component: {fileID: 114499695698622180}
   - component: {fileID: 114898942213609902}
-  - component: {fileID: 114030285771410882}
   - component: {fileID: 114460300654806238}
+  - component: {fileID: 114373472761727816}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -377,18 +377,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Menu
---- !u!114 &114030285771410882
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1573887726633374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebedc6b534cd29c4082d93581d56002c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1460223887740660}
 --- !u!114 &114034423614224918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -620,7 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -629,7 +617,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 16
+    m_FontSize: 25
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -721,7 +709,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114030285771410882}
+      - m_Target: {fileID: 114373472761727816}
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
@@ -748,6 +736,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
+--- !u!114 &114373472761727816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1573887726633374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebedc6b534cd29c4082d93581d56002c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1460223887740660}
 --- !u!114 &114378966737136726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -940,7 +940,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114030285771410882}
+      - m_Target: {fileID: 114373472761727816}
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -992,7 +992,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 8400000, guid: 80aac5f246cae484bbf4d298c713c116, type: 2}
+  m_Texture: {fileID: 8400000, guid: d4388701248ac484e8b5d45cbbcba644, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1052,7 +1052,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114030285771410882}
+      - m_Target: {fileID: 114373472761727816}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:

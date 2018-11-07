@@ -26,7 +26,7 @@ public class Wall : Buildable {
     // Start function
     public void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        buildableUI = GameObject.FindGameObjectWithTag("Slider");      
+        //buildableUI = GameObject.FindGameObjectWithTag("Slider");      
         objectCollider = GetComponent<BoxCollider2D>();
         objectCollider.isTrigger = true;
     }
@@ -49,9 +49,11 @@ public class Wall : Buildable {
             }
         }
 
+        /*
         if (status == Status.ACTIVE) {
             CurrentHpDisplay.UpdateHP(CurHP);
         }
+        */
     }
 
     public override GameObject Build(Transform spawnPoint, Grid grid) {
@@ -89,9 +91,9 @@ public class Wall : Buildable {
 
             wall.GetComponent<Wall>().isbuilding = true;
             wall.GetComponent<Wall>().buildUIInfo = this.buildUIInfo;
-
+                        
             CurrentHpDisplay = buildUIInfo.GetComponentInChildren<BuildingHP>();
-            wall.GetComponent<Wall>().CurrentHpDisplay = this.CurrentHpDisplay;
+            wall.GetComponent<Wall>().CurrentHpDisplay = this.CurrentHpDisplay;            
 
             return wall;
         }
@@ -103,7 +105,7 @@ public class Wall : Buildable {
     // Function to determine what to do when destroyed
     // Overrides abstract function in Damageable
     protected override void OnDestroyed() {
-        CurrentHpDisplay.UpdateHP(CurHP);
+        //CurrentHpDisplay.UpdateHP(CurHP);
         Destroy(gameObject);
     }
 }

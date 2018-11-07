@@ -2,7 +2,6 @@
 
 public class Flamethrower : Gun
 {
-
     public float Force;
 
     protected override void OnFire()

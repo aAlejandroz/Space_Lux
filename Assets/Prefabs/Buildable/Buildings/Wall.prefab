@@ -78,16 +78,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdf831be16ddc84ca0834b336d6fb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 30
-  CurHP: 30
-  status: 0
+  MaxHP: 40
+  CurHP: 40
+  AttackBufferTime: 1
+  status: 1
+  isInvincible: 0
   buildCost: 5
+  flickerDuration: 0.5
   buildTime: 1
-  spawnPoint: {fileID: 0}
-  canBuild: 1
+  canBuild: 0
   canRepair: 0
   isbuilding: 0
-  buildingBar: {fileID: 0}
+  buildableUI: {fileID: 1403006207572468, guid: 604ba36010e30af4d87ac8d4aae541d2,
+    type: 2}
 --- !u!212 &212873925319379282
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -103,7 +106,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f651b23980f05d644929881f3c3501f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

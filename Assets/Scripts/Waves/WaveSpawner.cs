@@ -8,8 +8,10 @@ public class WaveSpawner : MonoBehaviour {
 
     [System.Serializable]
 	public class Wave {
+        //public Transform enemy;
         public string name;
-        public Transform enemy;
+        public List<Transform> enemyList;   // Posiible enemies to spawn 
+        public Transform curEnemy;
         public int count;
         public float rate;
     }
@@ -19,9 +21,9 @@ public class WaveSpawner : MonoBehaviour {
 
     public Transform[] spawnPoints;
 
+    //public int maxWaitTime; // Max wait time in seconds
     //public float timeBetweenWaves = 30f;
     System.Random rand = new System.Random();
-    //public int maxWaitTime; // Max wait time in seconds
     public float timeBetweenWaves = 30f;
     public float waveCountdown { get; private set; }
 
@@ -92,12 +94,16 @@ public class WaveSpawner : MonoBehaviour {
 		WaveTimerUI.StartCountdown(timeBetweenWaves);
     }
 
+    // Pick a random enemy from list and spawn
+
     private IEnumerator SpawnWave(Wave _wave) {        
         state = SpawnState.SPAWNING;
 
         //spawn
         for (int i = 0; i < _wave.count; i++) {
-            SpawnEnemey(_wave.enemy);
+            int enemyIndex = rand.Next(_wave.enemyList.Count);
+            _wave.curEnemy = _wave.enemyList[enemyIndex];
+            SpawnEnemy(_wave.curEnemy);
             yield return new WaitForSeconds(1 / _wave.rate);
         }
 
@@ -106,7 +112,7 @@ public class WaveSpawner : MonoBehaviour {
         yield break;
     }
 
-    void SpawnEnemey(Transform _enemy) {
+    void SpawnEnemy(Transform _enemy) {
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(_enemy, _sp.position, _sp.rotation);
     }
