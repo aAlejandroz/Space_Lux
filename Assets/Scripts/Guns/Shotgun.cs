@@ -19,17 +19,20 @@ public class Shotgun : Gun{
 
         rotation *= Quaternion.Euler(1.0f, 1.0f, Spread);
         var projectile3 = Instantiate(ProjectilePrefab, SpawnPoint.position, rotation);
-        projectile3.GetComponent<Rigidbody2D>().AddForce(projectile3.transform.right * Force);
+        projectile3.GetComponent<Rigidbody2D>().AddForce(projectile3.transform.right * Force);        
 
-        if (transform.parent.tag == "Player" || transform.parent.tag == "Buildable") {  // isFriendlyBullet defined by where bullet comes from
-            projectile.isFriendlyBullet = true;
-            projectile2.isFriendlyBullet = true;
-            projectile3.isFriendlyBullet = true;
+        if (transform.parent.tag == "Player") {  // isFriendlyBullet defined by where bullet comes from
+            projectile.isPlayerBullet = true;
+            projectile2.isPlayerBullet = true;
+            projectile3.isPlayerBullet = true;
+        }
+        else if (transform.parent.tag == "Buildable") {
+            projectile.isTurretBullet = true;
+            projectile2.isTurretBullet = true;
+            projectile3.isTurretBullet = true;
         }
         else {
-            projectile.isFriendlyBullet = false;
-            projectile2.isFriendlyBullet = false;
-            projectile3.isFriendlyBullet = false;
+
         }
 
         /*

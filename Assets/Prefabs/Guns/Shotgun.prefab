@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: shotgun
   FireRate: 0.7
-  ProjectilePrefab: {fileID: 114609596680430790, guid: 1b3891f26f6e80e409eeae422bee6154,
+  ProjectilePrefab: {fileID: 114688481306304684, guid: 8dff01abb466be94782b06b5681fd6ea,
     type: 2}
   SpawnPoint: {fileID: 4401013626268750}
   FireSound: {fileID: 82102000801687958}
