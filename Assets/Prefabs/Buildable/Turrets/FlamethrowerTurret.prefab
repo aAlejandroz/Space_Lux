@@ -86,7 +86,7 @@ Transform:
   m_GameObject: {fileID: 1380442226354856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.5451865, y: -2.539634, z: -0}
-  m_LocalScale: {x: 7.3187, y: 7.3187, z: 7.3187}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children:
   - {fileID: 4124775041244384}
   m_Father: {fileID: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
   isInvincible: 0
   buildCost: 50
   buildTime: 5
-  canBuild: 0
+  canBuild: 1
   canRepair: 0
   isbuilding: 0
   buildableUI: {fileID: 1403006207572468, guid: 604ba36010e30af4d87ac8d4aae541d2,
