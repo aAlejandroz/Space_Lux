@@ -15,7 +15,8 @@ public class Pistol : Gun {
             projectile.isTurretBullet = true;
         }
         else {
-
+            projectile.isPlayerBullet = false;
+            projectile.isTurretBullet = false;
         }
 
         //projectile.transform.Translate(Vector2.right * Force * Time.deltaTime);

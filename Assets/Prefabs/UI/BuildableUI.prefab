@@ -199,9 +199,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: 1000
 --- !u!114 &114151092458298178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -326,6 +324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
+  buildTime: 0
+  buildTimeWeight: 0
 --- !u!222 &222008702455242956
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -402,7 +402,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -113, y: 69.3}
+  m_AnchoredPosition: {x: -4, y: -0.8}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224189511121898796

@@ -51,7 +51,7 @@ public class Bullet : Projectile {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.right, distance, whatIsSolid);   // Raycast Info, only hits things in layermask "WhatIsSolid." (Enemies & Environment)        
         Debug.DrawRay(transform.position, transform.right, Color.green, 1f);
 
-        if (isTurretBullet) {
+        if (isTurretBullet) {   // Turret bullet
             if (hitInfo.collider != null && hitInfo.collider.isTrigger == false) { // Collided with something                        
 
                 if (hitInfo.collider.tag == "Enemy") {
@@ -70,7 +70,7 @@ public class Bullet : Projectile {
                     Destroy(gameObject);
             }
         }
-        else if (isPlayerBullet) {
+        else if (isPlayerBullet) {  // Player bullet
             if (hitInfo.collider != null && hitInfo.collider.isTrigger == false) { // Collided with something                        
 
                 if (hitInfo.collider.tag == "Enemy") {
@@ -110,11 +110,14 @@ public class Bullet : Projectile {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
+        Debug.Log("Collided");
 
-        if (collision.gameObject.tag.Equals("Enemy")) {
-            Debug.Log("Enemy hit");
-            collision.gameObject.GetComponent<Damageable>().Damage(Damage);
-        }
+        if (isPlayerBullet || isTurretBullet) {
+            if (collision.gameObject.tag.Equals("Enemy")) {
+                Debug.Log("Enemy hit");
+                collision.gameObject.GetComponent<Damageable>().Damage(Damage);
+            }
+        }        
 
         if (!isPlayerBullet && !isTurretBullet) {       // Enemy Bullet controls
             if (collision.gameObject.tag == "Player") {
@@ -140,51 +143,3 @@ public class Bullet : Projectile {
     }
 
 }
-    /*
-    // If friendly bullet, ignore collision. Else, turret will take dmg from enemy fire
-    private void OnCollisionEnter2D(Collision2D collision) {
-        /*
-        if (isFriendlyBullet && collision.gameObject.tag == "Buildable" && collision.GetType().Equals(typeof(BoxCollider2D))) {
-            Debug.Log("Friendly turret, no damage taken");
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), GetComponent<Collider2D>());
-        }
-        else {
-            Debug.Log("Enemy bullet, damage taken");
-            collision.gameObject.GetComponent<Damageable>().Damage(this.Damage);
-        }
-        
-        if (isFriendlyBullet && collision.gameObject.tag == "Buildable") {
-            Debug.Log("Turret hit");
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), GetComponent<Collider2D>());
-            //Debug.Log("Collision ignored");
-        }
-    }
-    
-
-    private void OnCollisionStay2D(Collision2D collision) {
-        if (isFriendlyBullet && collision.gameObject.tag == "Buildable") {            
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), GetComponent<Collider2D>());
-            Debug.Log("Collision ignored");
-        }
-    }
-    */
-        // TODO: Bullet is hitting boxcollider of turret
-        /*
-        private void OnCollisionEnter2D(Collision2D coll) {
-            Damageable damageable;
-            if (coll.gameObject.tag == "Enemy"
-                && (damageable = coll.gameObject.GetComponent<Damageable>()) != null)
-            {
-                damageable.Damage(Damage);
-            }        
-            if (coll.gameObject.tag != "Bullet") {
-                Destroy(gameObject);
-            }       
-        }
-
-        private void OnCollisionStay2D(Collision2D coll) {
-            if (coll.gameObject.tag != "Bullet") {
-                Destroy(gameObject);
-            }        
-        }
-        */

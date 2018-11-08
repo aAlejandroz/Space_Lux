@@ -21,7 +21,7 @@ public class SwarmEnemyAI : MonoBehaviour {
 	private void Awake() {
         facingLeft = true;
         anim = GetComponent<Animator>();
-		target = GameObject.Find("Player");
+		target = GameObject.Find("Base");
 		rb2d = GetComponent<Rigidbody2D>();
 	}
 

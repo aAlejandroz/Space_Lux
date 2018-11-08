@@ -32,7 +32,9 @@ public class TurretAI : Buildable {
     }
 
     // Update function
-    private void Update() {        
+    private void Update() {
+        status = (CurHP > 0f  && !isbuilding) ? Status.ACTIVE : Status.DESTROYED;
+
         canRepair = CurHP < MaxHP ? true : false;                               // If damaged, then turret is repairable
 
         isSearchingAndDestroying = enemies.Count > 0 ? true : false;    // If there's any enemies in the list, isSearchingAndDestroying is true
@@ -41,7 +43,8 @@ public class TurretAI : Buildable {
             StartCoroutine(SearchAndDestroy());
         }                
 
-        if (isbuilding) {        
+        if (isbuilding) {
+            CurrentHpDisplay.gameObject.SetActive(false);
             float alpha = buildUIInfo.GetComponentInChildren<Slider>().value;   // alpha = progress of slider             
 
             spriteRenderer.color = new Color(0.7607844f, 0.7607844f, 0.7607844f, alpha);
@@ -51,6 +54,7 @@ public class TurretAI : Buildable {
                 spriteRenderer.color = new Color(0.7607844f, 0.7607844f, 0.7607844f, alpha);
                 isbuilding = false;
                 status = Status.ACTIVE;
+                CurrentHpDisplay.gameObject.SetActive(true);
             }
         }
         

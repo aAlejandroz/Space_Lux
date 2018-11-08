@@ -9,7 +9,8 @@ public class WaveTimerUI : MonoBehaviour {
     public float remainingTime;
     public bool isCountingDown = false;
 
-	public void StartCountdown(float duration) {      
+	public void StartCountdown(float duration) {
+        StartCoroutine(DisplayWarning());
         remainingTime = TimeUntilWarning;
         StartCoroutine(waitAndDisplayWarning(duration));               
 	}
@@ -30,6 +31,12 @@ public class WaveTimerUI : MonoBehaviour {
                 isCountingDown = false;
             }
         }
+    }
+
+    private IEnumerator DisplayWarning() {
+        TextField.text = "Prepare your Defense!";
+        StartCoroutine(waitAndEraseText(1.5f));
+        yield break;
     }
 
     private IEnumerator DisplayFight() {
