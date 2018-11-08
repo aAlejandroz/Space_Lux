@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 61067717921812026}
   - component: {fileID: 58671947309996074}
   - component: {fileID: 95808209324056642}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime Boy(SwarmEnemy)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1318335306794690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.448751, y: 2.6158094, z: -0.62109375}
+  m_LocalPosition: {x: 2.0722034, y: -0.96720374, z: -0.62109375}
   m_LocalScale: {x: 6, y: 6, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,9 +78,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.012}
   serializedVersion: 2
-  m_Radius: 0.0754431
+  m_Radius: 0.073546566
 --- !u!61 &61067717921812026
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -138,7 +138,11 @@ MonoBehaviour:
   MovementSpeed: 2.41
   AttackSpeed: 0.33
   AttackDamage: 20
+  vertical: 0
+  horizontal: 0
+  facingLeft: 0
   target: {fileID: 1280404726292774, guid: 429222b9f1312c744bb4278000921880, type: 2}
+  targetVec: {x: 0, y: 0}
 --- !u!114 &114495363660698594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,6 +157,7 @@ MonoBehaviour:
   MaxHP: 50
   CurHP: 50
   AttackBufferTime: 0
+  flickerDuration: 0.2
   status: 0
   isInvincible: 0
   dropList:

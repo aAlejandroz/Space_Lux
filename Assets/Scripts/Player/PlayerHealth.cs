@@ -20,7 +20,9 @@ public class PlayerHealth : Damageable {
             audioSource.PlayOneShot(HurtSound);
             CurHP -= damage;                      
 			HeartUI.UpdateHearts();
-			StartCoroutine(setInvincibleAndWait());
+            GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0.5f, 1);
+            StartCoroutine(WaitAndChangeColor());
+            StartCoroutine(setInvincibleAndWait());
 		}
 	}
 
@@ -28,5 +30,9 @@ public class PlayerHealth : Damageable {
 		Destroy(gameObject);
 	}
 
+    public override IEnumerator WaitAndChangeColor() {
+        yield return new WaitForSeconds(flickerDuration);
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
 }
 

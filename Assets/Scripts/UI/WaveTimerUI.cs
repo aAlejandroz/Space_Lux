@@ -39,10 +39,11 @@ public class WaveTimerUI : MonoBehaviour {
 	}
 
     public IEnumerator DisplayEndRound() {
+        Debug.Log("Wave completed");
         TextField.text = "Round Complete!";
-        StartCoroutine(waitAndEraseText(1.5f));
-        TextField.text = "Prepare your defensive for the next wave!";
-        StartCoroutine(waitAndEraseText(1.5f));
+        StartCoroutine(waitAndEraseText(2.0f));
+        //TextField.text = "Prepare your defensive for the next wave!";
+        //StartCoroutine(waitAndEraseText(1.5f));
         yield break;
     }
 

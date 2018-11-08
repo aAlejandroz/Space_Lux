@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 	public Camera Camera;
     
 	private Animator anim;
-	private Rigidbody2D rb;
+	private Rigidbody2D rb;    
 	private Vector2 movementInput;
 	private Vector2 mouseVec;	
     public GameObject currentWeapon;
@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
             Destroy(currentWeapon);
         }
 
-        currentWeapon = Instantiate(WeaponInventory[index], PlayerHands);
+        currentWeapon = Instantiate(WeaponInventory[index], PlayerHands, false);
+        currentWeapon.transform.localPosition = new Vector3(0, 0.4f, 0);
         weaponComponent = currentWeapon.GetComponent<Gun>();
 
     }
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate() {
 		rb.velocity = movementInput * MovementSpeed;
 
-        if (isFiring) {
+        if (isFiring) {            
             weaponComponent.Use();
         }
 

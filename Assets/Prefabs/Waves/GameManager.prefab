@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 4953432273606456}
   - component: {fileID: 114151863520208824}
   - component: {fileID: 114112502454419704}
+  - component: {fileID: 114762338958852866}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -392,35 +393,37 @@ MonoBehaviour:
     - {fileID: 4457630002735480, guid: d74a32eee478d3a43942d3f36f795140, type: 2}
     - {fileID: 4891699425909060, guid: 535a1cc32fb19324cb31dddb73186869, type: 2}
     curEnemy: {fileID: 0}
-    count: 10
+    count: 20
     rate: 4
   - name: Round 2
     enemyList:
     - {fileID: 4457630002735480, guid: d74a32eee478d3a43942d3f36f795140, type: 2}
     - {fileID: 4891699425909060, guid: 535a1cc32fb19324cb31dddb73186869, type: 2}
     curEnemy: {fileID: 0}
-    count: 15
+    count: 25
     rate: 3
   - name: Round 3
     enemyList:
     - {fileID: 4457630002735480, guid: d74a32eee478d3a43942d3f36f795140, type: 2}
     - {fileID: 4891699425909060, guid: 535a1cc32fb19324cb31dddb73186869, type: 2}
     curEnemy: {fileID: 0}
-    count: 20
+    count: 30
     rate: 2.5
   - name: Round 4
     enemyList:
     - {fileID: 4457630002735480, guid: d74a32eee478d3a43942d3f36f795140, type: 2}
     - {fileID: 4891699425909060, guid: 535a1cc32fb19324cb31dddb73186869, type: 2}
+    - {fileID: 4865759285602180, guid: 10095d14a728db34392ba3f8d7e843d1, type: 2}
     curEnemy: {fileID: 0}
-    count: 50
+    count: 35
     rate: 2
-  - name: Round 4
+  - name: Round 5
     enemyList:
     - {fileID: 4457630002735480, guid: d74a32eee478d3a43942d3f36f795140, type: 2}
     - {fileID: 4891699425909060, guid: 535a1cc32fb19324cb31dddb73186869, type: 2}
+    - {fileID: 4865759285602180, guid: 10095d14a728db34392ba3f8d7e843d1, type: 2}
     curEnemy: {fileID: 0}
-    count: 50
+    count: 45
     rate: 2
   spawnPoints:
   - {fileID: 4941190585468950}
@@ -429,3 +432,27 @@ MonoBehaviour:
   - {fileID: 4465052913065426}
   timeBetweenWaves: 10
   WaveTimerUI: {fileID: 114112502454419704}
+--- !u!114 &114762338958852866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794306204479766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55030f2c0431354bbebd77b0387d2fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenRespawn: 50
+  countdown: 0
+  dropRate: 0.65
+  isSpawningItems: 0
+  resources:
+  - {fileID: 1762791588819400, guid: 2232deeec078fd443aa7e27676f89b68, type: 2}
+  - {fileID: 1625940618196778, guid: feb349801623bab49b279e0be207741a, type: 2}
+  spawnPoints:
+  - {fileID: 4864999061683952}
+  - {fileID: 4885734054934150}
+  - {fileID: 4277469546783020}
+  - {fileID: 4469263455464020}
+  - {fileID: 4705196759294782}

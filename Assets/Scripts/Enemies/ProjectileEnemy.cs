@@ -21,15 +21,16 @@ public class ProjectileEnemy : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate() {
-        vertical = Input.GetAxis("Vertical");
-        horizontal = Input.GetAxis("Horizontal");
+    private void FixedUpdate() {       
 
         targetVec = target.transform.position - transform.position;
         targetVec.x = Mathf.Clamp(targetVec.x, -1.0f, 1.0f);
         targetVec.y = Mathf.Clamp(targetVec.y, -1.0f, 1.0f);
         rb2d.velocity = targetVec * MovementSpeed;
 
+        horizontal = targetVec.x;
+        vertical = targetVec.y;
+        
         SetAnimations();
     }
 

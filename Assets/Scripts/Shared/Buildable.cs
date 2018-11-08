@@ -5,8 +5,7 @@ using UnityEngine;
 public abstract class Buildable : Damageable {
 
     // Change to private with getters
-    public int buildCost;
-    public float flickerDuration = 0.5f;    
+    public int buildCost;       
     public float buildTime;
     protected float timeLeftBuilding;    
     [SerializeField] protected bool canBuild, canRepair, isbuilding;    
@@ -38,9 +37,9 @@ public abstract class Buildable : Damageable {
     }    
 
     // Function representing dmg feedback. Sprite blinks red
-    public IEnumerator WaitAndChangeColor() {
+    public override IEnumerator WaitAndChangeColor() {
         yield return new WaitForSeconds(flickerDuration);
-        GetComponent<SpriteRenderer>().color = Color.white;
+        GetComponent<SpriteRenderer>().color = new Color(0.7607844f, 0.7607844f, 0.7607844f, 1);      
     }
 
 }

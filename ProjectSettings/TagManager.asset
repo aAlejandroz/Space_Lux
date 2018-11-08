@@ -12,6 +12,7 @@ TagManager:
   - Build Spawn
   - Buildable
   - BuildableHP
+  - Enivronment
   layers:
   - Default
   - TransparentFX
@@ -21,10 +22,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Environment
+  - Buildable
+  - Bullet
   - 
   - 
   - 

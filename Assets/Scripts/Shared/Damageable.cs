@@ -5,9 +5,10 @@ public abstract class Damageable : MonoBehaviour {
 
 	public enum Status { ACTIVE, DESTROYED };
 
-	public float MaxHP;
+    public float MaxHP;
 	public float CurHP; 	
     public float AttackBufferTime;
+    public float flickerDuration = 0.2f;
     public Status status;
     public bool isInvincible = false;
 
@@ -30,5 +31,8 @@ public abstract class Damageable : MonoBehaviour {
 		isInvincible = true;
         yield return new WaitForSeconds(AttackBufferTime);
 		isInvincible = false;
-    }    
+    }
+
+    // Function representing dmg feedback. Sprite blinks red
+    public abstract IEnumerator WaitAndChangeColor();         
 }

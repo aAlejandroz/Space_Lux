@@ -44,11 +44,11 @@ public class TurretAI : Buildable {
         if (isbuilding) {        
             float alpha = buildUIInfo.GetComponentInChildren<Slider>().value;   // alpha = progress of slider             
 
-            spriteRenderer.color = new Color(1, 1, 1, alpha);
+            spriteRenderer.color = new Color(0.7607844f, 0.7607844f, 0.7607844f, alpha);
             timeLeftBuilding -= Time.deltaTime;                                 // Start decreasing build time. Ex) 5 seconds for turrets
 
             if (timeLeftBuilding <= 0f) {
-                spriteRenderer.color = new Color(1, 1, 1, alpha);
+                spriteRenderer.color = new Color(0.7607844f, 0.7607844f, 0.7607844f, alpha);
                 isbuilding = false;
                 status = Status.ACTIVE;
             }

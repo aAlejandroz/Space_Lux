@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4693165206980652}
-  - component: {fileID: 61564913052607148}
   - component: {fileID: 50684663690888374}
+  - component: {fileID: 61564913052607148}
   - component: {fileID: 212752651351296520}
   - component: {fileID: 114609596680430790}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Shotgun pellet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -99,8 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaea37a7694bca48a9ebdbc20f63d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFriendlyBullet: 1
   Damage: 10
   DisappearAfter: 0.7
+  distance: 0.5
+  whatIsSolid:
+    serializedVersion: 2
+    m_Bits: 1792
 --- !u!212 &212752651351296520
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -7,8 +7,7 @@ public class WaveSpawner : MonoBehaviour {
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
     [System.Serializable]
-	public class Wave {
-        //public Transform enemy;
+	public class Wave {        
         public string name;
         public List<Transform> enemyList;   // Posiible enemies to spawn 
         public Transform curEnemy;
@@ -80,7 +79,7 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     void WaveCompleted() {
-        WaveTimerUI.DisplayEndRound();
+        WaveTimerUI.StartCoroutine(WaveTimerUI.DisplayEndRound());
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
 

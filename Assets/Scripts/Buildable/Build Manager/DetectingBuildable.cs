@@ -11,11 +11,16 @@ public class DetectingBuildable : MonoBehaviour {
     public Collider2D blockingObject;
 
     // Update Function
-    public void Update() {
+    public void Update() {      
+
         if (!isBlocked) {
             canBuild = true;
             canRemove = false;
         }        
+
+        if (canBuild) {
+            // Display hologram
+        }
     }
 
     // Function to detect when object is not buildable

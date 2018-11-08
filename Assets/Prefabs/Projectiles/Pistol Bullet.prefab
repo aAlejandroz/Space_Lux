@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50944764677883926}
   - component: {fileID: 212803838670660300}
   - component: {fileID: 114368667084496816}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pistol Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1561639642916410}
   m_LocalRotation: {x: 0.0022474143, y: 0.0013021383, z: 0.5013239, w: 0.8652558}
-  m_LocalPosition: {x: -0.34605587, y: -1.8003459, z: 0}
+  m_LocalPosition: {x: -0.1618059, y: -3.4903886, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,8 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaea37a7694bca48a9ebdbc20f63d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFriendlyBullet: 1
   Damage: 5
   DisappearAfter: 0.7
+  distance: 0.5
+  whatIsSolid:
+    serializedVersion: 2
+    m_Bits: 1792
 --- !u!212 &212803838670660300
 SpriteRenderer:
   m_ObjectHideFlags: 1

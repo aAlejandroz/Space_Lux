@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 82339621901668718}
   - component: {fileID: 212446987440584460}
   - component: {fileID: 114586201844194282}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,8 @@ GameObject:
   - component: {fileID: 58966388396618506}
   - component: {fileID: 95471658948583172}
   - component: {fileID: 114606317003667446}
-  m_Layer: 0
+  - component: {fileID: 61483275811901896}
+  m_Layer: 10
   m_Name: ShotgunTurret
   m_TagString: Buildable
   m_Icon: {fileID: 0}
@@ -56,7 +57,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4483452839984092}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1091440845484154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4578197, y: -2.6964839, z: 0}
+  m_LocalPosition: {x: 1.4870598, y: -2.499558, z: 0}
   m_LocalScale: {x: 7.3187, y: 7.3187, z: 7.3187}
   m_Children:
   - {fileID: 4636016572574470}
@@ -119,6 +120,31 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.95
+--- !u!61 &61483275811901896
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1091440845484154}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.1376428}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.22, y: 0.41}
+    newSize: {x: 0.22, y: 0.41}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.12044744, y: 0.12310636}
+  m_EdgeRadius: 0
 --- !u!82 &82339621901668718
 AudioSource:
   m_ObjectHideFlags: 1
@@ -262,13 +288,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ca6e30974e72a4a838d9d75fef2880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 120
-  CurHP: 120
+  MaxHP: 60
+  CurHP: 60
   AttackBufferTime: 1
+  flickerDuration: 0.5
   status: 1
   isInvincible: 0
   buildCost: 15
-  flickerDuration: 0.5
   buildTime: 3
   canBuild: 1
   canRepair: 0

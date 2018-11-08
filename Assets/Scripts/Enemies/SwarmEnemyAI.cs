@@ -10,9 +10,11 @@ public class SwarmEnemyAI : MonoBehaviour {
 	public float AttackDamage;
     public float vertical, horizontal;
     private bool isTargetInRange;
+    [SerializeField]
     private bool facingLeft;
     private Animator anim;
     public GameObject target;
+    [SerializeField]
     private Vector2 targetVec;	
 	private Rigidbody2D rb2d;
 
@@ -24,16 +26,17 @@ public class SwarmEnemyAI : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-        vertical = Input.GetAxis("Vertical");
-        horizontal = Input.GetAxis("Horizontal");        
-
-        Flip(horizontal);
-
+        
         targetVec = target.transform.position - transform.position;
 		targetVec.x = Mathf.Clamp(targetVec.x, -1.0f, 1.0f);
 		targetVec.y = Mathf.Clamp(targetVec.y, -1.0f, 1.0f);
 		rb2d.velocity = targetVec * MovementSpeed;
-             
+
+        horizontal = targetVec.x;
+        vertical = targetVec.y;
+
+        Flip(horizontal);
+
         SetAnimations(horizontal, vertical);
     }       
 

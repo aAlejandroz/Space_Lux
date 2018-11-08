@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50325850347316714}
   - component: {fileID: 114878648284722154}
   - component: {fileID: 58450745031306050}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Kanye
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -93,6 +93,7 @@ MonoBehaviour:
   MaxHP: 50
   CurHP: 50
   AttackBufferTime: 0
+  flickerDuration: 0.2
   status: 0
   isInvincible: 0
   dropList:
@@ -112,7 +113,11 @@ MonoBehaviour:
   MovementSpeed: 2.41
   AttackSpeed: 0.33
   AttackDamage: 20
+  vertical: 0
+  horizontal: 0
+  facingLeft: 0
   target: {fileID: 0}
+  targetVec: {x: 0, y: 0}
 --- !u!212 &212686700640205938
 SpriteRenderer:
   m_ObjectHideFlags: 1

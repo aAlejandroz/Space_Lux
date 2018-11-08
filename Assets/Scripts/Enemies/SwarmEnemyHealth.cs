@@ -16,7 +16,9 @@ public class SwarmEnemyHealth : Damageable {
     }
 
     protected override void OnDamaged(float damage) {
-		CurHP -= damage;
+        GetComponent<SpriteRenderer>().color = new Color(1, 0.3f, 0.3f, 1);
+        StartCoroutine(WaitAndChangeColor());
+        CurHP -= damage;
 	}
 
 	protected override void OnDestroyed() {
@@ -25,4 +27,9 @@ public class SwarmEnemyHealth : Damageable {
         }
         Destroy(gameObject);
 	}
+
+    public override IEnumerator WaitAndChangeColor() {
+        yield return new WaitForSeconds(flickerDuration);
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
 }
