@@ -10,13 +10,11 @@ public abstract class Gun : Item {
 	private bool canFire;
     protected bool canPlaySound;
 
-    public void Start() {
-        if (transform.parent.tag == "Player" || transform.parent.tag == "Buildable") {  // isFriendlyBullet defined by where bullet comes from
-            ProjectilePrefab.isFriendlyBullet = true;
-        } else {
-            ProjectilePrefab.isFriendlyBullet = false;
-        }
+    /*
+    public void Awake() {
+        
     }
+    */
 
     public Gun() {
 		canFire = true;
