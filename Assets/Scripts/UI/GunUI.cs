@@ -12,8 +12,9 @@ public class GunUI : MonoBehaviour {
         image = GetComponent<Image>();
     }
 
-    public void UpdateGunDisplay(Buildable gun) {
-        image.sprite = gun.GetComponent<SpriteRenderer>().sprite;
+    public void UpdateGunDisplay(Sprite item) {
+        image.sprite = item;
+        //image.sprite = gun.GetComponent<SpriteRenderer>().sprite;
         //if (image.sprite.GetType().Equals(typeof(SpriteRenderer)))
     }
 }

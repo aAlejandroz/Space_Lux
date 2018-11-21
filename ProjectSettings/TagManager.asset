@@ -13,6 +13,10 @@ TagManager:
   - Buildable
   - BuildableHP
   - Enivronment
+  - Base
+  - Grid
+  - PlayerAxis
+  - Environment
   layers:
   - Default
   - TransparentFX

@@ -21,7 +21,7 @@ public class Shotgun : Gun{
         var projectile3 = Instantiate(ProjectilePrefab, SpawnPoint.position, rotation);
         projectile3.GetComponent<Rigidbody2D>().AddForce(projectile3.transform.right * Force);        
 
-        if (transform.parent.tag == "Player") {  // isFriendlyBullet defined by where bullet comes from
+        if (transform.parent.tag == "PlayerAxis") {  // isFriendlyBullet defined by where bullet comes from
             projectile.isPlayerBullet = true;
             projectile2.isPlayerBullet = true;
             projectile3.isPlayerBullet = true;

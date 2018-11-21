@@ -1,9 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
 [RequireComponent (typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
+    // Two modes, shooting & building
+    // Press "q to switch between mode" (onkeydown)
+    public enum Mode { SHOOTING_MODE, BUILDING_MODE };
+
+    public Mode mode;
     private int weaponIndex = 0;    
     private float mouseAngle;
     public float MovementSpeed;
@@ -17,43 +24,74 @@ public class PlayerController : MonoBehaviour
 	private Vector2 movementInput;
 	private Vector2 mouseVec;	
     public GameObject currentWeapon;
-    public GameObject[] WeaponInventory;
+    public List<GameObject> WeaponInventory;
     public Gun weaponComponent;
+    public GunUI gunDisplay;
 
     public PlayerController() {
-        WeaponInventory = new GameObject[3];
+        WeaponInventory = new List<GameObject>();   // initializes weaponInventory for player
     }
 
     private void Awake() {
-		rb = GetComponent<Rigidbody2D>();
+        gameObject.GetComponent<BuildManager>().enabled = false;
+        rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
-        switchWeapons(0);
+        currentWeapon = WeaponInventory[weaponIndex];
+        mode = Mode.SHOOTING_MODE;
+        switchWeapons(0);        
     }
-    
+
+    // Destroys current weapon & switches weapon according to weapon index
     private void switchWeapons(int index) {
         if (currentWeapon != null) {
             Destroy(currentWeapon);
         }
 
         currentWeapon = Instantiate(WeaponInventory[index], PlayerHands, false);
-        currentWeapon.transform.localPosition = new Vector3(0, 0.4f, 0);
-        weaponComponent = currentWeapon.GetComponent<Gun>();
-
+        currentWeapon.transform.localPosition = new Vector3(0.1f, 0.4f, 0);
+        weaponComponent = currentWeapon.GetComponent<Gun>();        
     }
 
     private void Update() {
         movementInput.x = Input.GetAxisRaw("Horizontal");
         movementInput.y = Input.GetAxisRaw("Vertical");
-        isFiring = Input.GetButton("Fire1");
 
-        if (Input.GetKeyDown("1"))
-            switchWeapons(0);
+        // Check to see if player pressed "q". If true, switch to building mode. 
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            SwitchMode();
+        }
 
-        if (Input.GetKeyDown("2"))
-            switchWeapons(1);
+        if (mode == Mode.SHOOTING_MODE) {
+            isFiring = Input.GetButton("Fire1");
+            if (Input.GetAxis("Mouse ScrollWheel") != 0f) {     // Player chooses gun with the scroll wheel 
+                weaponIndex++;
 
-        if (Input.GetKeyDown("3"))
-            switchWeapons(2);        
+                if (weaponIndex >= WeaponInventory.Count) {
+                    weaponIndex = 0;
+                }
+
+                switchWeapons(weaponIndex);
+            }
+
+            gunDisplay.UpdateGunDisplay(currentWeapon.GetComponent<SpriteRenderer>().sprite);   // Updates display in UI
+        }
+
+        if (mode == Mode.BUILDING_MODE) {
+            isFiring = false;
+        }
+        
+    }
+
+    // If mode is shooting mode, switch to building.
+    // If mode is building mode, switch to shooting;    
+    private void SwitchMode() {           
+        if (mode == Mode.SHOOTING_MODE) {
+            mode = Mode.BUILDING_MODE;
+            gameObject.GetComponent<BuildManager>().enabled = true;
+        } else {
+            mode = Mode.SHOOTING_MODE;
+            gameObject.GetComponent<BuildManager>().enabled = false;
+        }  
     }
 
     private void FixedUpdate() {

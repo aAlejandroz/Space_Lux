@@ -35,7 +35,7 @@ public class WaveTimerUI : MonoBehaviour {
 
     private IEnumerator DisplayWarning() {
         TextField.text = "Prepare your Defense!";
-        StartCoroutine(waitAndEraseText(1.5f));
+        StartCoroutine(waitAndEraseText(3.0f));
         yield break;
     }
 

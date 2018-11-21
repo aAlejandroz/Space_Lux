@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114918135359313570}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +53,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.14803243}
+  m_Offset: {x: 0, y: -0.19574714}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -64,7 +64,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8090887, y: 2.513227}
+  m_Size: {x: 2.8090887, y: 2.9903731}
   m_EdgeRadius: 0
 --- !u!114 &114918135359313570
 MonoBehaviour:
@@ -83,5 +83,6 @@ MonoBehaviour:
   flickerDuration: 0.2
   status: 0
   isInvincible: 0
-  buildableUI: {fileID: 1403006207572468, guid: 604ba36010e30af4d87ac8d4aae541d2,
+  buildableUIPrefab: {fileID: 1403006207572468, guid: 604ba36010e30af4d87ac8d4aae541d2,
     type: 2}
+  buildUIInfo: {fileID: 0}

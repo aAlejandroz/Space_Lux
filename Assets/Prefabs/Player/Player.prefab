@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4605591037423034}
   - component: {fileID: 61212969596004836}
-  - component: {fileID: 212105619606945904}
   - component: {fileID: 114043278891837524}
+  - component: {fileID: 212105619606945904}
   m_Layer: 0
   m_Name: BuildSpawn
   m_TagString: Build Spawn
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 212015236835492664}
   m_Layer: 0
   m_Name: CirlceAxis
-  m_TagString: Player
+  m_TagString: PlayerAxis
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +165,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1004758332814754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 4318673353563892}
@@ -178,7 +178,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280404726292774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.52, y: 0.49, z: 1.46}
+  m_LocalPosition: {x: 6.47, y: 1.5, z: 1.46}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4318673353563892}
@@ -277,8 +277,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.625, y: 0.375}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 0.16, y: 0.45}
+    newSize: {x: 0.16, y: 0.45}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -438,7 +438,16 @@ MonoBehaviour:
   canBuild: 1
   isBlocked: 0
   canRemove: 0
+  inBuildingMode: 0
+  hologramPrefab: {fileID: 1570854878153940, guid: 297335e604dac8b4cbbbc743b05dc265,
+    type: 2}
+  hologram: {fileID: 0}
+  player: {fileID: 0}
+  spawnPoint: {fileID: 4605591037423034}
+  grid: {fileID: 0}
   blockingObject: {fileID: 0}
+  currentSpawnPoint: {x: 0, y: 0, z: 0}
+  hologramSpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &114358852243048572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,9 +462,9 @@ MonoBehaviour:
   MaxHP: 100
   CurHP: 100
   AttackBufferTime: 1
+  flickerDuration: 0.5
   status: 0
   isInvincible: 0
-  flickerDuration: 0.5
   HurtSound: {fileID: 8300000, guid: 33d71604c2a90354690f7ab1f49b6a9d, type: 3}
   HeartUI: {fileID: 0}
 --- !u!114 &114405472570952976
@@ -464,12 +473,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280404726292774}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1eb477c9c5319340a5651e8950216a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildRate: 0.1
+  buildRate: 0.6
   canRemove: 0
   buildList:
   - {fileID: 114386136494005400, guid: 6d63328d974e5d246bdf8d915ba6968b, type: 2}
@@ -501,6 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a3c3703156d5a45a016e395ac0dae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mode: 0
   MovementSpeed: 4.57
   PlayerHands: {fileID: 4318673353563892}
   Camera: {fileID: 0}
@@ -509,16 +519,15 @@ MonoBehaviour:
   - {fileID: 1609145647318242, guid: 62fd966a4a2addb44ab112894bec3a1a, type: 2}
   - {fileID: 1678362637526056, guid: f46dca14e54acf44a9aa376ddea5be9b, type: 2}
   - {fileID: 1689670984971296, guid: 29eeed5d2f85f9d498410438bc0fc85b, type: 2}
-  muzzleFlare: {fileID: 1221743710313028, guid: 4be8f280fe2970f488eec6bbe6cbf4f1,
-    type: 2}
   weaponComponent: {fileID: 0}
+  gunDisplay: {fileID: 0}
 --- !u!114 &114589890588494838
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1996375110213034}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98239cd8c58dbd74c8644233ece70079, type: 3}
   m_Name: 
@@ -541,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d887b41ed755294f80eeb33bf343a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceCount: 250
+  ResourceCount: 2000
   resourceUI: {fileID: 0}
 --- !u!212 &212015236835492664
 SpriteRenderer:
@@ -595,7 +604,7 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1004758332814754}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -621,15 +630,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 606491595
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.16, y: 0.45}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -667,8 +676,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1922682547
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 6310057cd07cc85499214c5582c4d71d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -10,12 +10,6 @@ public abstract class Gun : Item {
 	private bool canFire;
     protected bool canPlaySound;
 
-    /*
-    public void Awake() {
-        
-    }
-    */
-
     public Gun() {
 		canFire = true;
 	}
@@ -34,7 +28,7 @@ public abstract class Gun : Item {
         if (!FireSound.isPlaying) {
             FireSound.Play();                
         }        
-        yield return new WaitForSeconds(FireRate);        
+        yield return new WaitForSeconds(FireRate);       
         canFire = true;
-	}
+    }
 }

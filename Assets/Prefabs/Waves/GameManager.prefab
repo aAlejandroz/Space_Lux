@@ -201,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1651461827158370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 44.2, y: -38.7, z: 0}
+  m_LocalPosition: {x: 33.5, y: -37.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4321906703657550}
@@ -249,7 +249,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1571382445505846}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.64, y: -34.59, z: 0}
+  m_LocalPosition: {x: 35.3, y: 35.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4283479774011286}
@@ -275,7 +275,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1094983577803386}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18, y: -21.8, z: 0}
+  m_LocalPosition: {x: -40.1, y: -38.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4283479774011286}
@@ -288,7 +288,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347604342765000}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 55.2, y: -71.3, z: 0}
+  m_LocalPosition: {x: -30.8, y: -31.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4321906703657550}
@@ -301,7 +301,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1592714790511764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.8, y: 7.2, z: 0}
+  m_LocalPosition: {x: -19.71, y: 16.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4321906703657550}
@@ -314,7 +314,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1043350860152632}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 31.7, y: -29.6, z: 0}
+  m_LocalPosition: {x: -32.4, y: 28.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4283479774011286}
@@ -340,7 +340,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254309520118738}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.7, y: 5.66, z: 0}
+  m_LocalPosition: {x: 30.8, y: -36.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4283479774011286}
@@ -393,21 +393,21 @@ MonoBehaviour:
     - {fileID: 4457630002735480, guid: d74a32eee478d3a43942d3f36f795140, type: 2}
     - {fileID: 4891699425909060, guid: 535a1cc32fb19324cb31dddb73186869, type: 2}
     curEnemy: {fileID: 0}
-    count: 20
-    rate: 4
+    count: 25
+    rate: 3
   - name: Round 2
     enemyList:
     - {fileID: 4457630002735480, guid: d74a32eee478d3a43942d3f36f795140, type: 2}
     - {fileID: 4891699425909060, guid: 535a1cc32fb19324cb31dddb73186869, type: 2}
     curEnemy: {fileID: 0}
-    count: 25
+    count: 35
     rate: 3
   - name: Round 3
     enemyList:
     - {fileID: 4457630002735480, guid: d74a32eee478d3a43942d3f36f795140, type: 2}
     - {fileID: 4891699425909060, guid: 535a1cc32fb19324cb31dddb73186869, type: 2}
     curEnemy: {fileID: 0}
-    count: 30
+    count: 40
     rate: 2.5
   - name: Round 4
     enemyList:
@@ -415,7 +415,7 @@ MonoBehaviour:
     - {fileID: 4891699425909060, guid: 535a1cc32fb19324cb31dddb73186869, type: 2}
     - {fileID: 4865759285602180, guid: 10095d14a728db34392ba3f8d7e843d1, type: 2}
     curEnemy: {fileID: 0}
-    count: 35
+    count: 50
     rate: 2
   - name: Round 5
     enemyList:
@@ -423,14 +423,14 @@ MonoBehaviour:
     - {fileID: 4891699425909060, guid: 535a1cc32fb19324cb31dddb73186869, type: 2}
     - {fileID: 4865759285602180, guid: 10095d14a728db34392ba3f8d7e843d1, type: 2}
     curEnemy: {fileID: 0}
-    count: 45
+    count: 60
     rate: 2
   spawnPoints:
   - {fileID: 4941190585468950}
   - {fileID: 4588449533567424}
   - {fileID: 4870656628785158}
   - {fileID: 4465052913065426}
-  timeBetweenWaves: 10
+  timeBetweenWaves: 20
   WaveTimerUI: {fileID: 114112502454419704}
 --- !u!114 &114762338958852866
 MonoBehaviour:

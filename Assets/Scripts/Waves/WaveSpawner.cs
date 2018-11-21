@@ -10,7 +10,7 @@ public class WaveSpawner : MonoBehaviour {
 	public class Wave {        
         public string name;
         public List<Transform> enemyList;   // Posiible enemies to spawn 
-        public Transform curEnemy;
+        public Transform curEnemy;        
         public int count;
         public float rate;
     }
@@ -37,7 +37,7 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     void Start() {
-        //timeBetweenWaves = RandomNum(maxWaitTime);  
+        //timeBetweenWaves = RandomNum(maxWaitTime); 
         nextWave = 0;
         waveCountdown = timeBetweenWaves;
 		WaveTimerUI.StartCountdown(timeBetweenWaves);

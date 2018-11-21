@@ -18,15 +18,23 @@ public class BuildManager : MonoBehaviour {
     public GunUI gunDisplay;
 
     // Start function
-    private void Start() {
+    private void Awake() {
         playerResource = GetComponent<PlayerPickup>();
+        grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<Grid>();
         index = 0;
     }
 
     // Update function
     private void Update() {
+        // place turret sprite in build spawn sprite renderer
+
         canRemove = spawnPoint.GetComponent<DetectingBuildable>().canRemove;
         currentBuilding = buildList[index];
+
+        if (Input.GetButton("Fire1")) {
+            gameObject.GetComponent<BuildManager>().enabled = false;
+            gameObject.GetComponent<PlayerController>().mode = PlayerController.Mode.SHOOTING_MODE;
+        }
 
         if (Input.GetAxis("Mouse ScrollWheel") != 0f) {                             // Player choose what they build with the scroll wheel 
             index++;     
@@ -46,7 +54,7 @@ public class BuildManager : MonoBehaviour {
             playerResource.IncrementResource(blockingObject.buildCost / 2);        // Destroying a building only returns half the cost                          
         }
 
-        gunDisplay.UpdateGunDisplay(buildList[index]);
+        gunDisplay.UpdateGunDisplay(buildList[index].GetComponent<SpriteRenderer>().sprite);
     }
 
     // TODO: Display prompt saying player can't build
