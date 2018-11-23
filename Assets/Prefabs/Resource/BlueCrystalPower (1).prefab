@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worth: 30
   speed: 8
+  destroyAfter: 10
   capsuleCollider: {fileID: 0}
 --- !u!212 &212629789974815716
 SpriteRenderer:

@@ -18,6 +18,11 @@ public class BaseHealth : Damageable {
         buildUIInfo.GetComponentInChildren<BuildingHP>().UpdateHP(CurHP);        
     }
 
+    public void Repair() {
+        Debug.Log("Repairing");
+        CurHP += 40;
+    }
+
     protected override void OnDamaged(float damage) {
         if (!isInvincible) {            
             CurHP -= damage;                       

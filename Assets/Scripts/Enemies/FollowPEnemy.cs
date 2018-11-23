@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,15 +21,16 @@ public class FollowPEnemy : MonoBehaviour
 
     // Create GameObject List for Player targets 
     private Animator anim;
-    private GameObject target;
-   // public List<GameObject>
+    [SerializeField] private GameObject target;
+    //public List<GameObject> targetList;
     private Rigidbody2D rb2d;
     private State curState;
 
     // caches
     private Vector2 distance;
     private RaycastHit2D[] attackRadiusColl;
-    private bool foundPlayer;
+    //private bool foundPlayer;
+    [SerializeField]private bool foundTarget;
     private Vector2 targetVec;
     private float targetAngle;
     private Vector2 angleVec;
@@ -38,14 +40,18 @@ public class FollowPEnemy : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Base");  // Default to going after base
         rb2d = GetComponent<Rigidbody2D>();
         curState = State.FOLLOWING;
-        foundPlayer = false;
+        foundTarget = false;
     }
 
     private void FixedUpdate()
     {
+        if (target == null) {
+            target = GameObject.FindGameObjectWithTag("Base");
+        }
+        
         switch (curState)
         {
             case State.FOLLOWING:
@@ -57,23 +63,25 @@ public class FollowPEnemy : MonoBehaviour
         }
 
         attackRadiusColl = Physics2D.CircleCastAll(transform.position, AttackRadius, transform.rotation.eulerAngles);
-        for (int i = 0; i < attackRadiusColl.Length && !foundPlayer; i++)
-        {
-            if (attackRadiusColl[i].collider.gameObject.tag == "Player")
-            {
+        for (int i = 0; i < attackRadiusColl.Length && !foundTarget; i++)
+        {            
+            var collider = attackRadiusColl[i].collider;            
+
+            if (collider.tag == "Player" || (collider.tag == "Buildable" && collider.GetType() == typeof(BoxCollider2D)) || collider.tag == "Base")          
+            {                
                 curState = State.ATTACKING;
-                rb2d.velocity = Vector2.zero;
-                foundPlayer = true;
-            }
+                rb2d.velocity = Vector2.zero;                
+                foundTarget = true;
+                target = collider.gameObject;
+            }            
         }
 
-        if (!foundPlayer)
-        {
+        if (!foundTarget) {
             curState = State.FOLLOWING;
         }
-
-        foundPlayer = false;
-        SetAnimations();
+       
+        foundTarget = false;
+        SetAnimations();        
     }
 
     private void OnFollowing()
@@ -86,8 +94,11 @@ public class FollowPEnemy : MonoBehaviour
 
     private void OnAttacking()
     {
-        Debug.Log("Attacking...");
-        targetVec = target.transform.position - Gun.transform.position;
+        rb2d.velocity = Vector2.zero;
+
+        Vector3 offset = target.tag == "Buildable" ? new Vector3(0, 1, 0) : Vector3.zero;   // Calculate offset of 1 unit down for turrets
+
+        targetVec = target.transform.position - (Gun.transform.position + offset);  // add offset
         targetAngle = Mathf.Atan2(targetVec.y, targetVec.x) * Mathf.Rad2Deg;
         Gun.transform.rotation = Quaternion.Euler(0.0f, 0.0f, targetAngle);
         Gun.Use();

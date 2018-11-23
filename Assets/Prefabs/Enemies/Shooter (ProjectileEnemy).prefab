@@ -160,9 +160,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fba61a9530584b3439fd7d6f76884ed0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a08777d000a366d4c85dd174dcad2130, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.03
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -206,7 +206,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.8
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -298,6 +298,8 @@ MonoBehaviour:
   Speed: 1.75
   AttackRadius: 4.75
   Gun: {fileID: 114796078712402066}
+  target: {fileID: 0}
+  foundTarget: 0
 --- !u!114 &114739702886940140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -328,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: enemy_pistol
-  FireRate: 1
+  FireRate: 1.3
   ProjectilePrefab: {fileID: 114688481306304684, guid: 0def2cbdc62b16846a2f514df7ebddd1,
     type: 2}
   SpawnPoint: {fileID: 4132698360093520}

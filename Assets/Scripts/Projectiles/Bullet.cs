@@ -51,12 +51,10 @@ public class Bullet : Projectile {
         if (isTurretBullet) {   
             if (hitInfo.collider != null && hitInfo.collider.isTrigger == false) { // Collided with something                        
 
-                if (hitInfo.collider.tag == "Enemy") {
-                    Debug.Log("Enemy hit!");                                    // She's in love with who I am
+                if (hitInfo.collider.tag == "Enemy") {                   
                     hitInfo.collider.GetComponent<Damageable>().Damage(Damage); // Back in highschool, I used to bus it to the dance
                 }
-                else if (hitInfo.collider.tag == "Buildable" || hitInfo.collider.tag == "Player") {
-                    Debug.Log("Collision ignored");
+                else if (hitInfo.collider.tag == "Buildable" || hitInfo.collider.tag == "Player") {                    
                     willDestroyBullet = false;
                 }
                 else {
@@ -71,12 +69,10 @@ public class Bullet : Projectile {
         else if (isPlayerBullet) {  
             if (hitInfo.collider != null && hitInfo.collider.isTrigger == false) { // Collided with something                        
 
-                if (hitInfo.collider.tag == "Enemy") {
-                    Debug.Log("Enemy hit!");                                    // She's in love with who I am
-                    hitInfo.collider.GetComponent<Damageable>().Damage(Damage); // Back in highschool, I used to bus it to the dance
+                if (hitInfo.collider.tag == "Enemy") {                                                       
+                    hitInfo.collider.GetComponent<Damageable>().Damage(Damage); 
                 }
-                else if (hitInfo.collider.tag == "Buildable" || hitInfo.collider.tag == "Player") {
-                    Debug.Log("Collision ignored");
+                else if (hitInfo.collider.tag == "Buildable" || hitInfo.collider.tag == "Player") {                    
                     willDestroyBullet = false;
                 }
                 else {
@@ -91,12 +87,13 @@ public class Bullet : Projectile {
         else {    
             if (hitInfo.collider != null && hitInfo.collider.isTrigger == false) { // Collided with something                        
 
-                if (hitInfo.collider.tag == "Player") {
-                    Debug.Log("Player hit!");                                    // She's in love with who I am
+                if (hitInfo.collider.tag == "Player") {                                              
                     hitInfo.collider.GetComponent<Damageable>().Damage(Damage); // Back in highschool, I used to bus it to the dance
                 }
-                else if (hitInfo.collider.tag == "Buildable") {
-                    Debug.Log("Turret hit!");
+                else if (hitInfo.collider.tag == "Buildable" || hitInfo.collider.tag == "Base") {
+                    Debug.Log("Turret / Base hit"); 
+                    hitInfo.collider.GetComponent<Damageable>().Damage(Damage);
+                    willDestroyBullet = true;
                 }
                 else {
                     Debug.Log("Environment hit!");
@@ -126,7 +123,7 @@ public class Bullet : Projectile {
                 collision.gameObject.GetComponent<Damageable>().Damage(Damage);
             }
 
-            if (collision.gameObject.tag == "Base") {
+            if (collision.gameObject.tag == "Base") {                
                 collision.gameObject.GetComponent<BaseHealth>().Damage(Damage);
             }            
         }

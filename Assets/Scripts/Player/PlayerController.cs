@@ -42,10 +42,10 @@ public class PlayerController : MonoBehaviour
     }
 
     // Destroys current weapon & switches weapon according to weapon index
-    private void switchWeapons(int index) {
+    private void switchWeapons(int index) {        
         if (currentWeapon != null) {
             Destroy(currentWeapon);
-        }
+        }        
 
         currentWeapon = Instantiate(WeaponInventory[index], PlayerHands, false);
         currentWeapon.transform.localPosition = new Vector3(0.1f, 0.4f, 0);

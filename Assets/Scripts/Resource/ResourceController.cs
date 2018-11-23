@@ -6,6 +6,7 @@ public class ResourceController : MonoBehaviour {
 
     public int worth;
     public float speed;
+    public float destroyAfter;
     private bool isMoving = false;
     private AudioSource pickupSound;
     private Transform target;
@@ -16,7 +17,11 @@ public class ResourceController : MonoBehaviour {
     private void Awake() {
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         pickupSound = GetComponent<AudioSource>();
-    }    
+    }
+
+    private void Start() {
+        Destroy(gameObject, destroyAfter);
+    }
 
     // Update function
     public void Update() {

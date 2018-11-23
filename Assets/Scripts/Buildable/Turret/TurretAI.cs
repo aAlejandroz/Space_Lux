@@ -145,12 +145,14 @@ public class TurretAI : Buildable {
             return null;
         }        
     }
-
+    
+    // Function to set animation inputs
     private void setAnimInput(float x, float y) {
         anim.SetFloat("xInput", x);
         anim.SetFloat("yInput", y);
     }
-
+   
+    // Function to determine current animation
     protected void SetAnimations() {
         if (targetAngle <= 33.0f && targetAngle >= -33.0f) { // Right
             setAnimInput(1, 0);
@@ -179,6 +181,7 @@ public class TurretAI : Buildable {
         
     }
 
+    // Function called when hp <= 0
     protected override void OnDestroyed() {
         //destroyedSound.Play();
         CurrentHpDisplay.UpdateHP(CurHP);

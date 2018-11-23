@@ -71,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1091440845484154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.3834977, y: 3.6151178, z: 0}
+  m_LocalPosition: {x: 0.41981196, y: -5.842638, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children:
   - {fileID: 4636016572574470}
@@ -156,7 +156,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1340b65458bce0c4d91b984780c8bbb5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.03
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -288,9 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ca6e30974e72a4a838d9d75fef2880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 80
-  CurHP: 80
-  AttackBufferTime: 1
+  MaxHP: 50
+  CurHP: 50
+  AttackBufferTime: 0.5
   flickerDuration: 0.5
   status: 1
   isInvincible: 0

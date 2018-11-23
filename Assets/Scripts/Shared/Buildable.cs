@@ -8,7 +8,7 @@ public abstract class Buildable : Damageable {
     public int buildCost;       
     public float buildTime;
     protected float timeLeftBuilding;    
-    [SerializeField] protected bool canBuild, canRepair, isbuilding;    
+    public bool canBuild, canRepair, isbuilding;    
     public GameObject buildableUI;
 
     public abstract GameObject Build(Transform spawnPoint, Grid grid);
@@ -19,9 +19,14 @@ public abstract class Buildable : Damageable {
         OnDestroyed();
     }
 
+    public void Repair() {
+        Debug.Log("Repairing");
+        CurHP = MaxHP;
+    }
+
     // Function to determine if player can build on grid
     public bool isBuildable(Transform spawnPoint) {
-        canBuild = spawnPoint.GetComponent<DetectingBuildable>().canBuild;
+        canBuild = spawnPoint.GetComponent<DetectingBuildable>().canBuild;        
         return canBuild;
     }
 

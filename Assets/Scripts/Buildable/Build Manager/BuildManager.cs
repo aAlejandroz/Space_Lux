@@ -7,12 +7,12 @@ public class BuildManager : MonoBehaviour {
     private int index;
     public float buildRate = 0.1f;
     private bool requestToBuild = false;
-    private bool canRequest = true;
+    [SerializeField] private bool canRequest = true;
     public bool canRemove = false;
     public List<Buildable> buildList;  // array of buildables. What the player can currently build  
     private Buildable currentBuilding;
     private PlayerPickup playerResource;   
-    private Buildable blockingObject;
+    [SerializeField] private Buildable blockingObject;
     public Transform spawnPoint;            // Transform of gameobject in front of player
     public Grid grid;
     public GunUI gunDisplay;
@@ -27,7 +27,7 @@ public class BuildManager : MonoBehaviour {
     // Update function
     private void Update() {
         // place turret sprite in build spawn sprite renderer
-
+        
         canRemove = spawnPoint.GetComponent<DetectingBuildable>().canRemove;
         currentBuilding = buildList[index];
 
@@ -44,15 +44,19 @@ public class BuildManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetKey(KeyCode.C) && canRequest) {                                          // Player builds with 'C' key
+        if (Input.GetKey(KeyCode.C) && canRemove) {
+            RepairBuildable();
+        } else if (Input.GetKey(KeyCode.C) && canRequest) {                                          // Player builds with 'C' key
             requestToBuild = true;
-        }
+        } else {
 
+        }        
+        
         if (Input.GetKey(KeyCode.V) && canRemove) {                                 
             blockingObject = spawnPoint.GetComponent<DetectingBuildable>().blockingObject.GetComponent<Buildable>();
             blockingObject.Remove();
             playerResource.IncrementResource(blockingObject.buildCost / 2);        // Destroying a building only returns half the cost                          
-        }
+        }        
 
         gunDisplay.UpdateGunDisplay(buildList[index].GetComponent<SpriteRenderer>().sprite);
     }
@@ -82,7 +86,39 @@ public class BuildManager : MonoBehaviour {
             }
 
             requestToBuild = false;
-        }        
+        }              
+    }
+
+    public void RepairBuildable() {
+        
+        // cost to repairing turrets is decided by how damaged turret is
+        // curHP >= 75% { 25% cost }
+        // curHP < 75% && curHP >= 50% { 50% cost }
+        // curHP <= 50%  { 75% cost }
+
+        blockingObject = spawnPoint.GetComponent<DetectingBuildable>().blockingObject.GetComponent<Buildable>();
+
+        if (blockingObject.canRepair) {
+            int repairCost;
+            float curHpPercent = blockingObject.CurHP / blockingObject.MaxHP;
+
+            if (curHpPercent >= 0.75) {
+                repairCost = (int)(blockingObject.buildCost * 0.25);
+            } else if (curHpPercent < 0.75 && curHpPercent >= 0.50) {
+                repairCost = (int)(blockingObject.buildCost * 0.50);
+            } else {
+                repairCost = (int)(blockingObject.buildCost * 0.75);
+            }
+
+            if (playerResource.GetResourceCount() >= repairCost) {
+                playerResource.DecrementResource(repairCost);
+                blockingObject.Repair();
+            }
+            else {
+                Debug.Log("You do not have enough resource to repair!");
+            }
+        }
+        
     }
 
     public IEnumerator Wait() {

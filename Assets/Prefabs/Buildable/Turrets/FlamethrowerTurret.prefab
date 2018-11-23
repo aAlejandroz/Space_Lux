@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1380442226354856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.26, y: -1.43, z: -0}
+  m_LocalPosition: {x: -3.5366092, y: -5.5678864, z: -0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children:
   - {fileID: 4124775041244384}
@@ -119,7 +119,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.65
 --- !u!61 &61466726666498384
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -156,7 +156,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b0353a7985005d04c9c730e49420ea74, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.03
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -287,15 +287,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ca6e30974e72a4a838d9d75fef2880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 100
-  CurHP: 100
-  AttackBufferTime: 1
+  MaxHP: 60
+  CurHP: 60
+  AttackBufferTime: 0.5
   flickerDuration: 0.5
   status: 1
   isInvincible: 0
   buildCost: 150
   buildTime: 5
-  canBuild: 0
+  canBuild: 1
   canRepair: 0
   isbuilding: 0
   buildableUI: {fileID: 1403006207572468, guid: 604ba36010e30af4d87ac8d4aae541d2,

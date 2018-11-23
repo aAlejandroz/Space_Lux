@@ -27,8 +27,8 @@ public class DetectingBuildable : MonoBehaviour {
     // Update Function
     public void Update() {
 
-        updateSpawnPoint();
-        
+        updateSpawnPoint();        
+
         // Checks mode of player
         if (player.GetComponent<PlayerController>().mode == PlayerController.Mode.BUILDING_MODE) {
             inBuildingMode = true;
@@ -46,11 +46,19 @@ public class DetectingBuildable : MonoBehaviour {
             Destroy(hologram);
         }
 
+        // If nothing is blocking then we can build
         if (!isBlocked) {
             canBuild = true;
             canRemove = false;
+        } 
+        
+        // Takes care of rare occasion when blocking object is destroyed and player is near it
+        if (isBlocked && canRemove) {
+            if (blockingObject == null) {
+                SetCanBuild();
+                blockingObject = null;
+            }
         }        
-
     }
 
     // Updates spawn point of "Hologram"
@@ -67,28 +75,43 @@ public class DetectingBuildable : MonoBehaviour {
     }
 
     // Function to detect when object is not buildable
-    private void OnTriggerStay2D(Collider2D collision) {        
-        if (collision.GetType() == typeof(BoxCollider2D) || collision.tag == "Environment") {     // Checks if collider is a box collider. Need b/c turret has circle collider
+    private void OnTriggerStay2D(Collider2D collision) {
+       
+        if (collision.tag == "Bullet") {
+            return;
+        }
+
+        if (collision.GetType() == typeof(BoxCollider2D) || collision.tag == "Environment") {     // Checks if collider is a box collider. Need b/c turret has circle collider            
             canBuild = false;
             isBlocked = true;
         }
 
-        if (collision.tag.Equals("Buildable") && collision.GetType() != typeof(CircleCollider2D)) {                  
+        if (collision.tag.Equals("Buildable") && collision.GetType() != typeof(CircleCollider2D)) {    
+            blockingObject = collision;      // Reference to blocking object. Turret / wall, etc.             
             if (isBlocked && collision.GetComponent<Buildable>().status == Damageable.Status.ACTIVE) {  // Checks if object in front of player is removable
                 canRemove = true;                
             }
-
-            blockingObject = collision;      // Reference to blocking object. Turret / wall, etc.             
         }
+
     }
 
     // Function to detect when object is buildable
-    private void OnTriggerExit2D(Collider2D collision) {        
-        if (collision.GetType() == typeof(BoxCollider2D) || collision.GetType() == typeof(EdgeCollider2D)) {            
-            canBuild = true;
-            isBlocked = false;
+    private void OnTriggerExit2D(Collider2D collision) {
+        
+        if (collision.tag == "Bullet") {
+            return;
+        }
+
+        if (collision.GetType() == typeof(BoxCollider2D) || collision.GetType() == typeof(EdgeCollider2D)) {
+            SetCanBuild();
             blockingObject = null;
-        } 
-                
+        }                
     }
+
+    // Helper function to set appropriate boolean values
+    private void SetCanBuild() {
+        canBuild = true;
+        isBlocked = false;
+    }
+
 }
