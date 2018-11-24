@@ -47,7 +47,7 @@ public class DetectingBuildable : MonoBehaviour {
         }
 
         // If nothing is blocking then we can build
-        if (!isBlocked) {
+        if (!isBlocked) {            
             canBuild = true;
             canRemove = false;
         } 

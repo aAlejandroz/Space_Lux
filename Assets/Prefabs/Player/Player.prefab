@@ -193,14 +193,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1978591187131558}
-  m_LocalRotation: {x: -0, y: -0, z: 0.89549625, w: 0.44506913}
+  m_LocalRotation: {x: -0, y: -0, z: 0.70923996, w: 0.70496726}
   m_LocalPosition: {x: 0.004, y: 0.004, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 4315759157817964}
   m_Father: {fileID: 4638619267563624}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 127.144005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.346}
 --- !u!20 &20431580126961556
 Camera:
   m_ObjectHideFlags: 1
@@ -322,7 +322,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 33d71604c2a90354690f7ab1f49b6a9d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -479,11 +479,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildRate: 0.6
+  canRequest: 1
   canRemove: 0
   buildList:
   - {fileID: 114386136494005400, guid: 6d63328d974e5d246bdf8d915ba6968b, type: 2}
   - {fileID: 114606317003667446, guid: 40d1bde5130b23c4ea09a9e2b0dbb2da, type: 2}
   - {fileID: 114861917253414946, guid: c745f141876589e4ab05deab1de048ef, type: 2}
+  blockingObject: {fileID: 0}
   spawnPoint: {fileID: 4605591037423034}
   grid: {fileID: 0}
   gunDisplay: {fileID: 0}
@@ -517,8 +519,6 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   WeaponInventory:
   - {fileID: 1609145647318242, guid: 62fd966a4a2addb44ab112894bec3a1a, type: 2}
-  - {fileID: 1678362637526056, guid: f46dca14e54acf44a9aa376ddea5be9b, type: 2}
-  - {fileID: 1689670984971296, guid: 29eeed5d2f85f9d498410438bc0fc85b, type: 2}
   weaponComponent: {fileID: 0}
   gunDisplay: {fileID: 0}
 --- !u!114 &114589890588494838
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d887b41ed755294f80eeb33bf343a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceCount: 2000
+  ResourceCount: 500
   resourceUI: {fileID: 0}
 --- !u!212 &212015236835492664
 SpriteRenderer:
@@ -722,9 +722,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1922682547
-  m_SortingLayer: 1
-  m_SortingOrder: 10
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 483ad3368be01214c80faceaf3c2639a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

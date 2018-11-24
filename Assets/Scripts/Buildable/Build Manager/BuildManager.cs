@@ -21,7 +21,7 @@ public class BuildManager : MonoBehaviour {
     private void Awake() {
         playerResource = GetComponent<PlayerPickup>();
         grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<Grid>();
-        index = 0;
+        index = 0;        
     }
 
     // Update function
