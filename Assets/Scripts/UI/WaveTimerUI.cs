@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WaveTimerUI : MonoBehaviour {
 
-	public Text TextField;
+	//public Text TextField;
+    public Text TextField;
 	public float TimeUntilWarning;
     public float remainingTime;
     public bool isCountingDown = false;

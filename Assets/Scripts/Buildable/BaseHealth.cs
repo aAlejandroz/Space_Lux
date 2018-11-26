@@ -1,21 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseHealth : Damageable {
 
-    public GameObject buildableUIPrefab;
-    public GameObject buildUIInfo;
+    //public GameObject buildableUIPrefab;
+    //public GameObject buildUIInfo;
 
-    public void Start() {        
+        public Slider baseHealth;
+
+    public void Start() {
+        /*
         Vector3 position = transform.position - new Vector3(3.5f, 0.5f, 0f);
         position += new Vector3(0, 6f, 0);        
         buildUIInfo = Instantiate(buildableUIPrefab, position, Quaternion.Euler(Vector3.zero));
         buildUIInfo.GetComponentInChildren<BuildTimer>().gameObject.SetActive(false);
+        */
+
+        baseHealth.value = MaxHP;
     }
 
     public void Update() {
-        buildUIInfo.GetComponentInChildren<BuildingHP>().UpdateHP(CurHP);        
+        //buildUIInfo.GetComponentInChildren<BuildingHP>().UpdateHP(CurHP);        
     }
 
     public void Repair() {
@@ -25,16 +32,25 @@ public class BaseHealth : Damageable {
 
     protected override void OnDamaged(float damage) {
         if (!isInvincible) {            
-            CurHP -= damage;                       
+            CurHP -= damage;
+            baseHealth.value = (CurHP/ MaxHP);
             StartCoroutine(setInvincibleAndWait());
         }
     }
 
     protected override void OnDestroyed() {
         Destroy(gameObject);
+        
     }
     
     public override IEnumerator WaitAndChangeColor() {
-        yield break;    
+        yield break;
+
+    }
+
+
+    float CalHealth()
+    {
+        return CurHP / MaxHP;
     }
 }
