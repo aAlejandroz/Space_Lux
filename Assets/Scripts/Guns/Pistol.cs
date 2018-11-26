@@ -2,7 +2,7 @@
 
 public class Pistol : Gun {
 
-	public float Force;
+    public float Force;    
 
 	protected override void OnFire() {
 		var projectile = Instantiate(ProjectilePrefab, SpawnPoint.position, SpawnPoint.rotation);

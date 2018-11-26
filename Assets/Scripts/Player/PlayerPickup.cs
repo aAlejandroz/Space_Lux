@@ -32,5 +32,19 @@ public class PlayerPickup : MonoBehaviour {
         if (collision.tag.Equals("Pick Up")) {      // If we enter the circle collider of crystal
             collision.gameObject.GetComponent<ResourceController>().MoveToPlayer(this.transform);
         }
+
+        /*
+        if (collision.tag == "Weapon") {
+            string weaponName = collision.gameObject.name;
+            string pathName = "Guns/" + weaponName; // ex: Guns/Flamethrower            
+
+            GameObject weapon = Resources.Load<GameObject>(pathName);   // loads weapon prefab from pathname
+            weapon.GetComponent<Gun>().isPickedUp = true;           
+
+            gameObject.GetComponent<PlayerController>().WeaponInventory.Add(weapon);
+            Debug.Log("New Weapon added to inventory");
+            Destroy(collision.gameObject);            
+        }
+        */
     }
 }

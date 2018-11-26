@@ -32,7 +32,7 @@ public class ResourceController : MonoBehaviour {
 
     // When player enters circle collider
     private void OnTriggerEnter2D(Collider2D other) {       
-        if (other.tag.Equals("Player") && other.IsTouching(this.capsuleCollider)) {     // Check if other is player
+        if (other.tag.Equals("Player") && other.IsTouching(capsuleCollider)) {     // Check if other is player
             pickupSound.Play();
             other.gameObject.GetComponent<PlayerPickup>().IncrementResource(worth);
             Destroy(gameObject);           

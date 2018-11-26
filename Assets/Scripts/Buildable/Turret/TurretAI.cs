@@ -185,6 +185,7 @@ public class TurretAI : Buildable {
     protected override void OnDestroyed() {
         //destroyedSound.Play();
         CurrentHpDisplay.UpdateHP(CurHP);
+        Destroy(buildUIInfo);
         Destroy(gameObject);
     }
 }

@@ -8,21 +8,14 @@ public class BaseHealth : Damageable {
     //public GameObject buildableUIPrefab;
     //public GameObject buildUIInfo;
 
-        public Slider baseHealth;
+    public Slider baseHealth;
 
-    public void Start() {
-        /*
-        Vector3 position = transform.position - new Vector3(3.5f, 0.5f, 0f);
-        position += new Vector3(0, 6f, 0);        
-        buildUIInfo = Instantiate(buildableUIPrefab, position, Quaternion.Euler(Vector3.zero));
-        buildUIInfo.GetComponentInChildren<BuildTimer>().gameObject.SetActive(false);
-        */
-
+    public void Start() {        
         baseHealth.value = MaxHP;
     }
 
     public void Update() {
-        //buildUIInfo.GetComponentInChildren<BuildingHP>().UpdateHP(CurHP);        
+
     }
 
     public void Repair() {
@@ -38,7 +31,8 @@ public class BaseHealth : Damageable {
         }
     }
 
-    protected override void OnDestroyed() {
+    protected override void OnDestroyed() {       
+        Debug.Log("GAME OVER");        
         Destroy(gameObject);
         
     }
@@ -47,10 +41,5 @@ public class BaseHealth : Damageable {
         yield break;
 
     }
-
-
-    float CalHealth()
-    {
-        return CurHP / MaxHP;
-    }
+    
 }
