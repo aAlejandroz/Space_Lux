@@ -102,7 +102,7 @@ MonoBehaviour:
   isTurretBullet: 0
   isPlayerBullet: 0
   Damage: 10
-  DisappearAfter: 0.5
+  DisappearAfter: 0.7
   distance: 0.5
   whatIsSolidForPlayer:
     serializedVersion: 2

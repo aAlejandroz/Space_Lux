@@ -12,11 +12,11 @@ TagManager:
   - Build Spawn
   - Buildable
   - BuildableHP
-  - Enivronment
   - Base
   - Grid
   - PlayerAxis
   - Environment
+  - Weapon
   layers:
   - Default
   - TransparentFX

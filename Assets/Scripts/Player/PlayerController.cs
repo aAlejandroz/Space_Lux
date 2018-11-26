@@ -45,10 +45,18 @@ public class PlayerController : MonoBehaviour
     private void switchWeapons(int index) {        
         if (currentWeapon != null) {
             Destroy(currentWeapon);
-        }        
+        }
+
+        float offset;
+        if (WeaponInventory[index].name == "Flamethrower") {    // Adds offset to put flamethrower closer to body   
+            Debug.Log("Flamethrower");
+            offset = -1.1f;
+        } else {
+            offset = 0f;
+        }
 
         currentWeapon = Instantiate(WeaponInventory[index], PlayerHands, false);
-        currentWeapon.transform.localPosition = new Vector3(0.1f, 0.4f, 0);
+        currentWeapon.transform.localPosition = new Vector3(0.1f + offset, 0.4f, 0);
         weaponComponent = currentWeapon.GetComponent<Gun>();        
     }
 
@@ -137,6 +145,5 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetFloat("xInput", x);
         anim.SetFloat("yInput", y);
-    }        
-    
+    }
 }

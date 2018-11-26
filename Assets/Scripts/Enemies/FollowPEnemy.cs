@@ -21,10 +21,12 @@ public class FollowPEnemy : MonoBehaviour
 
     // Create GameObject List for Player targets 
     private Animator anim;
-    [SerializeField] private GameObject target;
+    [SerializeField] private GameObject defaultTarget;
+    [SerializeField] private GameObject curTarget;
     //public List<GameObject> targetList;
     private Rigidbody2D rb2d;
     private State curState;
+    private System.Random rnd = new System.Random();
 
     // caches
     private Vector2 distance;
@@ -38,9 +40,18 @@ public class FollowPEnemy : MonoBehaviour
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        int randNum = rnd.Next(0, 2);   // 0 to 1
 
-        target = GameObject.FindGameObjectWithTag("Base");  // Default to going after base
+        if (randNum == 0) {
+            defaultTarget = GameObject.FindGameObjectWithTag("Base");
+        } else {
+            defaultTarget = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        Debug.Log("Default Target = " + defaultTarget);
+
+        anim = GetComponent<Animator>();
+        
         rb2d = GetComponent<Rigidbody2D>();
         curState = State.FOLLOWING;
         foundTarget = false;
@@ -48,9 +59,10 @@ public class FollowPEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (target == null) {
-            target = GameObject.FindGameObjectWithTag("Base");
-        }
+        if (curTarget == null) {
+            foundTarget = false;
+            curTarget = defaultTarget;
+        }        
         
         switch (curState)
         {
@@ -68,12 +80,13 @@ public class FollowPEnemy : MonoBehaviour
             var collider = attackRadiusColl[i].collider;            
 
             if (collider.tag == "Player" || (collider.tag == "Buildable" && collider.GetType() == typeof(BoxCollider2D)) || collider.tag == "Base")          
-            {                
-                curState = State.ATTACKING;
-                rb2d.velocity = Vector2.zero;                
-                foundTarget = true;
-                target = collider.gameObject;
-            }            
+            {
+                //rb2d.velocity = Vector2.zero;      
+                curState = State.ATTACKING;                         
+                foundTarget = true;                
+                curTarget = collider.gameObject;
+                //curTarget = defaultTarget.tag == "Base" ? collider.gameObject : defaultTarget;  // If our default target is the base continue attacking, else follow player
+            }                        
         }
 
         if (!foundTarget) {
@@ -86,7 +99,7 @@ public class FollowPEnemy : MonoBehaviour
 
     private void OnFollowing()
     {
-        distance = target.transform.position - transform.position;
+        distance = curTarget.transform.position - transform.position;
         distance.x = Mathf.Clamp(distance.x, -1.0f, 1.0f);
         distance.y = Mathf.Clamp(distance.y, -1.0f, 1.0f);
         rb2d.velocity = distance * Speed;
@@ -94,11 +107,11 @@ public class FollowPEnemy : MonoBehaviour
 
     private void OnAttacking()
     {
-        rb2d.velocity = Vector2.zero;
+        rb2d.velocity = Vector2.zero;        
 
-        Vector3 offset = target.tag == "Buildable" ? new Vector3(0, 1, 0) : Vector3.zero;   // Calculate offset of 1 unit down for turrets
+        Vector3 offset = curTarget.tag == "Buildable" ? new Vector3(0, 1, 0) : Vector3.zero;   // Calculate offset of 1 unit down for turrets
 
-        targetVec = target.transform.position - (Gun.transform.position + offset);  // add offset
+        targetVec = curTarget.transform.position - (Gun.transform.position + offset);  // add offset
         targetAngle = Mathf.Atan2(targetVec.y, targetVec.x) * Mathf.Rad2Deg;
         Gun.transform.rotation = Quaternion.Euler(0.0f, 0.0f, targetAngle);
         Gun.Use();
@@ -112,7 +125,7 @@ public class FollowPEnemy : MonoBehaviour
 
     private void SetAnimations()
     {
-        angleVec = target.transform.position - transform.position;
+        angleVec = curTarget.transform.position - transform.position;
         angle = Mathf.Atan2(angleVec.y, angleVec.x) * Mathf.Rad2Deg;
 
         if (distance != Vector2.zero)

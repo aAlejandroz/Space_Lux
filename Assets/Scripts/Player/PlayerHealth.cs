@@ -26,13 +26,41 @@ public class PlayerHealth : Damageable {
 		}
 	}
 
-	protected override void OnDestroyed() {
+    public void IncreaseHealth(float incre)
+    {
+        if (CurHP == MaxHP)
+        {
+            Debug.Log("Waste of HP Token");
+        }
+        else
+        {
+            CurHP += incre;
+            if (checkMax())
+            {
+                CurHP = MaxHP;
+            }
+            HeartUI.UpdateHearts();
+        }
+
+    }
+
+    protected override void OnDestroyed() {
 		Destroy(gameObject);
 	}
 
     public override IEnumerator WaitAndChangeColor() {
         yield return new WaitForSeconds(flickerDuration);
         GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    public bool checkMax()
+    {
+        if (CurHP > MaxHP)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 }
 
