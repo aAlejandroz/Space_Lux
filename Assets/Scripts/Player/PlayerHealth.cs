@@ -45,7 +45,9 @@ public class PlayerHealth : Damageable {
     }
 
     protected override void OnDestroyed() {
-		Destroy(gameObject);
+        // Gameover scene
+        Debug.Log("GAMEOVER");
+        Destroy(gameObject);
 	}
 
     public override IEnumerator WaitAndChangeColor() {
