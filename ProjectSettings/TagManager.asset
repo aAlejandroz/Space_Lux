@@ -17,6 +17,8 @@ TagManager:
   - PlayerAxis
   - Environment
   - Weapon
+  - Health
+  - Crosshair
   layers:
   - Default
   - TransparentFX
