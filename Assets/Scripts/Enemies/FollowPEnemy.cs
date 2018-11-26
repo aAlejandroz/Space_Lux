@@ -41,7 +41,6 @@ public class FollowPEnemy : MonoBehaviour
     private void Awake()
     {
         int randNum = rnd.Next(0, 2);   // 0 to 1
-        Debug.Log(randNum);     
 
         if (randNum == 0) {
             defaultTarget = GameObject.FindGameObjectWithTag("Base");

@@ -183,6 +183,11 @@ MonoBehaviour:
     type: 2}
   SpawnPoint: {fileID: 4336513021119716}
   FireSound: {fileID: 82409457428955754}
+  isPickedUp: 0
+  slider: {fileID: 0}
+  ReloadTime: 0.75
+  heating: 0
+  maxHeat: 1
   Force: 31.24
 --- !u!212 &212169821252001102
 SpriteRenderer:

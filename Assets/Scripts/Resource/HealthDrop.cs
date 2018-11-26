@@ -12,9 +12,8 @@ public class HealthDrop : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other)
     {
-
         if(Input.GetKeyDown(KeyCode.E) && other.tag.Equals("Player") && other.gameObject.GetComponent<PlayerPickup>().ResourceCount >= worth)
-        {
+        {            
             other.GetComponent<PlayerPickup>().DecrementResource(worth);
             Instantiate(Stimpak, transform.position + new Vector3(0.0f, 1.0f, 0), Stimpak.transform.rotation);
         }

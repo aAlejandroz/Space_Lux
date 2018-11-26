@@ -38,10 +38,8 @@ public class DetectingBuildable : MonoBehaviour {
 
         // If we can build, display hologram
         if (canBuild && inBuildingMode) {
-            if (currentSpawnPoint != hologramSpawnPoint) {
-                Destroy(hologram);
-                ShowHologram();                
-            }
+            Destroy(hologram);
+            ShowHologram();
         } else {
             Destroy(hologram);
         }
@@ -81,18 +79,21 @@ public class DetectingBuildable : MonoBehaviour {
             return;
         }
 
-        if (collision.GetType() == typeof(BoxCollider2D) || collision.tag == "Environment") {     // Checks if collider is a box collider. Need b/c turret has circle collider            
+        if ( (collision.GetType() == typeof(BoxCollider2D) && collision.tag != "Weapon") || collision.tag == "Environment") {     // Checks if collider is a box collider. Need b/c turret has circle collider                        
             canBuild = false;
             isBlocked = true;
-        }
+        }        
 
-        if (collision.tag.Equals("Buildable") && collision.GetType() != typeof(CircleCollider2D)) {    
-            blockingObject = collision;      // Reference to blocking object. Turret / wall, etc.             
-            if (isBlocked && collision.GetComponent<Buildable>().status == Damageable.Status.ACTIVE) {  // Checks if object in front of player is removable
-                canRemove = true;                
+        if ( (collision.tag.Equals("Buildable") && collision.GetType() != typeof(CircleCollider2D)) || collision.tag == "Base") {
+                          
+            if (collision.tag == "Buildable") {
+                if (isBlocked && collision.GetComponent<Buildable>().status == Damageable.Status.ACTIVE) {
+                    canRemove = true;
+                }
             }
-        }
 
+            blockingObject = collision;      // Reference to blocking object. Turret / wall, etc.    
+        }
     }
 
     // Function to detect when object is buildable

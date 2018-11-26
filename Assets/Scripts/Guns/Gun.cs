@@ -18,9 +18,10 @@ public abstract class Gun : Item {
     public Slider slider;
     private GameObject buildUIInfo;
     public float ReloadTime = 0.75f;
-    private float ReloadFin;
+    private float curReloadingTime;
     private bool Reloading;
 
+    public float heatingRate;
     public float heating;
     public float maxHeat;
 
@@ -53,9 +54,9 @@ public abstract class Gun : Item {
 
         if (Reloading)
         {
-            ReloadFin += Time.deltaTime;
-            Debug.Log(ReloadFin);
-            if (ReloadFin >= ReloadTime)
+            curReloadingTime += Time.deltaTime;
+            Debug.Log(curReloadingTime);
+            if (curReloadingTime >= ReloadTime)
                 Reloading = false;
         }
     }
@@ -69,8 +70,7 @@ public abstract class Gun : Item {
 	public override void Use() {
 		if (canFire) {
             StartCoroutine(fireAndWait());
-            heating += Time.deltaTime;
-            Debug.Log("Current heat level: " + heating);
+            heating += (Time.deltaTime * heatingRate);            
         }
     }
 
@@ -93,13 +93,12 @@ public abstract class Gun : Item {
     }
 
     private IEnumerator Reload()
-    {
-        //canFire = false;
+    {        
         Debug.Log("Now Reloading");
         Reloading = true;
         //yield return new WaitForSeconds(ReloadTime);
-        yield return new WaitUntil(() => ReloadFin >= ReloadTime);
-        ReloadFin = 0f;
+        yield return new WaitUntil(() => curReloadingTime >= ReloadTime);
+        curReloadingTime = 0f;
         Debug.Log("Done Reloading");
         heating = 0.0f;
         canFire = true;

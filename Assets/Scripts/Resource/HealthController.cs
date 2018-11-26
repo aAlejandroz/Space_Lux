@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour {
 
-    public float worth = 25.0f;
+    public float worth = 20.0f;
     public float speed;
     private bool isMoving = false;
     private AudioSource pickupSound;

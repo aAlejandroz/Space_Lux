@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour {
 
+    public GameObject mainCamera;
+    public AudioSource calmMusic;
+    public AudioSource FightingMusic;
+    public AudioSource[] audio;
+
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
     [System.Serializable]
@@ -36,6 +41,16 @@ public class WaveSpawner : MonoBehaviour {
         return state;
     }
 
+    private void Awake() {
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        audio = mainCamera.GetComponents<AudioSource>();
+        calmMusic = audio[0];
+        FightingMusic = audio[1];
+
+        calmMusic.enabled = false;
+        FightingMusic.enabled = true;
+    }
+
     void Start() {
         //timeBetweenWaves = RandomNum(maxWaitTime); 
         nextWave = 0;
@@ -45,9 +60,8 @@ public class WaveSpawner : MonoBehaviour {
 
     void Update() {
         if (state == SpawnState.WAITING) {
-            if (!EnemyIsAlive()) {
-                //new round               
-                WaveCompleted();
+            if (!EnemyIsAlive()) {                             
+                WaveCompleted();    //new round  
             } else {
                 return; 
             }
@@ -55,6 +69,7 @@ public class WaveSpawner : MonoBehaviour {
 
         if (waveCountdown <= 0f) {
             if (state == SpawnState.COUNTING) {
+                //SwitchMusic();
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
         }
@@ -79,6 +94,7 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     void WaveCompleted() {
+        //SwitchMusic();
         WaveTimerUI.StartCoroutine(WaveTimerUI.DisplayEndRound());
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
@@ -116,4 +132,13 @@ public class WaveSpawner : MonoBehaviour {
         Instantiate(_enemy, _sp.position, _sp.rotation);
     }
 
+    void SwitchMusic() {
+        if (calmMusic.isPlaying) {
+            calmMusic.enabled = false;
+            FightingMusic.enabled = true;
+        } else {
+            FightingMusic.enabled = false;
+            calmMusic.enabled = true;
+        }
+    }
 }

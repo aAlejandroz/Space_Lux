@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212892241981602778}
   - component: {fileID: 61541302047775864}
   - component: {fileID: 58966705035014120}
-  - component: {fileID: 114454214267048030}
+  - component: {fileID: 114040032872007812}
   m_Layer: 0
   m_Name: HealthStation
   m_TagString: Untagged
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990665414876912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.451, y: 1.757, z: -0.0703125}
+  m_LocalPosition: {x: 11.52, y: 1.46, z: -0.0703125}
   m_LocalScale: {x: 1.134, y: 1.066, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.88
 --- !u!61 &61541302047775864
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -83,7 +83,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0625, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114454214267048030
+--- !u!114 &114040032872007812
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,9 +91,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1990665414876912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4f2cd9e65d4d174fb43ba5aee9b261f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ca0ec8903a59f642a636580bf31dc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worth: 25
   Stimpak: {fileID: 1365161549838078, guid: a7f91620f2fdf1540809bdd7aa6a1c81, type: 2}
   circlecol: {fileID: 58966705035014120}
 --- !u!212 &212892241981602778

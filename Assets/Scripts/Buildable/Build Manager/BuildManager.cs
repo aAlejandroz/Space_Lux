@@ -6,12 +6,14 @@ public class BuildManager : MonoBehaviour {
    
     private int index;
     public float buildRate = 0.1f;
-    private bool requestToBuild = false;
+    public float repairRate = 0.5f;
+    private bool requestToBuild = false;    
     [SerializeField] private bool canRequest = true;
+    public bool canRepair = false;
     public bool canRemove = false;
     public List<Buildable> buildList;  // array of buildables. What the player can currently build  
     private Buildable currentBuilding;
-    private PlayerPickup playerResource;   
+    private PlayerPickup playerResource;    
     [SerializeField] private Buildable blockingObject;
     public Transform spawnPoint;            // Transform of gameobject in front of player
     public Grid grid;
@@ -26,9 +28,8 @@ public class BuildManager : MonoBehaviour {
 
     // Update function
     private void Update() {
-        // place turret sprite in build spawn sprite renderer
-        
-        canRemove = spawnPoint.GetComponent<DetectingBuildable>().canRemove;
+        // place turret sprite in build spawn sprite renderer                
+        canRemove = spawnPoint.GetComponent<DetectingBuildable>().canRemove;        
         currentBuilding = buildList[index];
 
         if (Input.GetButton("Fire1")) {
@@ -46,10 +47,10 @@ public class BuildManager : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.C) && canRemove) {
             RepairBuildable();
-        } else if (Input.GetKey(KeyCode.C) && canRequest) {                                          // Player builds with 'C' key
+        } else if (Input.GetKey(KeyCode.C) && canRequest) {                        // Player builds with 'C' key
             requestToBuild = true;
         } else {
-
+            
         }        
         
         if (Input.GetKey(KeyCode.V) && canRemove) {                                 
@@ -73,7 +74,7 @@ public class BuildManager : MonoBehaviour {
                     canRequest = false;
                     currentBuilding.Build(spawnPoint, grid);                    
                     playerResource.DecrementResource(currentBuilding.buildCost);
-                    StartCoroutine(Wait());
+                    StartCoroutine(Wait(buildRate));
                 }
                 else 
                 {
@@ -117,13 +118,21 @@ public class BuildManager : MonoBehaviour {
             else {
                 Debug.Log("You do not have enough resource to repair!");
             }
-        }
-        
+        }        
     }
 
-    public IEnumerator Wait() {
+    public void RepairBase() {
+
+    }
+
+    public IEnumerator Wait(float rate) {
         Debug.Log("Waiting");      
-        yield return new WaitForSeconds(buildRate);
-        canRequest = true;
+        yield return new WaitForSeconds(rate);
+
+        if (rate == buildRate) {
+            canRequest = true;
+        } else {
+            canRepair = true;
+        }
     }
 }

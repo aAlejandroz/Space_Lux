@@ -52,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1282460818966356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.94, y: -0.39, z: 0}
+  m_LocalPosition: {x: 0.94, y: -0.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4838276322552290}
@@ -108,7 +108,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1340b65458bce0c4d91b984780c8bbb5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.03
+  m_Volume: 0.02
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -152,7 +152,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.8
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -209,7 +209,12 @@ MonoBehaviour:
     type: 2}
   SpawnPoint: {fileID: 4401013626268750}
   FireSound: {fileID: 82102000801687958}
-  isPickedUp: 0
+  isPickedUp: 1
+  slider: {fileID: 0}
+  ReloadTime: 0.75
+  heatingRate: 7
+  heating: 0
+  maxHeat: 1
   Force: 20
   Spread: 15
 --- !u!212 &212296996573120542
