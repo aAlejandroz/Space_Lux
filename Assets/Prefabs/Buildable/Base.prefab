@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4804031180793268}
   - component: {fileID: 61053253044193810}
+  - component: {fileID: 58763829343162342}
   - component: {fileID: 114918135359313570}
   m_Layer: 0
   m_Name: Base
@@ -41,6 +42,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58763829343162342
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1556805070121714}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!61 &61053253044193810
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -83,6 +99,8 @@ MonoBehaviour:
   flickerDuration: 0.2
   status: 0
   isInvincible: 0
-  buildableUIPrefab: {fileID: 1403006207572468, guid: 604ba36010e30af4d87ac8d4aae541d2,
-    type: 2}
-  buildUIInfo: {fileID: 0}
+  worth: 40
+  repairRate: 0
+  canRepair: 0
+  baseHealth: {fileID: 0}
+  circlecol: {fileID: 0}

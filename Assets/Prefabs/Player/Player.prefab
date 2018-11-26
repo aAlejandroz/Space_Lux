@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1eb477c9c5319340a5651e8950216a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildRate: 0.6
+  buildRate: 0.5
   repairRate: 0.5
   canRequest: 1
   canRepair: 0
@@ -487,7 +487,9 @@ MonoBehaviour:
   - {fileID: 114386136494005400, guid: 6d63328d974e5d246bdf8d915ba6968b, type: 2}
   - {fileID: 114606317003667446, guid: 40d1bde5130b23c4ea09a9e2b0dbb2da, type: 2}
   - {fileID: 114861917253414946, guid: c745f141876589e4ab05deab1de048ef, type: 2}
+  - {fileID: 114908267206582538, guid: f24f6a760c67d5e469d382aff0f14eab, type: 2}
   blockingObject: {fileID: 0}
+  blockingCollider: {fileID: 0}
   spawnPoint: {fileID: 4605591037423034}
   grid: {fileID: 0}
   gunDisplay: {fileID: 0}

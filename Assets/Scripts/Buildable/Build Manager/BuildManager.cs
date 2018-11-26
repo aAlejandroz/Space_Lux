@@ -15,12 +15,13 @@ public class BuildManager : MonoBehaviour {
     private Buildable currentBuilding;
     private PlayerPickup playerResource;    
     [SerializeField] private Buildable blockingObject;
+    [SerializeField] private Collider2D blockingCollider;
     public Transform spawnPoint;            // Transform of gameobject in front of player
     public Grid grid;
     public GunUI gunDisplay;
 
     // Start function
-    private void Awake() {
+    private void Awake() {       
         playerResource = GetComponent<PlayerPickup>();
         grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<Grid>();
         index = 0;        
@@ -28,8 +29,10 @@ public class BuildManager : MonoBehaviour {
 
     // Update function
     private void Update() {
-        // place turret sprite in build spawn sprite renderer                
-        canRemove = spawnPoint.GetComponent<DetectingBuildable>().canRemove;        
+        // place turret sprite in build spawn sprite renderer            
+        blockingCollider = spawnPoint.GetComponent<DetectingBuildable>().blockingObject;
+        canRemove = spawnPoint.GetComponent<DetectingBuildable>().canRemove;
+        //canRequest = spawnPoint.GetComponent<DetectingBuildable>().canBuild;
         currentBuilding = buildList[index];
 
         if (Input.GetButton("Fire1")) {
@@ -50,8 +53,8 @@ public class BuildManager : MonoBehaviour {
         } else if (Input.GetKey(KeyCode.C) && canRequest) {                        // Player builds with 'C' key
             requestToBuild = true;
         } else {
-            
-        }        
+
+        }           
         
         if (Input.GetKey(KeyCode.V) && canRemove) {                                 
             blockingObject = spawnPoint.GetComponent<DetectingBuildable>().blockingObject.GetComponent<Buildable>();
@@ -121,9 +124,14 @@ public class BuildManager : MonoBehaviour {
         }        
     }
 
+    /*
     public void RepairBase() {
-
+        if (blockingCollider.gameObject.tag == "Base") {
+            GameObject playerBase = blockingCollider.gameObject;
+            playerBase.GetComponent<BaseHealth>().Repair();
+        }
     }
+    */
 
     public IEnumerator Wait(float rate) {
         Debug.Log("Waiting");      

@@ -48,7 +48,7 @@ public class FollowPEnemy : MonoBehaviour
             defaultTarget = GameObject.FindGameObjectWithTag("Player");
         }
 
-        Debug.Log("Default Target = " + defaultTarget);
+        //Debug.Log("Default Target = " + defaultTarget);
 
         anim = GetComponent<Animator>();
         

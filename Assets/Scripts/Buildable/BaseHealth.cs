@@ -5,22 +5,36 @@ using UnityEngine.UI;
 
 public class BaseHealth : Damageable {
 
-    //public GameObject buildableUIPrefab;
-    //public GameObject buildUIInfo;
-
+    public int worth = 100;
+    public float repairRate;
+    public bool canRepair;
     public Slider baseHealth;
+    [SerializeField]
+    private PlayerPickup playerResource;
+    [SerializeField]
+    private CircleCollider2D circlecol;
 
-    public void Start() {        
+    public void Start() {
+        playerResource = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPickup>();
         baseHealth.value = MaxHP;
+        canRepair = false;
     }
 
     public void Update() {
 
+        if (CurHP >= MaxHP) {
+            CurHP = MaxHP;
+        }
+
+        canRepair = CurHP < MaxHP ? true : false;
+        baseHealth.value = CurHP / MaxHP;
     }
 
     public void Repair() {
         Debug.Log("Repairing");
+        canRepair = false;        
         CurHP += 40;
+        Wait(repairRate);
     }
 
     protected override void OnDamaged(float damage) {
@@ -33,13 +47,33 @@ public class BaseHealth : Damageable {
 
     protected override void OnDestroyed() {       
         Debug.Log("GAME OVER");        
-        Destroy(gameObject);
-        
+        Destroy(gameObject); 
     }
     
     public override IEnumerator WaitAndChangeColor() {
         yield break;
-
     }
     
+    public IEnumerator Wait(float repairRate) {
+        yield return new WaitForSeconds(repairRate);
+        canRepair = true;
+    }          
+
+    private void OnTriggerStay2D(Collider2D other) {
+        
+        if (Input.GetKeyDown(KeyCode.E) && other.tag == "Build Spawn" && playerResource.ResourceCount >= worth) {
+            if (canRepair) {
+                playerResource.DecrementResource(worth);
+                Repair();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && other.tag.Equals("Player") && playerResource.ResourceCount >= worth) {
+            if (canRepair) {
+                playerResource.DecrementResource(worth);
+                Repair();
+            }            
+        } 
+       
+    }
 }

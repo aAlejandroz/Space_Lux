@@ -553,7 +553,7 @@ MonoBehaviour:
   - {fileID: 4465052913065426}
   - {fileID: 4941190585468950}
   - {fileID: 4588449533567424}
-  timeBetweenWaves: 30
+  timeBetweenWaves: 20
   WaveTimerUI: {fileID: 114112502454419704}
 --- !u!114 &114328027091827098
 MonoBehaviour:
