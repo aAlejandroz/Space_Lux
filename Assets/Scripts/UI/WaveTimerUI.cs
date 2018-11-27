@@ -4,8 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class WaveTimerUI : MonoBehaviour {
-
-	//public Text TextField;
+	
     public Text TextField;
 	public float TimeUntilWarning;
     public float remainingTime;
@@ -42,7 +41,7 @@ public class WaveTimerUI : MonoBehaviour {
     }
 
     private IEnumerator DisplayFight() {
-		TextField.text = "Fight!";
+		TextField.text = "FIGHT!";
 		StartCoroutine(waitAndEraseText(1.5f));
         yield break;
 	}
