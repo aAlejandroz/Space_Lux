@@ -27,21 +27,33 @@ public class SwarmEnemyAI : MonoBehaviour {
 
 	private void FixedUpdate() {
         
-        targetVec = target.transform.position - transform.position;
-		targetVec.x = Mathf.Clamp(targetVec.x, -1.0f, 1.0f);
-		targetVec.y = Mathf.Clamp(targetVec.y, -1.0f, 1.0f);
-		rb2d.velocity = targetVec * MovementSpeed;
+        if (target == null) {
+            Debug.Log("Gameover");
+            GetComponent<SwarmEnemyAI>().enabled = false;
+        }
 
-        horizontal = targetVec.x;
-        vertical = targetVec.y;
+        if (target != null) {
+            targetVec = target.transform.position - transform.position;
+            targetVec.x = Mathf.Clamp(targetVec.x, -1.0f, 1.0f);
+            targetVec.y = Mathf.Clamp(targetVec.y, -1.0f, 1.0f);
+            rb2d.velocity = targetVec * MovementSpeed;
 
-        Flip(horizontal);
+            horizontal = targetVec.x;
+            vertical = targetVec.y;
 
-        SetAnimations(horizontal, vertical);
+            Flip(horizontal);
+
+            SetAnimations(horizontal, vertical);
+        }
     }       
 
     private void OnCollisionStay2D(Collision2D coll) {
-        if (coll.gameObject.GetComponent<Damageable>() && !(coll.gameObject.tag.Equals("Enemy"))) {   // Checks if collider is damagable & not an enemy          
+        if (coll.gameObject.GetComponent<Damageable>() && coll.gameObject.tag.Equals("Player")) {   // Checks if collider is damagable & not an enemy                      
+            Damageable player = coll.gameObject.GetComponent<Damageable>();
+            if (player != null) {
+                player.Damage(AttackDamage);
+            }          
+        } else if (coll.gameObject.GetComponent<Damageable>() && coll.gameObject.tag.Equals("Base")) {
             isTargetInRange = true;
             Damageable damageable = coll.gameObject.GetComponent<Damageable>();
             StartCoroutine(attackUntilOutOfRange(damageable));

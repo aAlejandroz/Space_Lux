@@ -186,6 +186,7 @@ MonoBehaviour:
   isPickedUp: 1
   slider: {fileID: 0}
   ReloadTime: 0.75
+  Reloading: 0
   heatingRate: 2.5
   heating: 0
   maxHeat: 1

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTurretBullet: 0
   isPlayerBullet: 0
-  Damage: 10
+  Damage: 20
   DisappearAfter: 0.7
   distance: 0.5
   whatIsSolidForPlayer:

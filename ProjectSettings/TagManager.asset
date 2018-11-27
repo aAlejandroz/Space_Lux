@@ -19,6 +19,7 @@ TagManager:
   - Weapon
   - Health
   - Crosshair
+  - ReloadSlider
   layers:
   - Default
   - TransparentFX

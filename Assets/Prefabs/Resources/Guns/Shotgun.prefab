@@ -212,9 +212,11 @@ MonoBehaviour:
   isPickedUp: 1
   slider: {fileID: 0}
   ReloadTime: 0.75
-  heatingRate: 7
+  Reloading: 0
+  heatingRate: 9
   heating: 0
   maxHeat: 1
+  heatingSliderWeight: 0
   Force: 20
   Spread: 15
 --- !u!212 &212296996573120542

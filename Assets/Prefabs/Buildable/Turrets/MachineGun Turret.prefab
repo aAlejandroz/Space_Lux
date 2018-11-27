@@ -276,11 +276,13 @@ MonoBehaviour:
   SpawnPoint: {fileID: 4763873508308798}
   FireSound: {fileID: 82095533630930244}
   isPickedUp: 0
+  canFire: 1
   slider: {fileID: 0}
   ReloadTime: 0
   heatingRate: 0
   heating: 0
   maxHeat: 1
+  heatingSliderWeight: 0
   Force: 31.24
 --- !u!114 &114908267206582538
 MonoBehaviour:
@@ -293,13 +295,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ca6e30974e72a4a838d9d75fef2880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 50
-  CurHP: 50
+  MaxHP: 80
+  CurHP: 80
   AttackBufferTime: 0.5
   flickerDuration: 0.5
   status: 1
   isInvincible: 0
-  buildCost: 75
+  buildCost: 100
   buildTime: 4
   canBuild: 1
   canRepair: 0
@@ -342,7 +344,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: 1f32116a153a461449bb8c23a7a36394, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

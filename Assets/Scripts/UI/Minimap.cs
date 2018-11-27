@@ -38,7 +38,7 @@ public class Minimap : MonoBehaviour {
     void Pause()
     {
         miniMapUI.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0.3f;
         GameisPaused = true;
 
     }

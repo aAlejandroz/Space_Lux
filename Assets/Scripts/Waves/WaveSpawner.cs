@@ -95,6 +95,7 @@ public class WaveSpawner : MonoBehaviour {
 
     void WaveCompleted() {
         //SwitchMusic();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPickup>().IncrementResource(500);
         WaveTimerUI.StartCoroutine(WaveTimerUI.DisplayEndRound());
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;

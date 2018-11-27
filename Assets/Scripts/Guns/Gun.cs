@@ -11,7 +11,7 @@ public abstract class Gun : Item {
 	public Transform SpawnPoint;
     public AudioSource FireSound;
     public bool isPickedUp;
-	private bool canFire;
+	[SerializeField] private bool canFire;
     protected bool canPlaySound;
     private BoxCollider2D boxCollider2D;
 
@@ -24,29 +24,42 @@ public abstract class Gun : Item {
     public float heatingRate;
     public float heating;
     public float maxHeat;
+    public float heatingSliderWeight;
 
 
-    public void Awake() {
+    public void Awake() {        
         boxCollider2D = GetComponent<BoxCollider2D>();
         isPickedUp = false;
-        Reloading = false;
-        //slider = GetComponent<Slider>();
-        //slider.value = 0;
+        Reloading = false;        
     }
 
     public void Start() {
-        if (isPickedUp || transform.parent != null) {            
-            GetComponent<SpriteRenderer>().enabled = false;
+        if (isPickedUp || transform.parent != null) {         
+            if (transform.parent.tag == "PlayerAxis") {
+                isPickedUp = true;
+                GetComponent<SpriteRenderer>().enabled = false;
+                slider = GameObject.FindGameObjectWithTag("ReloadSlider").GetComponent<Slider>();
+            }
         }
         else {
-            GetComponent<SpriteRenderer>().enabled = true;
+            GetComponent<SpriteRenderer>().enabled = true;            
         }
+
+        heating = 0.0f;
     }
 
     private void Update()
-    {
+    {        
 
-        if (Input.GetKey(KeyCode.R))
+        if (slider != null) {
+            slider.value = heating;
+        }
+
+        if (heating >= 0.0f && !Reloading) {
+            heating -= (Time.deltaTime * (heating) / 10);            
+        }               
+
+        if (Input.GetKey(KeyCode.R) && isPickedUp && transform.parent.tag == "PlayerAxis")
         {
             canFire = false;
             StartCoroutine(Reload());
@@ -54,8 +67,8 @@ public abstract class Gun : Item {
 
         if (Reloading)
         {
-            curReloadingTime += Time.deltaTime;
-            Debug.Log(curReloadingTime);
+            heating -= (Time.deltaTime * heatingSliderWeight);
+            curReloadingTime += Time.deltaTime;                        
             if (curReloadingTime >= ReloadTime)
                 Reloading = false;
         }
@@ -67,10 +80,10 @@ public abstract class Gun : Item {
 
     protected abstract void OnFire();
 
-	public override void Use() {
+	public override void Use() {        
 		if (canFire) {
             StartCoroutine(fireAndWait());
-            heating += (Time.deltaTime * heatingRate);            
+            heating += (Time.deltaTime * heatingRate);
         }
     }
 
@@ -83,17 +96,19 @@ public abstract class Gun : Item {
             FireSound.Play();
         }
         yield return new WaitForSeconds(FireRate);
-        if (heating >= maxHeat)
+        if (heating >= maxHeat || Reloading)
         {
             Debug.Log("YAMERO");
-            StartCoroutine(Reload());
+            StartCoroutine(Reload());            
         }
         else
             canFire = true;
     }
 
     private IEnumerator Reload()
-    {        
+    {
+        heatingSliderWeight = (1 / (ReloadTime) * slider.value);        
+        
         Debug.Log("Now Reloading");
         Reloading = true;
         //yield return new WaitForSeconds(ReloadTime);

@@ -124,15 +124,6 @@ public class BuildManager : MonoBehaviour {
         }        
     }
 
-    /*
-    public void RepairBase() {
-        if (blockingCollider.gameObject.tag == "Base") {
-            GameObject playerBase = blockingCollider.gameObject;
-            playerBase.GetComponent<BaseHealth>().Repair();
-        }
-    }
-    */
-
     public IEnumerator Wait(float rate) {
         Debug.Log("Waiting");      
         yield return new WaitForSeconds(rate);

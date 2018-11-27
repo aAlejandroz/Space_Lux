@@ -525,6 +525,7 @@ MonoBehaviour:
   - {fileID: 1609145647318242, guid: 62fd966a4a2addb44ab112894bec3a1a, type: 2}
   weaponComponent: {fileID: 0}
   gunDisplay: {fileID: 0}
+  reloadSlider: {fileID: 0}
 --- !u!114 &114589890588494838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -554,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d887b41ed755294f80eeb33bf343a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceCount: 1000
+  ResourceCount: 500
   resourceUI: {fileID: 0}
 --- !u!212 &212015236835492664
 SpriteRenderer:
@@ -728,7 +729,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 483ad3368be01214c80faceaf3c2639a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

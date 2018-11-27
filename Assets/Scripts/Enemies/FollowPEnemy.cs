@@ -46,9 +46,7 @@ public class FollowPEnemy : MonoBehaviour
             defaultTarget = GameObject.FindGameObjectWithTag("Base");
         } else {
             defaultTarget = GameObject.FindGameObjectWithTag("Player");
-        }
-
-        //Debug.Log("Default Target = " + defaultTarget);
+        }        
 
         anim = GetComponent<Animator>();
         
@@ -59,21 +57,30 @@ public class FollowPEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (GameObject.FindGameObjectWithTag("Player") == null || GameObject.FindGameObjectWithTag("Base") == null) {
+            defaultTarget = null;
+            curTarget = null;
+            Debug.Log("Gameover");
+            GetComponent<FollowPEnemy>().enabled = false;
+        }
+
         if (curTarget == null) {
             foundTarget = false;
             curTarget = defaultTarget;
         }        
         
-        switch (curState)
-        {
-            case State.FOLLOWING:
-                OnFollowing();
-                break;
-            case State.ATTACKING:
-                OnAttacking();
-                break;
+        if (curTarget != null || defaultTarget != null) {
+            switch (curState) {
+                case State.FOLLOWING:
+                    OnFollowing();
+                    break;
+                case State.ATTACKING:
+                    OnAttacking();
+                    break;
+            }
         }
-
+        
         attackRadiusColl = Physics2D.CircleCastAll(transform.position, AttackRadius, transform.rotation.eulerAngles);
         for (int i = 0; i < attackRadiusColl.Length && !foundTarget; i++)
         {            
@@ -99,22 +106,26 @@ public class FollowPEnemy : MonoBehaviour
 
     private void OnFollowing()
     {
-        distance = curTarget.transform.position - transform.position;
-        distance.x = Mathf.Clamp(distance.x, -1.0f, 1.0f);
-        distance.y = Mathf.Clamp(distance.y, -1.0f, 1.0f);
-        rb2d.velocity = distance * Speed;
+        if (curTarget != null || defaultTarget != null) {
+            distance = curTarget.transform.position - transform.position;
+            distance.x = Mathf.Clamp(distance.x, -1.0f, 1.0f);
+            distance.y = Mathf.Clamp(distance.y, -1.0f, 1.0f);
+            rb2d.velocity = distance * Speed;
+        }
     }
 
     private void OnAttacking()
     {
-        rb2d.velocity = Vector2.zero;        
+        if (curTarget != null || defaultTarget != null) {
+            rb2d.velocity = Vector2.zero;
 
-        Vector3 offset = curTarget.tag == "Buildable" ? new Vector3(0, 1, 0) : Vector3.zero;   // Calculate offset of 1 unit down for turrets
+            Vector3 offset = curTarget.tag == "Buildable" ? new Vector3(0, 1, 0) : Vector3.zero;   // Calculate offset of 1 unit down for turrets
 
-        targetVec = curTarget.transform.position - (Gun.transform.position + offset);  // add offset
-        targetAngle = Mathf.Atan2(targetVec.y, targetVec.x) * Mathf.Rad2Deg;
-        Gun.transform.rotation = Quaternion.Euler(0.0f, 0.0f, targetAngle);
-        Gun.Use();
+            targetVec = curTarget.transform.position - (Gun.transform.position + offset);  // add offset
+            targetAngle = Mathf.Atan2(targetVec.y, targetVec.x) * Mathf.Rad2Deg;
+            Gun.transform.rotation = Quaternion.Euler(0.0f, 0.0f, targetAngle);
+            Gun.Use();
+        }
     }
 
     private void setAnimInput(float x, float y)
@@ -125,8 +136,12 @@ public class FollowPEnemy : MonoBehaviour
 
     private void SetAnimations()
     {
-        angleVec = curTarget.transform.position - transform.position;
-        angle = Mathf.Atan2(angleVec.y, angleVec.x) * Mathf.Rad2Deg;
+        if (curTarget != null || defaultTarget != null) {
+            angleVec = curTarget.transform.position - transform.position;
+            angle = Mathf.Atan2(angleVec.y, angleVec.x) * Mathf.Rad2Deg;
+        } else {
+            angle = 0f;
+        }
 
         if (distance != Vector2.zero)
         { // Is player moving?
