@@ -14,9 +14,19 @@ public class BaseHealth : Damageable {
     [SerializeField]
     private CircleCollider2D circlecol;
 
+    public Image Fill;  
+    public Color MaxHealthColor = Color.green;
+    public Color MinHealthColor = Color.red;
+
+
+
+
     public void Start() {
         playerResource = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPickup>();
-        baseHealth.value = MaxHP;
+        //baseHealth.value = MaxHP;
+        baseHealth.wholeNumbers = true;
+        baseHealth.minValue = 0f;
+        baseHealth.maxValue = MaxHP;
         canRepair = false;
     }
 
@@ -27,10 +37,19 @@ public class BaseHealth : Damageable {
         }
 
         canRepair = CurHP < MaxHP ? true : false;
-        baseHealth.value = CurHP / MaxHP;
+        //baseHealth.value = CurHP / MaxHP;
+        UpdateHealthBar(CurHP);
     }
 
-    public void Repair() {
+    public void UpdateHealthBar(float val)
+    {
+        baseHealth.value = val;
+        Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)val / MaxHP);
+    }
+
+
+
+public void Repair() {
         Debug.Log("Repairing");
         canRepair = false;        
         CurHP += 40;
