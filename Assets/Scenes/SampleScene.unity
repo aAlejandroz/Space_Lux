@@ -2926,6 +2926,11 @@ Prefab:
       propertyPath: repairRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114918135359313570, guid: da5dc89dc46421f40b7d7287febc413d,
+        type: 2}
+      propertyPath: Fill
+      value: 
+      objectReference: {fileID: 895423432}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da5dc89dc46421f40b7d7287febc413d, type: 2}
   m_IsPrefabAsset: 0

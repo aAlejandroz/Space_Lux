@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BaseHealth : Damageable {
 
@@ -44,7 +45,7 @@ public class BaseHealth : Damageable {
     public void UpdateHealthBar(float val)
     {
         baseHealth.value = val;
-        Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)val / MaxHP);
+        //Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)val / MaxHP);
     }
 
 
@@ -65,7 +66,8 @@ public void Repair() {
     }
 
     protected override void OnDestroyed() {       
-        Debug.Log("GAME OVER");        
+        Debug.Log("GAME OVER");
+        SceneManager.LoadScene("GameOver");
         Destroy(gameObject); 
     }
     
