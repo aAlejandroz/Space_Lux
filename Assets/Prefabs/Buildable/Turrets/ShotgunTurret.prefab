@@ -296,8 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ca6e30974e72a4a838d9d75fef2880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 60
-  CurHP: 60
+  MaxHP: 150
+  CurHP: 150
   AttackBufferTime: 0.5
   flickerDuration: 0.5
   status: 1
