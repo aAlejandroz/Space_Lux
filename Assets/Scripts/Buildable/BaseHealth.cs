@@ -19,9 +19,6 @@ public class BaseHealth : Damageable {
     public Color MaxHealthColor = Color.green;
     public Color MinHealthColor = Color.red;
 
-
-
-
     public void Start() {
         playerResource = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPickup>();
         //baseHealth.value = MaxHP;
@@ -48,9 +45,7 @@ public class BaseHealth : Damageable {
         //Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)val / MaxHP);
     }
 
-
-
-public void Repair() {
+    public void Repair() {
         Debug.Log("Repairing");
         canRepair = false;        
         CurHP += 40;

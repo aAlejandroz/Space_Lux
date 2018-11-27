@@ -57,6 +57,11 @@ public class SwarmEnemyAI : MonoBehaviour {
             isTargetInRange = true;
             Damageable damageable = coll.gameObject.GetComponent<Damageable>();
             StartCoroutine(attackUntilOutOfRange(damageable));
+        } else if (coll.gameObject.GetComponent<Damageable>() && coll.gameObject.tag.Equals("Buildable")) {
+            Damageable turret = coll.gameObject.GetComponent<Damageable>();
+            if (turret != null) {
+                turret.Damage(AttackDamage);
+            }
         }
     }
 
