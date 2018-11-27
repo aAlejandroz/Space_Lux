@@ -38,6 +38,7 @@ public class PauseMenu : MonoBehaviour {
 
     void Pause()
     {
+        Cursor.visible = true;
         HUD.SetActive(false);
         crossHair.SetActive(false);
         pauseMenuUI.SetActive(true);

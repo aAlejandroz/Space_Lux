@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Damageable {
 
@@ -47,7 +48,9 @@ public class PlayerHealth : Damageable {
     protected override void OnDestroyed() {
         // Gameover scene
         Debug.Log("GAMEOVER");
+        SceneManager.LoadScene("GameOver");
         Destroy(gameObject);
+
 	}
 
     public override IEnumerator WaitAndChangeColor() {
