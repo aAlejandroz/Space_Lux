@@ -42,10 +42,6 @@ public class BaseHealth : Damageable {
     public void UpdateHealthBar(float val)
     {
         baseHealth.value = val;
-<<<<<<< HEAD
-=======
-        //Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)val / MaxHP);
->>>>>>> 6ba74c7eaf4e24e341d6698da16035e50d9c1a30
     }
 
     public void Repair() {
