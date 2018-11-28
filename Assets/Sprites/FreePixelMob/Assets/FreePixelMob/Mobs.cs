@@ -23,18 +23,20 @@ public class Mobs : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    private void Update() {       
-        targetVec = target.transform.position - transform.position;
-        targetVec.x = Mathf.Clamp(targetVec.x, -1.0f, 1.0f);
-        targetVec.y = Mathf.Clamp(targetVec.y, -1.0f, 1.0f);
-        rb2d.velocity = targetVec * MovementSpeed;
+    private void Update() {    
+        if (target != null) {
+            targetVec = target.transform.position - transform.position;
+            targetVec.x = Mathf.Clamp(targetVec.x, -1.0f, 1.0f);
+            targetVec.y = Mathf.Clamp(targetVec.y, -1.0f, 1.0f);
+            rb2d.velocity = targetVec * MovementSpeed;
 
-        if (targetVec == Vector2.zero) {
-            _animator.StartPlayback();
-        }
-        else {
-            _animator.StopPlayback();
-        }
+            if (targetVec == Vector2.zero) {
+                _animator.StartPlayback();
+            }
+            else {
+                _animator.StopPlayback();
+            }
+        }        
     }
     IEnumerator Animate()
 	{

@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3) && WeaponInventory.Count > 2) {
             weaponIndex = 2;
             switchWeapons(weaponIndex);
-        }        
+        }
 
         if (mode == Mode.SHOOTING_MODE) {
             reloadSlider.SetActive(true);
