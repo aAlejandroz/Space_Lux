@@ -59,6 +59,7 @@ public class BaseHealth : Damageable {
     protected override void OnDestroyed() {       
         Debug.Log("GAME OVER");
         SceneManager.LoadScene("GameOver");
+        Cursor.visible = true;
         Destroy(gameObject); 
     }
     

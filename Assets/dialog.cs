@@ -46,6 +46,11 @@ public class dialog : MonoBehaviour
 
     }
 
+    public void SkipToPlay()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
     public void NextSentence()
     {
 
