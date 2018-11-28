@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using EZCameraShake;
 
 public class BaseHealth : Damageable {
 
@@ -21,10 +22,7 @@ public class BaseHealth : Damageable {
 
     public void Start() {
         playerResource = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPickup>();
-        //baseHealth.value = MaxHP;
-        baseHealth.wholeNumbers = true;
-        baseHealth.minValue = 0f;
-        baseHealth.maxValue = MaxHP;
+        baseHealth.value = CurHP / MaxHP;
         canRepair = false;
     }
 
@@ -35,14 +33,11 @@ public class BaseHealth : Damageable {
         }
 
         canRepair = CurHP < MaxHP ? true : false;
-        //baseHealth.value = CurHP / MaxHP;
-        UpdateHealthBar(CurHP);
+        baseHealth.value = CurHP / MaxHP;
+        
     }
 
-    public void UpdateHealthBar(float val)
-    {
-        baseHealth.value = val;
-    }
+    
 
     public void Repair() {
         Debug.Log("Repairing");
@@ -56,6 +51,7 @@ public class BaseHealth : Damageable {
             CurHP -= damage;
             baseHealth.value = (CurHP/ MaxHP);
             StartCoroutine(setInvincibleAndWait());
+            CameraShaker.Instance.ShakeOnce(1f, 1f, .1f, 1f);
         }
     }
 

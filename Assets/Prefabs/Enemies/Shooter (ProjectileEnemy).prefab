@@ -283,11 +283,10 @@ MonoBehaviour:
   isInvincible: 0
   OnDeathParticle: {fileID: 198992243355769498, guid: c556d22a95b2691419414ddda1ded8ff,
     type: 2}
-  KillPopUp: {fileID: 224583337549267430, guid: c164d87cf8b0a9147b9aec98985aa91b,
-    type: 2}
   dropList:
   - {fileID: 1762791588819400, guid: 2232deeec078fd443aa7e27676f89b68, type: 2}
   - {fileID: 1625940618196778, guid: feb349801623bab49b279e0be207741a, type: 2}
+  killCounterUI: {fileID: 0}
 --- !u!114 &114494547383546934
 MonoBehaviour:
   m_ObjectHideFlags: 1
