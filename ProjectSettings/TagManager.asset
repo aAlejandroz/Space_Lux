@@ -20,7 +20,8 @@ TagManager:
   - Health
   - Crosshair
   - ReloadSlider
-  - DamageNumber
+  - Undefined
+  - BuildCost
   layers:
   - Default
   - TransparentFX
