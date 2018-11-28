@@ -60,6 +60,7 @@ public class BuildManager : MonoBehaviour {
         
         if (Input.GetKey(KeyCode.V) && canRemove) {                                 
             blockingObject = spawnPoint.GetComponent<DetectingBuildable>().blockingObject.GetComponent<Buildable>();
+            playerResource.DisplayNumber(blockingObject.buildCost, Color.green);
             blockingObject.Remove();
             playerResource.IncrementResource(blockingObject.buildCost / 2);        // Destroying a building only returns half the cost                          
         }        
@@ -78,8 +79,7 @@ public class BuildManager : MonoBehaviour {
                 {
                     canRequest = false;
                     currentBuilding.Build(spawnPoint, grid);
-                    var clone = (GameObject)Instantiate(damageNumber, spawnPoint.position, Quaternion.Euler(Vector3.zero));
-                    clone.GetComponent<FloatingNumber>().damageNumber = -(currentBuilding.buildCost);
+                    playerResource.DisplayNumber(-currentBuilding.buildCost, Color.red);
                     playerResource.DecrementResource(currentBuilding.buildCost);
                     StartCoroutine(Wait(buildRate));
                 }
@@ -120,6 +120,7 @@ public class BuildManager : MonoBehaviour {
 
             if (playerResource.GetResourceCount() >= repairCost) {
                 playerResource.DecrementResource(repairCost);
+                playerResource.DisplayNumber(-repairCost, Color.red);
                 blockingObject.Repair();
             }
             else {
