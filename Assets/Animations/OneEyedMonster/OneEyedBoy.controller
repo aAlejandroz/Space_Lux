@@ -8,12 +8,6 @@ AnimatorController:
   m_Name: OneEyedBoy
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Blend
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: xInput
     m_Type: 1
     m_DefaultFloat: 0
@@ -63,7 +57,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: fcd0209f0b41156449ab8fdb44eca98d, type: 2}
+    m_Motion: {fileID: 7400000, guid: 1c9176662a1ba8e488c49dc5728fdf97, type: 2}
     m_Threshold: 0.2857143
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -128,7 +122,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102769059670474454}
-    m_Position: {x: 377, y: 125, z: 0}
+    m_Position: {x: 372, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

@@ -14,14 +14,28 @@ public class SwarmEnemyAI : MonoBehaviour {
     private bool facingLeft;
     private Animator anim;
     public GameObject target;
+    private System.Random rnd = new System.Random();
     [SerializeField]
     private Vector2 targetVec;	
 	private Rigidbody2D rb2d;
 
 	private void Awake() {
+        int randNum = rnd.Next(0, 3);   // 0 to 2
+
+        if (randNum == 0)
+        {
+            target = GameObject.FindGameObjectWithTag("Base");
+        }
+        else if (randNum == 1)
+        {
+            target = GameObject.FindGameObjectWithTag("Player");
+        }
+        else {
+            target = GameObject.FindGameObjectWithTag("Buildable");
+        }
         facingLeft = true;
         anim = GetComponent<Animator>();
-		target = GameObject.Find("Base");
+		//target = GameObject.Find("Player");
 		rb2d = GetComponent<Rigidbody2D>();
 	}
 
