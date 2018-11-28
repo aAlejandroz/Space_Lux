@@ -71,11 +71,11 @@ public class PlayerController : MonoBehaviour
         movementInput.y = Input.GetAxisRaw("Vertical");
 
         // Check to see if player pressed "q". If true, switch to building mode. 
-        /*
+        
         if (Input.GetKeyDown(KeyCode.Q)) {
             SwitchMode();
         }
-
+        
         if (Input.GetKeyDown(KeyCode.Alpha1) && WeaponInventory.Count > 0) {
             weaponIndex = 0;
             switchWeapons(weaponIndex);
@@ -89,8 +89,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3) && WeaponInventory.Count > 2) {
             weaponIndex = 2;
             switchWeapons(weaponIndex);
-        }
-        */
+        }        
+
         if (mode == Mode.SHOOTING_MODE) {
             reloadSlider.SetActive(true);
             isFiring = Input.GetButton("Fire1");
