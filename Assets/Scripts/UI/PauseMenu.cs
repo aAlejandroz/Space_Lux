@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour {
     public static bool GameisPaused = false;
     public GameObject pauseMenuUI;
     public GameObject crossHair;
+    public GameObject victory;
     public GameObject HUD;
 
 	// Update is called once per frame
@@ -59,4 +60,16 @@ public class PauseMenu : MonoBehaviour {
         Debug.Log("Quiting ");
         Application.Quit();
     }
+
+    public void Victory()
+    {
+        Cursor.visible = true;
+        HUD.SetActive(false);
+        crossHair.SetActive(false);
+        victory.SetActive(true);
+        Time.timeScale = 0f;
+        GameisPaused = true;
+
+    }
+
 }

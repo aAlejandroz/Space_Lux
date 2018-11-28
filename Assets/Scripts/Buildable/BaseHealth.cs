@@ -51,7 +51,7 @@ public class BaseHealth : Damageable {
             CurHP -= damage;
             baseHealth.value = (CurHP/ MaxHP);
             StartCoroutine(setInvincibleAndWait());
-            CameraShaker.Instance.ShakeOnce(1f, 1f, .1f, 1f);
+            CameraShaker.Instance.ShakeOnce(4f, 4f, .07f, .07f);
         }
     }
 

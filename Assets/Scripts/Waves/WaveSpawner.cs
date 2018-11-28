@@ -8,6 +8,7 @@ public class WaveSpawner : MonoBehaviour {
     public AudioSource calmMusic;
     public AudioSource FightingMusic;
     public AudioSource[] audio;
+    public PauseMenu pause;
 
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
@@ -56,6 +57,8 @@ public class WaveSpawner : MonoBehaviour {
         nextWave = 0;
         waveCountdown = timeBetweenWaves;
 		WaveTimerUI.StartCountdown(timeBetweenWaves);
+        Debug.Log(waves.Length);
+
     }
 
     void Update() {
@@ -100,7 +103,8 @@ public class WaveSpawner : MonoBehaviour {
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
 
-        if (nextWave + 1 == waves.Length - 1) {            
+        if (nextWave  == waves.Length - 1 ) {
+            pause.Victory();
             Debug.Log("All waves completed");
         }
         else {
