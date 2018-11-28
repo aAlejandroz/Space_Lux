@@ -2667,6 +2667,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114151863520208824, guid: a9ec3f9f6ee1ceb4f93a1552b9598143,
+        type: 2}
+      propertyPath: waves.Array.data[0].enemyList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4953432273606456, guid: a9ec3f9f6ee1ceb4f93a1552b9598143, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2764,6 +2769,18 @@ Prefab:
       propertyPath: waves.Array.data[3].rate
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114151863520208824, guid: a9ec3f9f6ee1ceb4f93a1552b9598143,
+        type: 2}
+      propertyPath: waves.Array.data[0].enemyList.Array.data[2]
+      value: 
+      objectReference: {fileID: 4187948056195916, guid: b2097228792e0d8429ba4b12412415f6,
+        type: 2}
+    - target: {fileID: 114151863520208824, guid: a9ec3f9f6ee1ceb4f93a1552b9598143,
+        type: 2}
+      propertyPath: waves.Array.data[0].enemyList.Array.data[3]
+      value: 
+      objectReference: {fileID: 4610437581537118, guid: f331b58542fee7f4fbbd8100d86d394c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9ec3f9f6ee1ceb4f93a1552b9598143, type: 2}
   m_IsPrefabAsset: 0
