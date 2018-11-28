@@ -41,6 +41,7 @@ public class BaseHealth : Damageable {
 
     public void Repair() {
         Debug.Log("Repairing");
+        playerResource.DisplayNumber(-worth, Color.red);
         canRepair = false;        
         CurHP += 40;
         Wait(repairRate);

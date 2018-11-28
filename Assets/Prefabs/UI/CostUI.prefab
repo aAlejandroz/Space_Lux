@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114925453799957378}
   - component: {fileID: 114884158749061072}
   m_Layer: 5
-  m_Name: Damage number
+  m_Name: CostUI
   m_TagString: BuildCost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,8 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  damageNumber: -50
+  cost: 0
   displayNumber: {fileID: 114437185168717430}
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!222 &222191446945712972
 CanvasRenderer:
   m_ObjectHideFlags: 1

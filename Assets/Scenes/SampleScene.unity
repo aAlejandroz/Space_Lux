@@ -155,6 +155,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29eeed5d2f85f9d498410438bc0fc85b, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &63633939 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114758514796544146, guid: 429222b9f1312c744bb4278000921880,
+    type: 2}
+  m_PrefabInternal: {fileID: 1854103772}
+  m_Script: {fileID: 11500000, guid: 4d887b41ed755294f80eeb33bf343a40, type: 3}
 --- !u!1 &80756931
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,6 +2168,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114040032872007812, guid: 2b566788a2b503741964868698f1a7f2,
+        type: 2}
+      propertyPath: playerResource
+      value: 
+      objectReference: {fileID: 63633939}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b566788a2b503741964868698f1a7f2, type: 2}
   m_IsPrefabAsset: 0
@@ -3163,7 +3174,7 @@ Prefab:
     - target: {fileID: 114151863520208824, guid: a9ec3f9f6ee1ceb4f93a1552b9598143,
         type: 2}
       propertyPath: timeBetweenWaves
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114151863520208824, guid: a9ec3f9f6ee1ceb4f93a1552b9598143,
         type: 2}
@@ -4025,6 +4036,12 @@ Prefab:
       propertyPath: HeartUI
       value: 
       objectReference: {fileID: 1839156350}
+    - target: {fileID: 114758514796544146, guid: 429222b9f1312c744bb4278000921880,
+        type: 2}
+      propertyPath: costUI
+      value: 
+      objectReference: {fileID: 1242710589596376, guid: 6a5ac1769a88c4043af8ce11531e553d,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429222b9f1312c744bb4278000921880, type: 2}
   m_IsPrefabAsset: 0
