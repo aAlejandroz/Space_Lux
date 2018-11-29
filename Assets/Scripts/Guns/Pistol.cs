@@ -3,11 +3,11 @@
 public class Pistol : Gun {
 
     public float Force;
-    public GameObject muzzleFlash;
+    //public GameObject muzzleFlash;
 
     protected override void OnFire() {
     
-        Destroy(Instantiate(muzzleFlash, SpawnPoint.position, SpawnPoint.rotation), 0.075f);
+        //Destroy(Instantiate(muzzleFlash, SpawnPoint.position, SpawnPoint.rotation), 0.075f);
         var projectile = Instantiate(ProjectilePrefab, SpawnPoint.position, SpawnPoint.rotation);
         projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.right * Force);
 

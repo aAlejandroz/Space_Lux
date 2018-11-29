@@ -23,7 +23,7 @@ public class SwarmEnemyAI : MonoBehaviour {
 	private Rigidbody2D rb2d;
 
 	private void Awake() {
-        int randNum = rnd.Next(0, 3);   // 0 to 2
+        int randNum = rnd.Next(0, 2);   // 0 to 1
 
         player = GameObject.FindGameObjectWithTag("Player");
         playerBase = GameObject.FindGameObjectWithTag("Base");
@@ -32,17 +32,12 @@ public class SwarmEnemyAI : MonoBehaviour {
         {
             defaultTarget = playerBase;
         }
-        else if (randNum == 1)
+        else
         {
             defaultTarget = player;
         }
-        else {
-            defaultTarget = GameObject.FindGameObjectWithTag("Buildable");           
-        }
-       
-        // If no turrets alive when spawned, target base
-        if (defaultTarget == null) {
-            Debug.Log("No turrets alive, targeting base");
+              
+        if (defaultTarget == null) {            
             defaultTarget = playerBase;
         }
 
@@ -56,8 +51,7 @@ public class SwarmEnemyAI : MonoBehaviour {
         curTarget = defaultTarget;
         
         // If turret is destroyed while turret is current Target, target player
-        if (curTarget == null) {
-            Debug.Log("No turrets alive, targeting player");
+        if (curTarget == null) {            
             defaultTarget = player;
         }
 

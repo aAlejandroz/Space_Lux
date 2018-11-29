@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 212657722137887040}
   m_Layer: 10
   m_Name: TurretGun
-  m_TagString: Untagged
+  m_TagString: TurretGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,6 +310,7 @@ MonoBehaviour:
   maxHeat: 1
   heatingSliderWeight: 0
   Force: 31.24
+  muzzleFlash: {fileID: 0}
 --- !u!212 &212129300447547230
 SpriteRenderer:
   m_ObjectHideFlags: 1
