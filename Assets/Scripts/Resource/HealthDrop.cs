@@ -9,11 +9,18 @@ public class HealthDrop : MonoBehaviour {
     public GameObject Stimpak;
     [SerializeField]
     private CircleCollider2D circlecol;
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = AudioManager.instance;
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if(Input.GetKeyDown(KeyCode.E) && other.tag.Equals("Player") && other.gameObject.GetComponent<PlayerPickup>().ResourceCount >= worth)
-        {            
+        {
+            audioManager.PlaySound("HealthCost");
             other.GetComponent<PlayerPickup>().DecrementResource(worth);
             playerResource.DisplayNumber(-worth, Color.red);
             Instantiate(Stimpak, transform.position + new Vector3(0.0f, 1.0f, 0), Stimpak.transform.rotation);
