@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1807704049147108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.435979, y: -2.689907, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.75, y: 1.75, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,6 +115,8 @@ MonoBehaviour:
   vertical: 0
   horizontal: 0
   facingLeft: 0
+  player: {fileID: 0}
+  playerBase: {fileID: 0}
   defaultTarget: {fileID: 0}
   curTarget: {fileID: 0}
   targetVec: {x: 0, y: 0}
@@ -129,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbb0bba248054e96cfb2e0949c48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 100
-  CurHP: 100
+  MaxHP: 125
+  CurHP: 125
   AttackBufferTime: 0
   flickerDuration: 0.2
   status: 0

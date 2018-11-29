@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1254860146992980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.17125733, y: -2.8209944, z: -0.62109375}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -63,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!58 &58450745031306050
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -90,15 +90,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbb0bba248054e96cfb2e0949c48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 50
-  CurHP: 50
+  MaxHP: 1000
+  CurHP: 1000
   AttackBufferTime: 0
   flickerDuration: 0.2
   status: 0
   isInvincible: 0
+  OnDeathParticle: {fileID: 0}
   dropList:
   - {fileID: 1625940618196778, guid: feb349801623bab49b279e0be207741a, type: 2}
   - {fileID: 1762791588819400, guid: 2232deeec078fd443aa7e27676f89b68, type: 2}
+  killCounterUI: {fileID: 0}
 --- !u!114 &114878648284722154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,7 +118,10 @@ MonoBehaviour:
   vertical: 0
   horizontal: 0
   facingLeft: 0
-  target: {fileID: 0}
+  player: {fileID: 0}
+  playerBase: {fileID: 0}
+  defaultTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   targetVec: {x: 0, y: 0}
 --- !u!212 &212686700640205938
 SpriteRenderer:

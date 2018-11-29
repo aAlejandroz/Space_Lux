@@ -284,7 +284,6 @@ MonoBehaviour:
   maxHeat: 1
   heatingSliderWeight: 0
   Force: 31.24
-  muzzleFlash: {fileID: 0}
 --- !u!114 &114908267206582538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -296,13 +295,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ca6e30974e72a4a838d9d75fef2880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 200
-  CurHP: 200
+  MaxHP: 140
+  CurHP: 140
   AttackBufferTime: 0.5
   flickerDuration: 0.5
   status: 1
   isInvincible: 0
-  buildCost: 100
+  buildCost: 200
   buildTime: 4
   canBuild: 1
   canRepair: 0

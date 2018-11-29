@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 82787927204314946}
   - component: {fileID: 212766936544683916}
   - component: {fileID: 114693755458818940}
-  - component: {fileID: 61055618625487352}
+  - component: {fileID: 61422134548986916}
   m_Layer: 0
   m_Name: MachineGun
   m_TagString: Weapon
@@ -65,14 +65,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1544293042850646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.17, y: -0.59, z: 0}
+  m_LocalPosition: {x: 18.27, y: 0.93, z: 0}
   m_LocalScale: {x: 1.35, y: 1.35, z: 1.0000061}
   m_Children:
   - {fileID: 4657204473312432}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61055618625487352
+--- !u!61 &61422134548986916
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,14 +205,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: gun_mg
   FireRate: 0.07
-  ProjectilePrefab: {fileID: 114679215855362622, guid: 2feb19bea9127a54a9d2357c1309a6d3,
+  ProjectilePrefab: {fileID: 114679215855362622, guid: 51f07e11088f72a4bb8f8efa6fc115f7,
     type: 2}
   SpawnPoint: {fileID: 4940284182060348}
   FireSound: {fileID: 82787927204314946}
   isPickedUp: 1
   canFire: 1
   slider: {fileID: 0}
-  ReloadTime: 1
+  ReloadTime: 1.25
   heatingRate: 2.5
   heating: 0
   maxHeat: 1
