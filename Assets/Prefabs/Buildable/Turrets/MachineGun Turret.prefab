@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: gun_turret
   FireRate: 0.15
-  ProjectilePrefab: {fileID: 114679215855362622, guid: 2feb19bea9127a54a9d2357c1309a6d3,
+  ProjectilePrefab: {fileID: 114280632881362038, guid: d94e75c4325c1434d87717c1d11fbeb6,
     type: 2}
   SpawnPoint: {fileID: 4763873508308798}
   FireSound: {fileID: 82095533630930244}

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour {
 
-    public GameObject mainCamera;
-    public AudioSource calmMusic;
-    public AudioSource FightingMusic;
-    public AudioSource[] audio;
+    public GameObject mainCamera;    
+    public PauseMenu pause;
 
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
@@ -42,13 +40,7 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     private void Awake() {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        audio = mainCamera.GetComponents<AudioSource>();
-        calmMusic = audio[0];
-        FightingMusic = audio[1];
-
-        calmMusic.enabled = false;
-        FightingMusic.enabled = true;
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");            
     }
 
     void Start() {
@@ -56,6 +48,8 @@ public class WaveSpawner : MonoBehaviour {
         nextWave = 0;
         waveCountdown = timeBetweenWaves;
 		WaveTimerUI.StartCountdown(timeBetweenWaves);
+        Debug.Log(waves.Length);
+
     }
 
     void Update() {
@@ -100,7 +94,8 @@ public class WaveSpawner : MonoBehaviour {
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
 
-        if (nextWave + 1 == waves.Length - 1) {            
+        if (nextWave  == waves.Length - 1 ) {
+            pause.Victory();
             Debug.Log("All waves completed");
         }
         else {
@@ -133,6 +128,7 @@ public class WaveSpawner : MonoBehaviour {
         Instantiate(_enemy, _sp.position, _sp.rotation);
     }
 
+    /*
     void SwitchMusic() {
         if (calmMusic.isPlaying) {
             calmMusic.enabled = false;
@@ -142,4 +138,5 @@ public class WaveSpawner : MonoBehaviour {
             calmMusic.enabled = true;
         }
     }
+    */
 }

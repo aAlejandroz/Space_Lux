@@ -8,18 +8,18 @@ public class ResourceController : MonoBehaviour {
     public float speed;
     public float destroyAfter;
     private bool isMoving = false;
-    private AudioSource pickupSound;
     private Transform target;
     [SerializeField]
     private CapsuleCollider2D capsuleCollider;
-    
+    private AudioManager audioManager;
+
     // Awake function
     private void Awake() {
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        pickupSound = GetComponent<AudioSource>();
     }
 
     private void Start() {
+        audioManager = AudioManager.instance;
         Destroy(gameObject, destroyAfter);
     }
 
@@ -33,7 +33,7 @@ public class ResourceController : MonoBehaviour {
     // When player enters circle collider
     private void OnTriggerEnter2D(Collider2D other) {       
         if (other.tag.Equals("Player") && other.IsTouching(capsuleCollider)) {     // Check if other is player
-            pickupSound.Play();
+            audioManager.PlaySound("Pickup");
             other.gameObject.GetComponent<PlayerPickup>().IncrementResource(worth);
             Destroy(gameObject);           
         }        

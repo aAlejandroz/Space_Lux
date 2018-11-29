@@ -6,6 +6,7 @@ public class PlayerPickup : MonoBehaviour {
 
     public int ResourceCount = 0;
     public ResourceUI resourceUI;
+    public GameObject costUI;
 
     // Update function
     public void Update() {
@@ -25,6 +26,12 @@ public class PlayerPickup : MonoBehaviour {
     // Function to return resource count
     public int GetResourceCount() {
         return ResourceCount;
+    }
+
+    public void DisplayNumber(int cost, Color color) {
+        var clone = (GameObject)Instantiate(costUI, transform.position + new Vector3(0,1), Quaternion.Euler(Vector3.zero));
+        clone.GetComponent<FloatingNumber>().color = color;
+        clone.GetComponent<FloatingNumber>().cost = cost;
     }
 
     // Function that triggers whenever player collides a collision trigger

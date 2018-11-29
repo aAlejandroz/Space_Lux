@@ -488,6 +488,7 @@ MonoBehaviour:
   - {fileID: 114606317003667446, guid: 40d1bde5130b23c4ea09a9e2b0dbb2da, type: 2}
   - {fileID: 114861917253414946, guid: c745f141876589e4ab05deab1de048ef, type: 2}
   - {fileID: 114908267206582538, guid: f24f6a760c67d5e469d382aff0f14eab, type: 2}
+  damageNumber: {fileID: 0}
   blockingObject: {fileID: 0}
   blockingCollider: {fileID: 0}
   spawnPoint: {fileID: 4605591037423034}

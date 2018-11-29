@@ -5,11 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-	public void StartGame() {     
+    public void Start()
+    {
+        Time.timeScale = 1;
+        Cursor.visible = true;
+    }
+
+
+
+    public void StartGame() {     
         SceneManager.LoadScene("Intro");
     }
 
     public void QuitGame() {
+
         Application.Quit();
     }
 

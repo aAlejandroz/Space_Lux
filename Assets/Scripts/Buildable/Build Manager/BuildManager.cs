@@ -13,15 +13,24 @@ public class BuildManager : MonoBehaviour {
     public bool canRemove = false;
     public List<Buildable> buildList;  // array of buildables. What the player can currently build  
     private Buildable currentBuilding;
-    private PlayerPickup playerResource;    
+    private PlayerPickup playerResource;
+    public GameObject damageNumber;
     [SerializeField] private Buildable blockingObject;
     [SerializeField] private Collider2D blockingCollider;
     public Transform spawnPoint;            // Transform of gameobject in front of player
     public Grid grid;
     public GunUI gunDisplay;
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = AudioManager.instance;
+    }
+
 
     // Start function
-    private void Awake() {       
+    private void Awake() {
+        //damageNumber = GameObject.FindGameObjectWithTag("DamageNumber");
         playerResource = GetComponent<PlayerPickup>();
         grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<Grid>();
         index = 0;        
@@ -48,7 +57,7 @@ public class BuildManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetKey(KeyCode.C) && canRemove) {
+        if (Input.GetKey(KeyCode.E) && canRemove) {
             RepairBuildable();
         } else if (Input.GetKey(KeyCode.C) && canRequest) {                        // Player builds with 'C' key
             requestToBuild = true;
@@ -58,6 +67,7 @@ public class BuildManager : MonoBehaviour {
         
         if (Input.GetKey(KeyCode.V) && canRemove) {                                 
             blockingObject = spawnPoint.GetComponent<DetectingBuildable>().blockingObject.GetComponent<Buildable>();
+            playerResource.DisplayNumber(blockingObject.buildCost / 2, Color.green);
             blockingObject.Remove();
             playerResource.IncrementResource(blockingObject.buildCost / 2);        // Destroying a building only returns half the cost                          
         }        
@@ -75,7 +85,9 @@ public class BuildManager : MonoBehaviour {
                 if (playerResource.GetResourceCount() >= currentBuilding.buildCost) // Determine if player has enough resource
                 {
                     canRequest = false;
-                    currentBuilding.Build(spawnPoint, grid);                    
+                    audioManager.PlaySound("Deploy");
+                    currentBuilding.Build(spawnPoint, grid);
+                    playerResource.DisplayNumber(-currentBuilding.buildCost, Color.red);
                     playerResource.DecrementResource(currentBuilding.buildCost);
                     StartCoroutine(Wait(buildRate));
                 }
@@ -116,6 +128,7 @@ public class BuildManager : MonoBehaviour {
 
             if (playerResource.GetResourceCount() >= repairCost) {
                 playerResource.DecrementResource(repairCost);
+                playerResource.DisplayNumber(-repairCost, Color.red);
                 blockingObject.Repair();
             }
             else {

@@ -49,6 +49,7 @@ public class PlayerHealth : Damageable {
         // Gameover scene
         Debug.Log("GAMEOVER");
         SceneManager.LoadScene("GameOver");
+        Cursor.visible = true;
         Destroy(gameObject);
 
 	}

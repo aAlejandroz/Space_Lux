@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1989918968378344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.39, y: 2.92, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,11 +115,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaea37a7694bca48a9ebdbc20f63d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFriendlyBullet: 0
+  isTurretBullet: 0
+  isPlayerBullet: 0
   Damage: 5
   DisappearAfter: 0.5
   distance: 0
   whatIsSolidForPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsSolidForTurrets:
     serializedVersion: 2
     m_Bits: 0
   whatIsSolidForEnemy:

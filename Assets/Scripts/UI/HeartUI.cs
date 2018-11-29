@@ -38,6 +38,10 @@ public class HeartUI : MonoBehaviour {
 	public void UpdateHearts() {
 		int numFilledHearts = Mathf.CeilToInt(Damageable.CurHP / HealthPerHeart);       
         
+        if (numFilledHearts <= 0) {
+            numFilledHearts = 0;
+        }
+
 		for (int i = 0; i < numFilledHearts; i++) {
             hearts[i].sprite = FullHealth;           
         }

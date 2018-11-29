@@ -141,7 +141,8 @@ MonoBehaviour:
   vertical: 0
   horizontal: 0
   facingLeft: 0
-  target: {fileID: 1280404726292774, guid: 429222b9f1312c744bb4278000921880, type: 2}
+  defaultTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   targetVec: {x: 0, y: 0}
 --- !u!114 &114495363660698594
 MonoBehaviour:
@@ -165,6 +166,7 @@ MonoBehaviour:
   dropList:
   - {fileID: 1625940618196778, guid: feb349801623bab49b279e0be207741a, type: 2}
   - {fileID: 1762791588819400, guid: 2232deeec078fd443aa7e27676f89b68, type: 2}
+  killCounterUI: {fileID: 0}
 --- !u!212 &212028120834892102
 SpriteRenderer:
   m_ObjectHideFlags: 1
