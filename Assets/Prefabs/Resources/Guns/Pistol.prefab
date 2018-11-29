@@ -192,6 +192,8 @@ MonoBehaviour:
   maxHeat: 1
   heatingSliderWeight: 0
   Force: 28.16
+  muzzleFlash: {fileID: 1070699411070644, guid: fe61525972557394c91efcc6d3035b06,
+    type: 2}
 --- !u!212 &212237066124827702
 SpriteRenderer:
   m_ObjectHideFlags: 1
