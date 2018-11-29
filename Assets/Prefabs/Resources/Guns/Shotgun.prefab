@@ -210,15 +210,17 @@ MonoBehaviour:
   SpawnPoint: {fileID: 4401013626268750}
   FireSound: {fileID: 82102000801687958}
   isPickedUp: 1
+  canFire: 1
   slider: {fileID: 0}
   ReloadTime: 0.75
-  Reloading: 0
   heatingRate: 9
   heating: 0
   maxHeat: 1
   heatingSliderWeight: 0
   Force: 20
   Spread: 15
+  muzzleFlash: {fileID: 1070699411070644, guid: fe61525972557394c91efcc6d3035b06,
+    type: 2}
 --- !u!212 &212296996573120542
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -5,9 +5,12 @@ public class Shotgun : Gun{
     public float Force;
     public float Spread;
     private Quaternion rotation;
+    public GameObject muzzleFlash;
 
     protected override void OnFire()
     {
+
+        Destroy(Instantiate(muzzleFlash, SpawnPoint.position, SpawnPoint.rotation), 0.075f);
         rotation = SpawnPoint.rotation;      
 
         var projectile = Instantiate(ProjectilePrefab, SpawnPoint.position, rotation);
