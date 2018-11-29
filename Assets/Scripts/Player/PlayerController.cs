@@ -34,9 +34,7 @@ public class PlayerController : MonoBehaviour
         WeaponInventory = new List<GameObject>();   // initializes weaponInventory for player
     }
 
-    private void Awake() {
-        reloadSlider = GameObject.FindGameObjectWithTag("ReloadSlider");
-        reloadSlider.SetActive(true);
+    private void Awake() {        
         gameObject.GetComponent<BuildManager>().enabled = false;
         rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
@@ -44,7 +42,11 @@ public class PlayerController : MonoBehaviour
         currentWeapon.transform.localPosition = new Vector3(0.1f, 0.4f, 0);
         weaponComponent = currentWeapon.GetComponent<Gun>();
         mode = Mode.SHOOTING_MODE;
-        //switchWeapons(0);        
+    }
+
+    private void Start() {
+        //reloadSlider = GameObject.FindGameObjectWithTag("ReloadSlider");
+        //reloadSlider.SetActive(true);
     }
 
     // Destroys current weapon & switches weapon according to weapon index
@@ -90,7 +92,7 @@ public class PlayerController : MonoBehaviour
             weaponIndex = 2;
             switchWeapons(weaponIndex);
         }
-
+      
         if (mode == Mode.SHOOTING_MODE) {
             reloadSlider.SetActive(true);
             isFiring = Input.GetButton("Fire1");
@@ -110,8 +112,7 @@ public class PlayerController : MonoBehaviour
         if (mode == Mode.BUILDING_MODE) {
             reloadSlider.SetActive(false);
             isFiring = false;
-        }              
-
+        }      
     }
 
     // If mode is shooting mode, switch to building.
