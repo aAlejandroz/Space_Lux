@@ -29,7 +29,10 @@ public class SwarmEnemyHealth : Damageable {
         if (Random.Range(0f,1f) <= dropRate) {
             Instantiate(dropItem, transform.position, dropItem.transform.rotation);
         }
-        Destroy(Instantiate(OnDeathParticle, transform.position, Quaternion.Euler(0, 90, 0)), 0.25f);
+
+        var deathParticle = Instantiate(OnDeathParticle, transform.position, Quaternion.Euler(0, 90, 0));
+        Destroy(deathParticle.gameObject, 0.25f);
+
         killCounterUI.IncKillCount();
         Destroy(gameObject);
 	}

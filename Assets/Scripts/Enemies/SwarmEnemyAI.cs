@@ -13,6 +13,8 @@ public class SwarmEnemyAI : MonoBehaviour {
     [SerializeField]
     private bool facingLeft;
     private Animator anim;
+    public GameObject player;
+    public GameObject playerBase;
     public GameObject defaultTarget;
     public GameObject curTarget;
     private System.Random rnd = new System.Random();
@@ -23,21 +25,29 @@ public class SwarmEnemyAI : MonoBehaviour {
 	private void Awake() {
         int randNum = rnd.Next(0, 3);   // 0 to 2
 
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerBase = GameObject.FindGameObjectWithTag("Base");
+
         if (randNum == 0)
         {
-            defaultTarget = GameObject.FindGameObjectWithTag("Base");
+            defaultTarget = playerBase;
         }
         else if (randNum == 1)
         {
-            defaultTarget = GameObject.FindGameObjectWithTag("Player");
+            defaultTarget = player;
         }
         else {
-            defaultTarget = GameObject.FindGameObjectWithTag("Buildable");
+            defaultTarget = GameObject.FindGameObjectWithTag("Buildable");           
         }
-        
+       
+        // If no turrets alive when spawned, target base
+        if (defaultTarget == null) {
+            Debug.Log("No turrets alive, targeting base");
+            defaultTarget = playerBase;
+        }
+
         facingLeft = true;
-        anim = GetComponent<Animator>();
-		//target = GameObject.Find("Player");
+        anim = GetComponent<Animator>();		
 		rb2d = GetComponent<Rigidbody2D>();
 	}
 
@@ -45,13 +55,22 @@ public class SwarmEnemyAI : MonoBehaviour {
 
         curTarget = defaultTarget;
         
-        if (GameObject.FindGameObjectWithTag("Player") == null || GameObject.FindGameObjectWithTag("Base") == null) {
+        // If turret is destroyed while turret is current Target, target player
+        if (curTarget == null) {
+            Debug.Log("No turrets alive, targeting player");
+            defaultTarget = player;
+        }
+
+        // When player or base is destroyed
+        if (player == null || playerBase == null) {
             defaultTarget = null;
             curTarget = null;
             Debug.Log("Gameover");
             GetComponent<SwarmEnemyAI>().enabled = false;
+            // GOTO GAMEOVER SCENE
         }        
 
+        // if our current target isn't null, move towards it
         if (curTarget != null) {
             targetVec = curTarget.transform.position - transform.position;
             targetVec.x = Mathf.Clamp(targetVec.x, -1.0f, 1.0f);
