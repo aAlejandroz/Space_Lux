@@ -53,6 +53,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 0}
   sentences:
-  - Hello
-  - Cletus
-  typingSpeed: 0.4
+  - 'Log: Day 302'
+  - The singularity has wiped out half of humanity
+  - 'The Artifical Intelligence known as Y.U.N wants all things under his control '
+  - Protecting this Tower is the only way I can find other survivors
+  - The enemy is preparing for another attack
+  - I must prepare to live another day...
+  typingSpeed: 0.03
+  continueButton: {fileID: 0}

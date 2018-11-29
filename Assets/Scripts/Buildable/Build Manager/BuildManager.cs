@@ -67,7 +67,7 @@ public class BuildManager : MonoBehaviour {
         
         if (Input.GetKey(KeyCode.V) && canRemove) {                                 
             blockingObject = spawnPoint.GetComponent<DetectingBuildable>().blockingObject.GetComponent<Buildable>();
-            playerResource.DisplayNumber(blockingObject.buildCost, Color.green);
+            playerResource.DisplayNumber(blockingObject.buildCost / 2, Color.green);
             blockingObject.Remove();
             playerResource.IncrementResource(blockingObject.buildCost / 2);        // Destroying a building only returns half the cost                          
         }        

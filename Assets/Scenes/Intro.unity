@@ -370,6 +370,16 @@ Prefab:
       propertyPath: m_margin.x
       value: -1.4250258
       objectReference: {fileID: 0}
+    - target: {fileID: 224439067142613992, guid: 5f9356934bb114043b33a583eff306d8,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224439067142613992, guid: 5f9356934bb114043b33a583eff306d8,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9356934bb114043b33a583eff306d8, type: 2}
   m_IsPrefabAsset: 0
@@ -380,11 +390,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
-      propertyPath: sentences.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4904136711131142, guid: 2170276972366434da829f52fda22ee1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 75.293785
@@ -419,70 +424,24 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
         type: 2}
-      propertyPath: sentences.Array.data[1]
-      value: The singularity has wiped out half of humanity
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
       propertyPath: textDisplay
       value: 
       objectReference: {fileID: 1794376567}
     - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
         type: 2}
-      propertyPath: sentences.Array.data[2]
-      value: 'The Artifical Intelligence known as Y.U.N wants all things under his
-        control '
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
-      propertyPath: sentences.Array.data[3]
-      value: Protecting this Tower is the only way I can find other survivors
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
-      propertyPath: sentences.Array.data[4]
-      value: The enemy is preparing for another attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
-      propertyPath: sentences.Array.data[5]
-      value: I must prepare to live another day...
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
-      propertyPath: sentences.Array.data[6]
-      value: I must prepare or else.....
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
-      propertyPath: sentences.Array.data[7]
-      value: World
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
-      propertyPath: sentences.Array.data[8]
-      value: World
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
-      propertyPath: sentences.Array.data[9]
-      value: World
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
-      propertyPath: sentences.Array.data[0]
-      value: 'Log: Day 302'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
-      propertyPath: typingSpeed
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
-        type: 2}
       propertyPath: continueButton
       value: 
       objectReference: {fileID: 1577588036}
+    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
+        type: 2}
+      propertyPath: typingSpeed
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 114177092670851956, guid: 2170276972366434da829f52fda22ee1,
+        type: 2}
+      propertyPath: skipButton
+      value: 
+      objectReference: {fileID: 1793484952}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2170276972366434da829f52fda22ee1, type: 2}
   m_IsPrefabAsset: 0
@@ -811,6 +770,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1793484952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1701639693965478, guid: 5f9356934bb114043b33a583eff306d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 294312667}
 --- !u!114 &1794376567 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114111302471922032, guid: 5f9356934bb114043b33a583eff306d8,

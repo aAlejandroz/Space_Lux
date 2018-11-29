@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1195378273}
   crossHair: {fileID: 1706526987}
-  victory: {fileID: 0}
+  victory: {fileID: 1370244737}
   HUD: {fileID: 2129755996}
 --- !u!114 &591614794
 MonoBehaviour:
