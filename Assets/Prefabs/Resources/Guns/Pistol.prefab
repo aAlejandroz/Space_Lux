@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: gun_pistol
-  FireRate: 0.15
+  FireRate: 0.25
   ProjectilePrefab: {fileID: 114679215855362622, guid: 2feb19bea9127a54a9d2357c1309a6d3,
     type: 2}
   SpawnPoint: {fileID: 4370692194789484}
