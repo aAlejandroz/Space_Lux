@@ -10,8 +10,13 @@ public class Sound
 
     [Range(0f, 1f)]
     public float volume = 0.7f;
-    [Range(0f, 1f)]
+    [Range(0.5f, 1.5f)]
     public float pitch = 1f;
+
+    [Range(0f, 0.5f)]
+    public float randomVol = 0.7f;
+    [Range(0f, 0.5f)]
+    public float randomPit = 0.1f;
 
     private AudioSource source;
 
@@ -23,17 +28,13 @@ public class Sound
 
     public void Play()
     {
-        source.volume = volume;
-        source.pitch = pitch;
+        source.volume = volume * (1 + Random.Range(-randomVol/2f, randomVol/2f));
+        source.pitch = pitch * (1 + Random.Range(-randomPit / 2f, randomPit / 2f));
         source.Play();
     }
 
 
 }
-
-
-
-
 
 
 public class AudioManager : MonoBehaviour {
