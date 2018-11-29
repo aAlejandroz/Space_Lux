@@ -12,6 +12,12 @@ public class SwarmEnemyHealth : Damageable {
     private GameObject dropItem;
     private float dropRate = 0.60f;
     public KillCounterUI killCounterUI;
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = AudioManager.instance;
+    }
 
     public void Awake() {
         int dropIndex = rnd.Next(dropList.Count);   // Picks a random drop from the drop list and declares it as the item the enemy will drop
@@ -32,7 +38,7 @@ public class SwarmEnemyHealth : Damageable {
 
         var deathParticle = Instantiate(OnDeathParticle, transform.position, Quaternion.Euler(0, 90, 0));
         Destroy(deathParticle.gameObject, 0.25f);
-
+        audioManager.PlaySound("Death");
         killCounterUI.IncKillCount();
         Destroy(gameObject);
 	}

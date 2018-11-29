@@ -20,6 +20,13 @@ public class BuildManager : MonoBehaviour {
     public Transform spawnPoint;            // Transform of gameobject in front of player
     public Grid grid;
     public GunUI gunDisplay;
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = AudioManager.instance;
+    }
+
 
     // Start function
     private void Awake() {
@@ -78,6 +85,7 @@ public class BuildManager : MonoBehaviour {
                 if (playerResource.GetResourceCount() >= currentBuilding.buildCost) // Determine if player has enough resource
                 {
                     canRequest = false;
+                    audioManager.PlaySound("Deploy");
                     currentBuilding.Build(spawnPoint, grid);
                     playerResource.DisplayNumber(-currentBuilding.buildCost, Color.red);
                     playerResource.DecrementResource(currentBuilding.buildCost);

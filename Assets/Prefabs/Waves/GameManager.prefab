@@ -542,7 +542,7 @@ MonoBehaviour:
   - {fileID: 4465052913065426}
   - {fileID: 4941190585468950}
   - {fileID: 4588449533567424}
-  timeBetweenWaves: 25
+  timeBetweenWaves: 30
   WaveTimerUI: {fileID: 114112502454419704}
 --- !u!114 &114389594619176502
 MonoBehaviour:
@@ -574,3 +574,21 @@ MonoBehaviour:
     pitch: 0.812
     randomVol: 0.7
     randomPit: 0.1
+  - name: Deploy
+    clip: {fileID: 8300000, guid: b84ac3bc4ac90084ca4b15a794fd10d6, type: 3}
+    volume: 0.02
+    pitch: 1.25
+    randomVol: 0
+    randomPit: 0
+  - name: EnemyDeath
+    clip: {fileID: 8300000, guid: 5f430aba646d78f49bdeaf3afaa1b314, type: 3}
+    volume: 0.2
+    pitch: 1
+    randomVol: 0
+    randomPit: 0
+  - name: HealthCost
+    clip: {fileID: 8300000, guid: 0dee3f1577a36bd4dbd419116e21154f, type: 3}
+    volume: 0.2
+    pitch: 0.9
+    randomVol: 0.7
+    randomPit: 0
