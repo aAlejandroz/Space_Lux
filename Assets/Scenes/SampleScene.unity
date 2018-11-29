@@ -494,11 +494,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1503,11 +1503,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1195378273}
   crossHair: {fileID: 1706526987}
-  victory: {fileID: 1370244737}
+  victory: {fileID: 0}
   HUD: {fileID: 2129755996}
 --- !u!114 &591614794
 MonoBehaviour:
@@ -1687,8 +1687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5474d5e972cc29846a1e0b389576fd47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GeneralHUD: {fileID: 2129755996}
-  CrossHair: {fileID: 1706526987}
+  HUD: {fileID: 2129755996}
   ControlHUD: {fileID: 913971591}
 --- !u!1 &618871393
 GameObject:
@@ -4354,11 +4353,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5072,11 +5071,6 @@ Prefab:
       propertyPath: isInvincible
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114549875202211786, guid: 429222b9f1312c744bb4278000921880,
-        type: 2}
-      propertyPath: reloadSlider
-      value: 
-      objectReference: {fileID: 87574979}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429222b9f1312c744bb4278000921880, type: 2}
   m_IsPrefabAsset: 0
@@ -5320,7 +5314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2129755997
 RectTransform:
   m_ObjectHideFlags: 0
