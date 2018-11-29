@@ -210,9 +210,9 @@ MonoBehaviour:
   SpawnPoint: {fileID: 4962750748453992}
   FireSound: {fileID: 82610842182909208}
   isPickedUp: 1
+  canFire: 1
   slider: {fileID: 0}
   ReloadTime: 0.75
-  Reloading: 0
   heatingRate: 1
   heating: 0
   maxHeat: 1
