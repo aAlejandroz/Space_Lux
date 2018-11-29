@@ -11,6 +11,12 @@ public class HealthController : MonoBehaviour {
     private Transform target;
     [SerializeField]
     private CircleCollider2D circleCollider;
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = AudioManager.instance;
+    }
 
     // Awake function
     private void Awake()
@@ -34,6 +40,7 @@ public class HealthController : MonoBehaviour {
         if(other.gameObject.tag.Equals("Player") && this.tag.Equals("Health"))
         {
             other.gameObject.GetComponent<PlayerHealth>().IncreaseHealth(worth);
+            audioManager.PlaySound("Health");
             Destroy(gameObject);
         }
         

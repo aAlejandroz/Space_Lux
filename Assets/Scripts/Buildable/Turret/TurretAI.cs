@@ -18,7 +18,8 @@ public class TurretAI : Buildable {
     private SpriteRenderer spriteRenderer;
     private BuildingHP CurrentHpDisplay;
     private GameObject buildUIInfo;    
-    private AudioSource destroyedSound;   
+    private AudioSource destroyedSound;
+    private AudioManager audioManager;
 
     // Start function
     public void Start() {
@@ -28,7 +29,12 @@ public class TurretAI : Buildable {
         TurretGun = GetComponentInChildren<Gun>();
         anim = GetComponent<Animator>();
         destroyedSound = GetComponent<AudioSource>();
-        spriteRenderer = GetComponent<SpriteRenderer>();        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        audioManager = AudioManager.instance;
+        if(audioManager == null)
+        {
+            
+        }
     }
 
     // Update function
@@ -183,6 +189,7 @@ public class TurretAI : Buildable {
 
     // Function called when hp <= 0
     protected override void OnDestroyed() {
+        audioManager.PlaySound("Boom");
         //destroyedSound.Play();
         CurrentHpDisplay.UpdateHP(CurHP);
         Destroy(buildUIInfo);

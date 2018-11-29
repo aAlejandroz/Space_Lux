@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1195378273}
   crossHair: {fileID: 1706526987}
-  victory: {fileID: 1370244737}
+  victory: {fileID: 0}
   HUD: {fileID: 2129755996}
 --- !u!114 &591614794
 MonoBehaviour:
@@ -4908,6 +4908,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2098579694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1794306204479766, guid: a9ec3f9f6ee1ceb4f93a1552b9598143,
+    type: 2}
+  m_PrefabInternal: {fileID: 1510313328}
+--- !u!114 &2098579695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2098579694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2919a919706687149a395501ce183561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Boom
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
 --- !u!1 &2129755996
 GameObject:
   m_ObjectHideFlags: 0
