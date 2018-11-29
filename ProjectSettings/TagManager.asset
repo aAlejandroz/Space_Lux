@@ -22,6 +22,7 @@ TagManager:
   - ReloadSlider
   - Undefined
   - BuildCost
+  - TurretGun
   layers:
   - Default
   - TransparentFX

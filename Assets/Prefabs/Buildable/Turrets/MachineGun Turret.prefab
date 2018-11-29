@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 212772519895539972}
   m_Layer: 10
   m_Name: Machine Gun
-  m_TagString: Untagged
+  m_TagString: TurretGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,6 +284,7 @@ MonoBehaviour:
   maxHeat: 1
   heatingSliderWeight: 0
   Force: 31.24
+  muzzleFlash: {fileID: 0}
 --- !u!114 &114908267206582538
 MonoBehaviour:
   m_ObjectHideFlags: 1
