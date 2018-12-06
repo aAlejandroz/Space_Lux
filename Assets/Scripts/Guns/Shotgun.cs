@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Shotgun : Gun{
+public class Shotgun : Gun {
 
     public float Force;
     public float Spread;
@@ -22,7 +22,7 @@ public class Shotgun : Gun{
         
         rotation *= Quaternion.Euler(1.0f, 1.0f, -(2*Spread));
         var projectile3 = Instantiate(ProjectilePrefab, SpawnPoint.position, rotation);
-        projectile3.GetComponent<Rigidbody2D>().AddForce(projectile3.transform.right * Force);        
+        projectile3.GetComponent<Rigidbody2D>().AddForce(projectile3.transform.right * Force);
 
         if (transform.parent.tag == "PlayerAxis") {  // isFriendlyBullet defined by where bullet comes from
             projectile.isPlayerBullet = true;

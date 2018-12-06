@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbb0bba248054e96cfb2e0949c48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 125
-  CurHP: 125
+  MaxHP: 150
+  CurHP: 150
   AttackBufferTime: 0
   flickerDuration: 0.2
   status: 0
@@ -142,7 +142,6 @@ MonoBehaviour:
   dropList:
   - {fileID: 1762791588819400, guid: 2232deeec078fd443aa7e27676f89b68, type: 2}
   - {fileID: 1625940618196778, guid: feb349801623bab49b279e0be207741a, type: 2}
-  killCounterUI: {fileID: 0}
 --- !u!212 &212116909900589908
 SpriteRenderer:
   m_ObjectHideFlags: 1

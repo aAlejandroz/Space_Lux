@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: machine gun
-  FireRate: 0.07
+  FireRate: 0.1
   ProjectilePrefab: {fileID: 114679215855362622, guid: 51f07e11088f72a4bb8f8efa6fc115f7,
     type: 2}
   SpawnPoint: {fileID: 4940284182060348}
