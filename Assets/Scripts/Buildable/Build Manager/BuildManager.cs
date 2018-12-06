@@ -44,14 +44,17 @@ public class BuildManager : MonoBehaviour {
         //canRequest = spawnPoint.GetComponent<DetectingBuildable>().canBuild;
         currentBuilding = buildList[index];
 
-        if (Input.GetButton("Fire1")) {
-            gameObject.GetComponent<BuildManager>().enabled = false;
-            gameObject.GetComponent<PlayerController>().mode = PlayerController.Mode.SHOOTING_MODE;
+        if (Input.GetButton("Fire1") && canRequest)
+        {
+                              // Player builds with 'C' key
+            requestToBuild = true;
+            //gameObject.GetComponent<BuildManager>().enabled = false;
+            //gameObject.GetComponent<PlayerController>().mode = PlayerController.Mode.SHOOTING_MODE;
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") != 0f) {                             // Player choose what they build with the scroll wheel 
-            index++;     
-            
+            index++;
+
             if (index >= buildList.Count) {
                 index = 0;
             }
@@ -59,13 +62,13 @@ public class BuildManager : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.E) && canRemove) {
             RepairBuildable();
-        } else if (Input.GetKey(KeyCode.C) && canRequest) {                        // Player builds with 'C' key
-            requestToBuild = true;
-        } else {
+        } //else if (Input.GetKey(KeyCode.C) && canRequest) {                        // Player builds with 'C' key
+        //requestToBuild = true; }
+         else {
 
         }           
         
-        if (Input.GetKey(KeyCode.V) && canRemove) {                                 
+        if (Input.GetButton("Fire2") && canRemove) {                                 
             blockingObject = spawnPoint.GetComponent<DetectingBuildable>().blockingObject.GetComponent<Buildable>();
             playerResource.DisplayNumber(blockingObject.buildCost / 2, Color.green);
             blockingObject.Remove();
