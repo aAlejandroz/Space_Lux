@@ -19,9 +19,6 @@ public class ResourceUI : MonoBehaviour {
 
     public void UpdateResource(int resource) {
 
-        text.text = resource.ToString();
-
-        //resourceSlider.value = resource / maxResource;
-       
+        text.text = resource.ToString();       
     }
 }

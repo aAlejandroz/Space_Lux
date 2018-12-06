@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> WeaponInventory;
     public Gun weaponComponent;
     public GunUI gunDisplay;
+    public GunNameUI gunName;
+    public GameObject costUI;
+    public GameObject gunNameUI;
     public GameObject reloadSlider;
 
     public PlayerController() {
@@ -35,6 +38,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Awake() {
+        gunNameUI = GameObject.Find("GunName");
+        costUI = GameObject.Find("TurretCost");
         reloadSlider = GameObject.FindGameObjectWithTag("ReloadSlider");
         reloadSlider.SetActive(true);
         gameObject.GetComponent<BuildManager>().enabled = false;
@@ -45,6 +50,11 @@ public class PlayerController : MonoBehaviour
         weaponComponent = currentWeapon.GetComponent<Gun>();
         mode = Mode.SHOOTING_MODE;
         //switchWeapons(0);        
+    }
+
+    private void Start() {
+        costUI.SetActive(false);
+        gunNameUI.SetActive(true);
     }
 
     // Destroys current weapon & switches weapon according to weapon index
@@ -75,23 +85,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) {
             SwitchMode();
         }
-        /*
-        if (Input.GetKeyDown(KeyCode.Alpha1) && WeaponInventory.Count > 0) {
-            weaponIndex = 0;
-            switchWeapons(weaponIndex);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2) && WeaponInventory.Count > 1) {
-            weaponIndex = 1;
-            switchWeapons(weaponIndex);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3) && WeaponInventory.Count > 2) {
-            weaponIndex = 2;
-            switchWeapons(weaponIndex);
-        }
-        */
+              
         if (mode == Mode.SHOOTING_MODE) {
+            gunNameUI.SetActive(true);
+            costUI.SetActive(false);
             reloadSlider.SetActive(true);
             isFiring = Input.GetButton("Fire1");
             if (Input.GetAxis("Mouse ScrollWheel") != 0f) {     // Player chooses gun with the scroll wheel 
@@ -104,10 +101,13 @@ public class PlayerController : MonoBehaviour
                 switchWeapons(weaponIndex);
             }
 
+            gunName.UpdateName(currentWeapon.GetComponent<Item>().ID);
             gunDisplay.UpdateGunDisplay(currentWeapon.GetComponent<SpriteRenderer>().sprite);   // Updates display in UI
         }
 
         if (mode == Mode.BUILDING_MODE) {
+            gunNameUI.SetActive(false);
+            costUI.SetActive(true);
             reloadSlider.SetActive(false);
             isFiring = false;
         }              

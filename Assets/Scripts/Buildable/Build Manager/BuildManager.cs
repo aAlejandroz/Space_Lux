@@ -20,6 +20,7 @@ public class BuildManager : MonoBehaviour {
     public Transform spawnPoint;            // Transform of gameobject in front of player
     public Grid grid;
     public GunUI gunDisplay;
+    public CostUI costUI;
     private AudioManager audioManager;
 
     private void Start()
@@ -70,8 +71,9 @@ public class BuildManager : MonoBehaviour {
             playerResource.DisplayNumber(blockingObject.buildCost / 2, Color.green);
             blockingObject.Remove();
             playerResource.IncrementResource(blockingObject.buildCost / 2);        // Destroying a building only returns half the cost                          
-        }        
+        }
 
+        costUI.UpdateCosts(buildList[index].buildCost, buildList[index].GetComponent<TurretAI>().turretName);
         gunDisplay.UpdateGunDisplay(buildList[index].GetComponent<SpriteRenderer>().sprite);
     }
 

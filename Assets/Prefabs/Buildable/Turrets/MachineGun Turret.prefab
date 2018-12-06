@@ -308,6 +308,7 @@ MonoBehaviour:
   isbuilding: 0
   buildableUI: {fileID: 1403006207572468, guid: 604ba36010e30af4d87ac8d4aae541d2,
     type: 2}
+  turretName: Machine Gun Turret
   offset: 0
   enemies: []
 --- !u!212 &212618277608980556

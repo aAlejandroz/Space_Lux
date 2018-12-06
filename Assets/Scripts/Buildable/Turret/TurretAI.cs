@@ -7,6 +7,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Collider2D))]
 public class TurretAI : Buildable {
 
+    public string turretName;
     public float offset;
     private float targetAngle;
     private bool isSearchingAndDestroying;
